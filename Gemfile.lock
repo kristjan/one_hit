@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/kristjan/ffaker.git
+  revision: 3ed0045f1497dd11cc817cc4582831c033cc312b
+  specs:
+    ffaker (1.2.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -38,7 +44,6 @@ GEM
     diff-lcs (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
-    ffaker (1.2.0)
     fixjour (0.5.3)
       activerecord
     i18n (0.5.0)
@@ -93,7 +98,7 @@ PLATFORMS
 DEPENDENCIES
   autotest
   autotest-rails
-  ffaker
+  ffaker!
   fixjour
   rails (= 3.0.4)
   rspec

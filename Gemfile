@@ -9,7 +9,7 @@ end
 group :test do
   gem 'autotest'
   gem 'autotest-rails'
-  gem 'ffaker'
+  gem 'ffaker', :git => 'git://github.com/kristjan/ffaker.git'
   gem 'fixjour'
   gem 'rspec'
   gem 'rspec-rails'
