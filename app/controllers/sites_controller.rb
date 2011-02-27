@@ -13,7 +13,7 @@ class SitesController < ApplicationController
   # GET /sites/1
   # GET /sites/1.xml
   def show
-    @site = Site.find(params[:id])
+    @site = Site.find_by_slug(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,7 +34,7 @@ class SitesController < ApplicationController
 
   # GET /sites/1/edit
   def edit
-    @site = Site.find(params[:id])
+    @site = Site.find_by_slug(params[:id])
   end
 
   # POST /sites
@@ -56,7 +56,7 @@ class SitesController < ApplicationController
   # PUT /sites/1
   # PUT /sites/1.xml
   def update
-    @site = Site.find(params[:id])
+    @site = Site.find_by_slug(params[:id])
 
     respond_to do |format|
       if @site.update_attributes(params[:site])
@@ -72,7 +72,7 @@ class SitesController < ApplicationController
   # DELETE /sites/1
   # DELETE /sites/1.xml
   def destroy
-    @site = Site.find(params[:id])
+    @site = Site.find_by_slug(params[:id])
     @site.destroy
 
     respond_to do |format|

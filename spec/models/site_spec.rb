@@ -40,5 +40,10 @@ describe Site do
     it "doesn't allow funny characters" do
       new_site(:slug => "ain't@cool").should_not be_valid
     end
+
+    it "must be unique" do
+      site = create_site
+      new_site(:slug => site.slug).should have(1).error_on(:slug)
+    end
   end
 end

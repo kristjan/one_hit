@@ -20,4 +20,6 @@ ActiveRecord::Schema.define(:version => 20110227023248) do
     t.datetime "updated_at"
   end
 
+  add_index "sites", ["slug"], :name => "index_sites_on_slug", :unique => true
+
 end

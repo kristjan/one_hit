@@ -1,6 +1,5 @@
 OneHit::Application.routes.draw do
-  root :to => 'sites#index'
-  resources :sites
+  resources :sites, :path => '/'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
