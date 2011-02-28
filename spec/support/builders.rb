@@ -9,4 +9,11 @@ Fixjour do
       :slug => Faker::Lorem.word.downcase
     )
   end
+
+  define_builder(Quip) do |klass, overrides|
+    klass.new(
+      :site => new_site,
+      :text => Faker::Lorem.sentence(3)
+    )
+  end
 end

@@ -24,6 +24,10 @@ describe Site do
     site.to_param.should == site.slug
   end
 
+  it "has many Quips" do
+    new_site.quips.should be_a(Array)
+  end
+
   describe "the slug" do
     it "allows alphas" do
       new_site(:slug => "AbCd").should be_valid

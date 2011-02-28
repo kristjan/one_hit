@@ -1,0 +1,26 @@
+<h1>Listing quips</h1>
+
+<table>
+  <tr>
+    <th>Site</th>
+    <th>Text</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @quips.each do |quip| %>
+  <tr>
+    <td><%= quip.site.name %></td>
+    <td><%= quip.text %></td>
+    <td><%= link_to 'Show', site_quip_path(@site, quip) %></td>
+    <td><%= link_to 'Edit', edit_site_quip_path(@site, quip) %></td>
+    <td><%= link_to 'Destroy', site_quip_path(@site, quip),
+                    :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Quip', new_site_quip_path(@site) %>

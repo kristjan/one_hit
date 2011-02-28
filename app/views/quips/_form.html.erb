@@ -1,0 +1,25 @@
+<%= form_for(@quip, :url => form_path(@quip)) do |f| %>
+  <% if @quip.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@quip.errors.count, "error") %> prohibited this quip from being saved:</h2>
+
+      <ul>
+      <% @quip.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :site_id %><br />
+    <%= f.text_field :site_id %>
+  </div>
+  <div class="field">
+    <%= f.label :text %><br />
+    <%= f.text_field :text %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
