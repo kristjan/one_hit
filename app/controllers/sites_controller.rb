@@ -5,7 +5,7 @@ class SitesController < ApplicationController
 
     respond_to do |format|
       format.html
-      text_formats format, @sites
+      api_formats format, @sites
     end
   end
 
@@ -14,7 +14,7 @@ class SitesController < ApplicationController
 
     respond_to do |format|
       format.html
-      text_formats format, @site
+      api_formats format, @site
     end
   end
 
@@ -23,7 +23,7 @@ class SitesController < ApplicationController
 
     respond_to do |format|
       format.html
-      text_formats format, @site
+      api_formats format, @site
     end
   end
 
@@ -39,10 +39,10 @@ class SitesController < ApplicationController
         format.html {
           redirect_to(@site, :notice => 'Site was successfully created.')
         }
-        text_formats format, @site, :status => :created, :location => @site
+        api_formats format, @site, :status => :created, :location => @site
       else
         format.html {render :action => "new"}
-        text_formats format, @site.errors, :status => :unprocessable_entity
+        api_formats format, @site.errors, :status => :unprocessable_entity
       end
     end
   end
@@ -55,10 +55,10 @@ class SitesController < ApplicationController
         format.html  {
           redirect_to(@site, :notice => 'Site was successfully updated.')
         }
-        text_formats(format) {head :ok}
+        api_formats(format) {head :ok}
       else
         format.html  {render :action => "edit"}
-        text_formats format, @site.errors, :status => :unprocessable_entity
+        api_formats format, @site.errors, :status => :unprocessable_entity
       end
     end
   end
@@ -69,7 +69,7 @@ class SitesController < ApplicationController
 
     respond_to do |format|
       format.html  {redirect_to(sites_url)}
-      text_formats(format) {head :ok}
+      api_formats(format) {head :ok}
     end
   end
 end

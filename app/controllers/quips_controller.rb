@@ -6,7 +6,7 @@ class QuipsController < ApplicationController
 
     respond_to do |format|
       format.html
-      text_formats format, @quips
+      api_formats format, @quips
     end
   end
 
@@ -15,7 +15,7 @@ class QuipsController < ApplicationController
 
     respond_to do |format|
       format.html
-      text_formats format, @quip
+      api_formats format, @quip
     end
   end
 
@@ -24,7 +24,7 @@ class QuipsController < ApplicationController
 
     respond_to do |format|
       format.html
-      text_formats format, @quip
+      api_formats format, @quip
     end
   end
 
@@ -41,11 +41,11 @@ class QuipsController < ApplicationController
           redirect_to site_quip_url(@site, @quip),
             :notice => 'Quip was successfully created.'
         }
-        text_formats format, @quip,
+        api_formats format, @quip,
           :status => :created, :location => site_quip_url(@site, @quip)
       else
         format.html  {render :action => "new"}
-        text_formats format, @quip.errors, :status => :unprocessable_entity
+        api_formats format, @quip.errors, :status => :unprocessable_entity
       end
     end
   end
@@ -59,10 +59,10 @@ class QuipsController < ApplicationController
           redirect_to site_quip_url(@site, @quip),
             :notice => 'Quip was successfully updated.'
         }
-        text_formats(format) {head :ok}
+        api_formats(format) {head :ok}
       else
         format.html {render :action => "edit"}
-        text_formats format, @quip.errors, :status => :unprocessable_entity
+        api_formats format, @quip.errors, :status => :unprocessable_entity
       end
     end
   end
@@ -73,7 +73,7 @@ class QuipsController < ApplicationController
 
     respond_to do |format|
       format.html {redirect_to(site_quips_url(@site.slug))}
-      text_formats(format) {head :ok}
+      api_formats(format) {head :ok}
     end
   end
 
