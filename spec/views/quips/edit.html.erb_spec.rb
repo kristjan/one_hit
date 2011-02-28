@@ -9,7 +9,6 @@ describe "quips/edit.html.erb" do
   it "renders the edit quip form" do
     render
 
-    # Run the generator again with the --webrat flag if you want to use webrat matchers
     assert_select "form", :action => site_quips_path(@site, @quip), :method => "post" do
       assert_select "input#quip_site_id", :name => "quip[site_id]"
       assert_select "input#quip_text", :name => "quip[text]"
