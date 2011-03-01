@@ -1,30 +1,20 @@
 class SitesController < ApplicationController
 
+  respond_to :html, :json, :xml
+
   def index
     @sites = Site.all
-
-    respond_to do |format|
-      format.html
-      api_formats format, @sites
-    end
+    respond_with @sites
   end
 
   def show
     @site = Site.find_by_slug(params[:id])
-
-    respond_to do |format|
-      format.html
-      api_formats format, @site
-    end
+    respond_with @site
   end
 
   def new
     @site = Site.new
-
-    respond_to do |format|
-      format.html
-      api_formats format, @site
-    end
+    respond_with @site
   end
 
   def edit
@@ -33,32 +23,24 @@ class SitesController < ApplicationController
 
   def create
     @site = Site.new(params[:site])
-
-    respond_to do |format|
-      if @site.save
-        format.html {
-          redirect_to(@site, :notice => 'Site was successfully created.')
-        }
-        api_formats format, @site, :status => :created, :location => @site
-      else
-        format.html {render :action => "new"}
-        api_formats format, @site.errors, :status => :unprocessable_entity
+    if @site.save
+      respond_with @site, :status => :created, :location => @site,
+        :notice => 'Site was successfully created.'
+    else
+      respond_with @site.errors, :status => :unprocessable_entity do |format|
+        format.html {render :new}
       end
     end
   end
 
   def update
     @site = Site.find_by_slug(params[:id])
-
-    respond_to do |format|
-      if @site.update_attributes(params[:site])
-        format.html  {
-          redirect_to(@site, :notice => 'Site was successfully updated.')
-        }
-        api_formats(format) {head :ok}
-      else
-        format.html  {render :action => "edit"}
-        api_formats format, @site.errors, :status => :unprocessable_entity
+    if @site.update_attributes(params[:site])
+      respond_with @site, :head => :ok,
+        :notice => 'Site was successfully updated.'
+    else
+      respond_with @site.errors, :status => :unprocessable_entity do |format|
+        format.html  {render :edit}
       end
     end
   end
@@ -66,10 +48,6 @@ class SitesController < ApplicationController
   def destroy
     @site = Site.find_by_slug(params[:id])
     @site.destroy
-
-    respond_to do |format|
-      format.html  {redirect_to(sites_url)}
-      api_formats(format) {head :ok}
-    end
+    respond_with @site, :head => :ok, :location => sites_url
   end
 end

@@ -1,31 +1,21 @@
 class QuipsController < ApplicationController
   before_filter :load_site
 
+  respond_to :html, :json, :xml
+
   def index
     @quips = Quip.all
-
-    respond_to do |format|
-      format.html
-      api_formats format, @quips
-    end
+    respond_with @quips
   end
 
   def show
     @quip = Quip.find(params[:id])
-
-    respond_to do |format|
-      format.html
-      api_formats format, @quip
-    end
+    respond_with @quip
   end
 
   def new
     @quip = Quip.new
-
-    respond_to do |format|
-      format.html
-      api_formats format, @quip
-    end
+    respond_with @quip
   end
 
   def edit
@@ -34,35 +24,25 @@ class QuipsController < ApplicationController
 
   def create
     @quip = Quip.new(params[:quip])
-
-    respond_to do |format|
-      if @quip.save
-        format.html {
-          redirect_to site_quip_url(@site, @quip),
-            :notice => 'Quip was successfully created.'
-        }
-        api_formats format, @quip,
-          :status => :created, :location => site_quip_url(@site, @quip)
-      else
-        format.html  {render :action => "new"}
-        api_formats format, @quip.errors, :status => :unprocessable_entity
+    if @quip.save
+      respond_with @quip, :status => :created,
+        :location => site_quip_url(@site, @quip),
+        :notice => 'Quip was successfully created.'
+    else
+      respond_with @quip.errors, :status => :unprocessable_entity do |format|
+        format.html  {render :new}
       end
     end
   end
 
   def update
     @quip = Quip.find(params[:id])
-
-    respond_to do |format|
-      if @quip.update_attributes(params[:quip])
-        format.html {
-          redirect_to site_quip_url(@site, @quip),
-            :notice => 'Quip was successfully updated.'
-        }
-        api_formats(format) {head :ok}
-      else
-        format.html {render :action => "edit"}
-        api_formats format, @quip.errors, :status => :unprocessable_entity
+    if @quip.update_attributes(params[:quip])
+      respond_with @quip, :location => site_quip_url(@site, @quip),
+                   :notice => 'Quip was successfully updated.'
+    else
+      respond_with @quip.errors, :status => :unprocessable_entity do |format|
+        format.html {render :edit}
       end
     end
   end
@@ -70,11 +50,7 @@ class QuipsController < ApplicationController
   def destroy
     @quip = Quip.find(params[:id])
     @quip.destroy
-
-    respond_to do |format|
-      format.html {redirect_to(site_quips_url(@site.slug))}
-      api_formats(format) {head :ok}
-    end
+    respond_with @quip, :location => site_quips_url(@site), :head => :ok
   end
 
 private
