@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "quips/index.html.erb" do
+describe "quips/index.html.haml" do
   before(:each) do
     @site = assign(:site, create_site)
     @quips = assign(:quips, [create_quip(:site => @site),

@@ -1,0 +1,13 @@
+%p#notice= notice
+%p
+  %strong
+    Site:
+  = @quip.site_id
+%p
+  %strong
+    Text:
+  = @quip.text
+
+= link_to 'Edit', edit_site_quip_path(@site, @quip)
+|
+= link_to 'Back', site_quips_path(@site)
