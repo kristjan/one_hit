@@ -40,16 +40,25 @@ a {
 
   #nav {
     float: right;
-    margin: 0px 20px 5px 0px;
+    margin: 0px 10px 5px 0px;
     a {
       @include border-bottom-radius(5px);
       @include linear-gradient(color-stops(#222, #FFF 3%, #FFF));
       border: 1px solid #000;
       display: block;
+      float: left;
       font-weight: bold;
       margin: 0px 5px 10px;
       padding: 10px 20px;
       text-decoration: none;
+    }
+    a.home {
+      @include linear-gradient(color-stops(
+        darken($exciting-color, 30%),
+        #FFF 5%,
+        lighten($exciting-color, 30%) 10%,
+        #FFF));
+      padding: 8px 20px;
     }
   }
 
