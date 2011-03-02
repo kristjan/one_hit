@@ -1,3 +1,5 @@
+- content_for :header do
+  = stylesheet_link_tag 'sites/new'
 = form_for(@site) do |f|
   - if @site.errors.any?
     #error_explanation
@@ -9,10 +11,10 @@
         %li= msg
 
   .field
-    = f.label :name
-    = f.text_field :name
+    = f.text_field :name, :class => 'full_width',   |
+                   :placeholder => "Name your site" |
   .field
-    = f.label :slug
-    = f.text_field :slug
+    = f.label :slug, "http://oneh.it/"
+    = f.text_field :slug, :class => 'url', :placeholder => "your_url"
   .actions
-    = f.submit
+    = f.submit "Hit it!"

@@ -1,0 +1,9 @@
+$background-color: #FFF;
+$text-color: #333;
+$exciting-color: #FF9F05;
+$action-color: darken($exciting-color, 10%);
+$header-color: #F6F6AC;
+
+@import "compass/reset";
+@import "global";
+@import "forms";

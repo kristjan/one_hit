@@ -1,9 +1,19 @@
 !!! HTML
 %html
   %head
-    %title OneHit
-    = stylesheet_link_tag :all
+    %title
+      OneHit
+      = '| ' + @title unless @title.blank?
+    = stylesheet_link_tag 'application'
+    = stylesheet_link_tag 'screen', :media => 'screen, projection'
+    = stylesheet_link_tag 'print', :media => 'print'
+    /[if IE]
+      = stylesheet_link_tag 'ie', :media => 'screen, projection'
+
     = javascript_include_tag :defaults
     = csrf_meta_tag
+
+    = yield :header
   %body
+    = render 'global/header'
     = yield

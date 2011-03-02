@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.4'
+gem 'compass'
 gem 'haml'
 
 group :development, :test do
