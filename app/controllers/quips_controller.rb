@@ -4,8 +4,9 @@ class QuipsController < ApplicationController
   respond_to :html, :json, :xml
 
   def index
-    @quips = Quip.all
-    respond_with @quips
+    @quips = @site.quips
+    @quip = Quip.new(:site => @site)
+    respond_with @quip
   end
 
   def show
@@ -14,23 +15,30 @@ class QuipsController < ApplicationController
   end
 
   def new
-    @quip = Quip.new
-    respond_with @quip
+    respond_with @site.quips.build do |format|
+      format.html { redirect_to site_quips_path(@site) }
+    end
   end
 
   def edit
     @quip = Quip.find(params[:id])
+    respond_with @quip do |format|
+      format.html { redirect_to site_quips_path(@site) }
+    end
   end
 
   def create
-    @quip = Quip.new(params[:quip])
+    @quip = Quip.new(params[:quip].merge(:site => @site))
     if @quip.save
       respond_with @quip, :status => :created,
-        :location => site_quip_url(@site, @quip),
+        :location => site_quips_url(@site),
         :notice => 'Quip was successfully created.'
     else
       respond_with @quip.errors, :status => :unprocessable_entity do |format|
-        format.html  {render :new}
+        format.html  {
+          @quips = @site.quips
+          render :index
+        }
       end
     end
   end
@@ -38,11 +46,12 @@ class QuipsController < ApplicationController
   def update
     @quip = Quip.find(params[:id])
     if @quip.update_attributes(params[:quip])
-      respond_with @quip, :location => site_quip_url(@site, @quip),
+      respond_with @quip, :location => site_quips_url(@site),
                    :notice => 'Quip was successfully updated.'
     else
       respond_with @quip.errors, :status => :unprocessable_entity do |format|
-        format.html {render :edit}
+        @quips = @site.quips
+        format.html {render :index}
       end
     end
   end

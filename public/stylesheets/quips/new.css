@@ -98,11 +98,61 @@ form .actions {
   text-align: right;
 }
 
-/* line 4, ../../../app/stylesheets/sites/new.scss */
-form input[type=text].url {
-  width: 426px;
+/* line 4, ../../../app/stylesheets/quips/new.scss */
+ul {
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -o-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -khtml-border-radius: 15px;
+  border-radius: 15px;
+  background-color: #EFEFEF;
+  padding: 25px;
+  margin: 50px auto 0px;
+  width: 600px;
 }
-/* line 5, ../../../app/stylesheets/sites/new.scss */
-form label {
-  width: 139px;
+/* line 7, ../../../app/stylesheets/quips/new.scss */
+ul li {
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -o-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -khtml-border-radius: 15px;
+  border-radius: 15px;
+  font-size: 1.5em;
+  line-height: 1.2em;
+  padding: 5px 10px;
+}
+/* line 12, ../../../app/stylesheets/quips/new.scss */
+ul li:hover {
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #ffffff), color-stop(98%, #eaf0fa), color-stop(100%, #98b5e6));
+  background-image: -moz-linear-gradient(top, #ffffff 0%, #eaf0fa 98%, #98b5e6 100%);
+  background-image: linear-gradient(top, #ffffff 0%, #eaf0fa 98%, #98b5e6 100%);
+  border-color: #9C9;
+}
+/* line 14, ../../../app/stylesheets/quips/new.scss */
+ul li span {
+  display: inline-block;
+  width: 500px;
+}
+/* line 19, ../../../app/stylesheets/quips/new.scss */
+ul a {
+  font-size: .5em;
+  float: right;
+}
+
+/* line 25, ../../../app/stylesheets/quips/new.scss */
+form {
+  margin-top: 10px;
+}
+/* line 28, ../../../app/stylesheets/quips/new.scss */
+form input[type=text] {
+  width: 465px;
+}
+/* line 31, ../../../app/stylesheets/quips/new.scss */
+form input[type=submit] {
+  display: inline-block;
+  font-size: 1.5em;
+  margin-left: 10px;
+  width: 100px;
 }

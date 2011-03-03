@@ -1,0 +1,19 @@
+$standard-radius: 15px;
+
+@mixin rounded-section {
+  @include border-radius($standard-radius);
+  background-color: #EFEFEF;
+  padding: 25px;
+  margin: 50px auto 0px;
+}
+
+$light-highlight-color: #EAF0FA;
+
+@mixin light-highlight {
+  @include linear-gradient(
+    color-stops(
+      #FFF,
+      $light-highlight-color 98%,
+      darken($light-highlight-color, 20%)));
+  border-color: #9C9;
+}

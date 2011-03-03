@@ -24,7 +24,8 @@ class SitesController < ApplicationController
   def create
     @site = Site.new(params[:site])
     if @site.save
-      respond_with @site, :status => :created, :location => @site,
+      respond_with @site, :status => :created,
+        :location => site_quips_path(@site),
         :notice => 'Site was successfully created.'
     else
       respond_with @site.errors, :status => :unprocessable_entity do |format|

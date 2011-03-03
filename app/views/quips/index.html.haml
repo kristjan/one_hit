@@ -1,19 +1,8 @@
-%h1 Listing quips
-%table
-  %tr
-    %th Site
-    %th Text
-    %th
-    %th
-    %th
-
+- content_for :header do
+  = stylesheet_link_tag "quips/new"
+%ul
   - @quips.each do |quip|
-    %tr
-      %td= quip.site.name
-      %td= quip.text
-      %td= link_to 'Show', site_quip_path(@site, quip)
-      %td= link_to 'Edit', edit_site_quip_path(@site, quip)
-      %td= link_to 'Destroy', site_quip_path(@site, quip),         |
-                   :confirm => 'Are you sure?', :method => :delete |
-
-= link_to 'New Quip', new_site_quip_path(@site)
+    %Li
+      %span= quip.text
+      = link_to 'Delete', site_quip_path(@site, quip), :method => :delete
+= render 'form'

@@ -1,18 +1,16 @@
 @import "compass/css3";
 @import "blueprint/buttons";
 
+@import "shared";
+
 $form-width:                   600px;
-$form-border-radius:           15px;
-$text-field-background-color:  #EAF0FA;
 
 form {
-  @include border-radius($form-border-radius);
-  background-color: #EFEFEF;
+  @include rounded-section;
   width: $form-width;
-  padding: 25px;
-  margin: 50px auto 0px;
 
   input[type=text], label { font-size: 1.5em; }
+
   label {
     color: #666;
     display: inline-block;
@@ -20,27 +18,21 @@ form {
   }
 
   input[type=text] {
-    @include border-radius($form-border-radius);
+    @include border-radius($standard-radius);
     @include linear-gradient(
                color-stops(#CCC, #FAFAFA 2%, #FAFAFA 98%, #CCC)
              );
     border: 2px solid #CCC;
     display: inline-block;
     padding: 8px;
-  }
-  input[type=text].full_width { width: $form-width - 20px; }
-  input[type=text]:placeholder { :background-color: #F00; }
-  input[type=text]:focus {
-    @include linear-gradient(
-      color-stops(
-        #FFF,
-        $text-field-background-color 98%,
-        darken($text-field-background-color, 20%)));
-    border-color: #9C9;
+
+    &.full_width { width: $form-width - 20px; }
+    &:placeholder { :background-color: #F00; }
+    &:focus, &:hover { @include light-highlight(); }
   }
 
   input[type=submit] {
-    @include border-radius($form-border-radius);
+    @include border-radius($standard-radius);
     @include linear-gradient(
       color-stops(#FF9F05, #FFCF55 2%, #FF9F05 20%, #DF7F05 80%, #AF4F00));
     border: none;
@@ -48,17 +40,16 @@ form {
     font-size: 2em;
     padding: 10px;
     width: 250px;
-  }
-  input[type=submit]:hover,
-  input[type=submit]:focus {
-    @include box-shadow(#F6E62C, 0, 0, 15px);
-    cursor: pointer;
-  }
-  input[type=submit]:active {
-    @include box-shadow(#D6C60C, 0, 0, 10px);
-    @include linear-gradient(
-      color-stops(#FF9F05, #DFAF35 2%, #DF7F00 20%, #BF5F00 80%, #8F2F00));
-    color: #DDD;
+    &:hover,&:focus {
+      @include box-shadow(#F6E62C, 0, 0, 15px);
+      cursor: pointer;
+    }
+    &:active {
+      @include box-shadow(#D6C60C, 0, 0, 10px);
+      @include linear-gradient(
+        color-stops(#FF9F05, #DFAF35 2%, #DF7F00 20%, #BF5F00 80%, #8F2F00));
+      color: #DDD;
+    }
   }
 
   .field { margin: 10px 0px; }

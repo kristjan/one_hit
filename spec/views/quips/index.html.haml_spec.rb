@@ -5,14 +5,20 @@ describe "quips/index.html.haml" do
     @site = assign(:site, create_site)
     @quips = assign(:quips, [create_quip(:site => @site),
                              create_quip(:site => @site)])
+    @quip = assign(:quip, @site.quips.build)
   end
 
   it "renders a list of quips" do
     render
 
-    assert_select "tr>td", :text => @site.name, :count => 2
     @quips.each do |quip|
-      assert_select "tr>td", :text => quip.text
+      assert_select "li", :text => /#{quip.text}/
     end
+  end
+
+  it "renders a field for a new quip" do
+    render
+
+    assert_select "form", :action => site_quips_url(@site), :id => "new_quip"
   end
 end

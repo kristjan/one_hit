@@ -46,10 +46,10 @@ describe SitesController do
         assigns(:site).should be(mock_site)
       end
 
-      it "redirects to the created site" do
+      it "redirects to the quips index" do
         Site.stub(:new) { mock_site(:save => true) }
         post :create, :site => {}
-        response.should redirect_to(site_url(mock_site))
+        response.should redirect_to(site_quips_url(mock_site))
       end
     end
 

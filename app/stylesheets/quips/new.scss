@@ -1,0 +1,37 @@
+@import 'forms';
+@import "shared";
+
+ul {
+  @include rounded-section;
+  width: 600px;
+  li {
+    @include border-radius($standard-radius);
+    font-size: 1.5em;
+    line-height: 1.2em;
+    padding: 5px 10px;
+    &:hover { @include light-highlight(); }
+
+    span {
+      display: inline-block;
+      width: 500px;
+    }
+  }
+  a {
+    font-size: .5em;
+    float: right;
+  }
+}
+
+form {
+  margin-top: 10px;
+
+  input[type=text] {
+    width: 465px;
+  }
+  input[type=submit] {
+    display: inline-block;
+    font-size: 1.5em;
+    margin-left: 10px;
+    width: 100px;
+  }
+}

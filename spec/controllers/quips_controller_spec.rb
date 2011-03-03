@@ -15,7 +15,8 @@ describe QuipsController do
   end
 
   before(:each) do
-    Site.stub(:find_by_slug).with(SITE_SLUG) {mock_site}
+    @site = mock_site
+    Site.stub(:find_by_slug).with(SITE_SLUG) {@site}
   end
 
   it "loads the containing site" do
@@ -32,10 +33,17 @@ describe QuipsController do
   end
 
   describe "GET index" do
-    it "assigns all quips as @quips" do
-      Quip.stub(:all) {[mock_quip]}
+    it "assignes all quips as @quips" do
+      @site.stub(:quips) {[mock_quip]}
       get :index, :site_id => SITE_SLUG
       assigns(:quips).should eq([mock_quip])
+    end
+
+    it "builds a new quip with the current site" do
+      Quip.stub(:new) {mock_quip}
+      get :index, :site_id => SITE_SLUG
+      assigns(:quip).should eq(mock_quip)
+      assigns(:quip).site.should eq(assigns(:site))
     end
   end
 
@@ -48,10 +56,9 @@ describe QuipsController do
   end
 
   describe "GET new" do
-    it "assigns a new quip as @quip" do
-      Quip.stub(:new) {mock_quip}
+    it "redirects to the quips index" do
       get :new, :site_id => SITE_SLUG
-      assigns(:quip).should be(mock_quip)
+      response.should redirect_to(site_quips_url(SITE_SLUG))
     end
   end
 
@@ -61,34 +68,46 @@ describe QuipsController do
       get :edit, :id => "37", :site_id => SITE_SLUG
       assigns(:quip).should be(mock_quip)
     end
+
+    it "redirects to the quips index" do
+      Quip.stub(:find).with("37") {mock_quip}
+      get :edit, :id => "37", :site_id => SITE_SLUG
+      response.should redirect_to(site_quips_url(SITE_SLUG))
+    end
   end
 
   describe "POST create" do
     describe "with valid params" do
       it "assigns a newly created quip as @quip" do
-        Quip.stub(:new).with({'these' => 'params'}) {mock_quip(:save => true)}
+        Quip.stub(:new) {mock_quip(:save => true)}
         post :create, :quip => {'these' => 'params'}, :site_id => SITE_SLUG
         assigns(:quip).should be(mock_quip)
       end
 
-      it "redirects to the created quip" do
+      it "infers the site" do
+        Quip.should_receive(:new).
+          with({'these' => 'params', 'site' => @site}) {mock_quip}
+        post :create, :quip => {'these' => 'params'}, :site_id => SITE_SLUG
+      end
+
+      it "redirects to the index" do
         Quip.stub(:new) {mock_quip(:save => true)}
         post :create, :quip => {}, :site_id => SITE_SLUG
-        response.should redirect_to(site_quip_url(SITE_SLUG, mock_quip))
+        response.should redirect_to(site_quips_url(SITE_SLUG))
       end
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved quip as @quip" do
-        Quip.stub(:new).with({'these' => 'params'}) {mock_quip(:save => false)}
+        Quip.stub(:new) {mock_quip(:save => false)}
         post :create, :quip => {'these' => 'params'}, :site_id => SITE_SLUG
         assigns(:quip).should be(mock_quip)
       end
 
-      it "re-renders the 'new' template" do
+      it "re-renders the 'index' template" do
         Quip.stub(:new) {mock_quip(:save => false)}
         post :create, :quip => {}, :site_id => SITE_SLUG
-        response.should render_template("new")
+        response.should render_template("index")
       end
     end
   end
@@ -111,7 +130,7 @@ describe QuipsController do
       it "redirects to the quip" do
         Quip.stub(:find) {mock_quip(:update_attributes => true)}
         put :update, :id => "1", :site_id => SITE_SLUG
-        response.should redirect_to(site_quip_url(SITE_SLUG, mock_quip))
+        response.should redirect_to(site_quips_url(SITE_SLUG))
       end
     end
 
@@ -122,10 +141,10 @@ describe QuipsController do
         assigns(:quip).should be(mock_quip)
       end
 
-      it "re-renders the 'edit' template" do
+      it "re-renders the 'index' template" do
         Quip.stub(:find) {mock_quip(:update_attributes => false)}
         put :update, :id => "1", :site_id => SITE_SLUG
-        response.should render_template("edit")
+        response.should render_template("index")
       end
     end
   end

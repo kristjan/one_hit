@@ -8,11 +8,5 @@
         - @quip.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.label :site_id
-    = f.text_field :site_id
-  .field
-    = f.label :text
-    = f.text_field :text
-  .actions
-    = f.submit
+  = f.text_field :text
+  = f.submit "Add"
