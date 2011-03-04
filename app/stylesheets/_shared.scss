@@ -1,13 +1,30 @@
+@import "compass/css3";
+
 $standard-radius: 15px;
-
-@mixin rounded-section {
-  @include border-radius($standard-radius);
-  background-color: #EFEFEF;
-  padding: 25px;
-  margin: 50px auto 0px;
-}
-
 $light-highlight-color: #EAF0FA;
+
+@mixin action-button {
+  @include border-radius($standard-radius);
+  @include linear-gradient(
+    color-stops(#FF9F05, #FFCF55 2%, #FF9F05 20%, #DF7F05 80%, #AF4F00));
+  border: none;
+  color: #FFF;
+  display: inline-block;
+  font-size: 2em;
+  padding: 10px 15px;
+  text-align: center;
+
+  &:hover, &:focus {
+    @include box-shadow(#F6E62C, 0, 0, 15px);
+    cursor: pointer;
+  }
+  &:active {
+    @include box-shadow(#D6C60C, 0, 0, 10px);
+    @include linear-gradient(
+      color-stops(#FF9F05, #DFAF35 2%, #DF7F00 20%, #BF5F00 80%, #8F2F00));
+    color: #DDD;
+  }
+}
 
 @mixin light-highlight {
   @include linear-gradient(
@@ -16,4 +33,16 @@ $light-highlight-color: #EAF0FA;
       $light-highlight-color 98%,
       darken($light-highlight-color, 20%)));
   border-color: #9C9;
+}
+
+@mixin rounded-section {
+  @include border-radius($standard-radius);
+  background-color: #EFEFEF;
+  padding: 25px;
+  margin: 50px auto 0px;
+}
+
+@mixin text-size($size) {
+  font-size: $size;
+  line-height: 1.2em;
 }

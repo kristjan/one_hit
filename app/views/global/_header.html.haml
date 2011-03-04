@@ -1,4 +1,5 @@
 #header
   #nav
-    = link_to @site.name, @site if @site
+    = yield :nav
     = link_to "1h¡t", root_url, :class => 'home'
+  %h1= @site.name if @site

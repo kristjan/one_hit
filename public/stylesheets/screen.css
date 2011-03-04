@@ -104,15 +104,17 @@ a:active {
   font-size: 2.5em;
   line-height: 1.2em;
   font-weight: bold;
-  padding: 10px;
+  padding: 10px 0px 20px;
   text-align: center;
 }
 /* line 41, ../../app/stylesheets/_global.scss */
 #header #nav {
-  float: right;
   margin: 0px 10px 5px 0px;
+  position: absolute;
+  right: 10px;
+  top: 0px;
 }
-/* line 44, ../../app/stylesheets/_global.scss */
+/* line 46, ../../app/stylesheets/_global.scss */
 #header #nav a {
   -moz-border-radius-bottomleft: 5px;
   -webkit-border-bottom-left-radius: 5px;
@@ -136,12 +138,18 @@ a:active {
   margin: 0px 5px 10px;
   padding: 10px 20px;
 }
-/* line 54, ../../app/stylesheets/_global.scss */
+/* line 56, ../../app/stylesheets/_global.scss */
 #header #nav a.home {
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #6b4200), color-stop(5%, #ffffff), color-stop(10%, #ffda9e), color-stop(100%, #ffffff));
   background-image: -moz-linear-gradient(top, #6b4200 0%, #ffffff 5%, #ffda9e 10%, #ffffff 100%);
   background-image: linear-gradient(top, #6b4200 0%, #ffffff 5%, #ffda9e 10%, #ffffff 100%);
   padding: 8px 20px;
+}
+
+/* line 67, ../../app/stylesheets/_global.scss */
+#content {
+  margin: 0px auto;
+  width: 650px;
 }
 
 /* line 8, ../../app/stylesheets/_forms.scss */
@@ -210,11 +218,13 @@ form input[type=submit] {
   background-image: linear-gradient(top, #ff9f05 0%, #ffcf55 2%, #ff9f05 20%, #df7f05 80%, #af4f00 100%);
   border: none;
   color: #FFF;
+  display: inline-block;
   font-size: 2em;
-  padding: 10px;
+  padding: 10px 15px;
+  text-align: center;
   width: 250px;
 }
-/* line 43, ../../app/stylesheets/_forms.scss */
+/* line 17, ../../app/stylesheets/_shared.scss */
 form input[type=submit]:hover, form input[type=submit]:focus {
   -moz-box-shadow: #f6e62c 0 0 15px 0;
   -webkit-box-shadow: #f6e62c 0 0 15px 0;
@@ -222,7 +232,7 @@ form input[type=submit]:hover, form input[type=submit]:focus {
   box-shadow: #f6e62c 0 0 15px 0;
   cursor: pointer;
 }
-/* line 47, ../../app/stylesheets/_forms.scss */
+/* line 21, ../../app/stylesheets/_shared.scss */
 form input[type=submit]:active {
   -moz-box-shadow: #d6c60c 0 0 10px 0;
   -webkit-box-shadow: #d6c60c 0 0 10px 0;
@@ -233,11 +243,11 @@ form input[type=submit]:active {
   background-image: linear-gradient(top, #ff9f05 0%, #dfaf35 2%, #df7f00 20%, #bf5f00 80%, #8f2f00 100%);
   color: #DDD;
 }
-/* line 55, ../../app/stylesheets/_forms.scss */
+/* line 39, ../../app/stylesheets/_forms.scss */
 form .field {
   margin: 10px 0px;
 }
-/* line 56, ../../app/stylesheets/_forms.scss */
+/* line 40, ../../app/stylesheets/_forms.scss */
 form .actions {
   margin: 20px 0px;
   text-align: right;

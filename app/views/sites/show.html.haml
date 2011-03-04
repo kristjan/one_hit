@@ -1,13 +1,9 @@
-#notice= notice
-%p
-  %strong
-    Name:
-  = @site.name
-%p
-  %strong
-    Creator:
-  = @site.creator_id
-
-= link_to 'Edit', edit_site_path(@site)
-|
-= link_to 'Back', sites_path
+- @title = @site.name
+- content_for :head do
+  = stylesheet_link_tag 'sites/show'
+- content_for :nav do
+  = link_to "Edit Site", edit_site_path(@site)
+  = link_to "Edit Quips", site_quips_path(@site)
+%p.quip
+  = @site.random_quip.text
+= link_to "Another!", @site

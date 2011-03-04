@@ -28,6 +28,12 @@ describe Site do
     new_site.quips.should be_a(Array)
   end
 
+  it "fetches random quips" do
+    site = new_site
+    site.quips = [new_quip(:site => site), new_quip(:site => site)]
+    site.quips.should include(site.random_quip)
+  end
+
   describe "the slug" do
     it "allows alphas" do
       new_site(:slug => "AbCd").should be_valid

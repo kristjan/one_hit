@@ -1,8 +1,12 @@
-- content_for :header do
-  = stylesheet_link_tag "quips/new"
+- content_for :head do
+  = stylesheet_link_tag "quips/index"
+- content_for :nav do
+  = link_to "Back", @site
 %ul
   - @quips.each do |quip|
     %Li
       %span= quip.text
       = link_to 'Delete', site_quip_path(@site, quip), :method => :delete
 = render 'form'
+#done
+  = link_to "All done", @site
