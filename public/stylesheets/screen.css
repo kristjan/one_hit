@@ -104,7 +104,7 @@ a:active {
   font-size: 2.5em;
   line-height: 1.2em;
   font-weight: bold;
-  padding: 10px 0px 20px;
+  padding: 10px;
   text-align: center;
 }
 /* line 41, ../../app/stylesheets/_global.scss */
@@ -143,13 +143,16 @@ a:active {
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #6b4200), color-stop(5%, #ffffff), color-stop(10%, #ffda9e), color-stop(100%, #ffffff));
   background-image: -moz-linear-gradient(top, #6b4200 0%, #ffffff 5%, #ffda9e 10%, #ffffff 100%);
   background-image: linear-gradient(top, #6b4200 0%, #ffffff 5%, #ffda9e 10%, #ffffff 100%);
+}
+/* line 63, ../../app/stylesheets/_global.scss */
+#header #nav a.persistent {
   padding: 8px 20px;
 }
 
-/* line 67, ../../app/stylesheets/_global.scss */
+/* line 69, ../../app/stylesheets/_global.scss */
 #content {
   margin: 0px auto;
-  width: 650px;
+  width: 600px;
 }
 
 /* line 8, ../../app/stylesheets/_forms.scss */

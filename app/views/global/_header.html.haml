@@ -1,5 +1,6 @@
 #header
   #nav
     = yield :nav
-    = link_to "1h¡t", root_url, :class => 'home'
-  %h1= @site.name if @site
+    = link_to "Random", random_sites_path, :class => 'persistent'
+    = link_to "1h¡t", root_path, :class => 'persistent home'
+  %h1= @title || (@site.name if @site)

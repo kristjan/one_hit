@@ -1,0 +1,27 @@
+@import "compass/utilities/general/clearfix";
+@import "compass/utilities/general/float";
+@import "shared";
+
+#content {
+  @include clearfix;
+  width: 100%;
+
+  .actions {
+    margin: 50px auto;
+    text-align: center;
+    width: 900px;
+
+    .action {
+      @include rounded-section;
+      @include inline-block;
+      margin: 20px 40px;
+      width: 300px;
+
+      a {
+        @include action-button;
+        @include text-size(2.5em);
+        width: 275px;
+      }
+    }
+  }
+}

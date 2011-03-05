@@ -7,6 +7,16 @@ class SitesController < ApplicationController
     respond_with @sites
   end
 
+  def random
+    max_id = Site.maximum(:id)
+    begin
+      @site = Site.find_by_id(rand(max_id) + 1)
+    end while @site.nil?
+    respond_with @site, :location => site_url(@site) do |format|
+      format.html {redirect_to @site}
+    end
+  end
+
   def show
     @site = Site.find_by_slug(params[:id])
     respond_with @site
