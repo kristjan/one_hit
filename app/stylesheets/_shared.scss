@@ -7,9 +7,9 @@ $light-highlight-color: #EAF0FA;
   @include border-radius($standard-radius);
   @include linear-gradient(
     color-stops(#FF9F05, #FFCF55 2%, #FF9F05 20%, #DF7F05 80%, #AF4F00));
+  @include inline-block;
   border: none;
   color: #FFF;
-  display: inline-block;
   font-size: 2em;
   padding: 10px 15px;
   text-align: center;
@@ -38,8 +38,7 @@ $light-highlight-color: #EAF0FA;
 @mixin rounded-section {
   @include border-radius($standard-radius);
   background-color: #EFEFEF;
-  padding: 25px;
-  margin: 50px auto 0px;
+  padding: 15px 20px;
 }
 
 @mixin text-size($size) {

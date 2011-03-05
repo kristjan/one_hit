@@ -29,14 +29,22 @@
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #ff9f05), color-stop(2%, #ffcf55), color-stop(20%, #ff9f05), color-stop(80%, #df7f05), color-stop(100%, #af4f00));
   background-image: -moz-linear-gradient(top, #ff9f05 0%, #ffcf55 2%, #ff9f05 20%, #df7f05 80%, #af4f00 100%);
   background-image: linear-gradient(top, #ff9f05 0%, #ffcf55 2%, #ff9f05 20%, #df7f05 80%, #af4f00 100%);
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
   border: none;
   color: #FFF;
-  display: inline-block;
   font-size: 2em;
   padding: 10px 15px;
   text-align: center;
   padding: 15px;
   width: 150px;
+}
+/* line 7, ../../../../../../../opt/local/lib/ruby/gems/1.8/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
+#content a.action {
+  *display: inline;
 }
 /* line 17, ../../../app/stylesheets/_shared.scss */
 #content a.action:hover, #content a.action:focus {

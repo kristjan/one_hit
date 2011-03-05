@@ -1,20 +1,24 @@
-@import 'forms';
+@import "compass/utilities";
 @import "shared";
 
-ul {
+form {
+  margin: 40px 0px 10px;
+  input[type=text] { width: 426px; }
+  input[type=submit] {
+    @include float(right);
+    @include inline-block;
+    @include text-size(1.5em);
+    width: 100px;
+  }
+}
+
+ul.quips {
   @include rounded-section;
-  width: 600px;
   li {
     @include border-radius($standard-radius);
-    font-size: 1.5em;
-    line-height: 1.2em;
+    @include text-size(1.5em);
     padding: 5px 10px;
     &:hover { @include light-highlight(); }
-
-    span {
-      display: inline-block;
-      width: 500px;
-    }
   }
   a {
     font-size: .5em;
@@ -22,21 +26,3 @@ ul {
   }
 }
 
-form {
-  margin-top: 10px;
-
-  input[type=text] {
-    width: 465px;
-  }
-  input[type=submit] {
-    display: inline-block;
-    font-size: 1.5em;
-    margin-left: 10px;
-    width: 100px;
-  }
-}
-
-#done {
-  margin: 10px 25px;
-  text-align: right;
-}

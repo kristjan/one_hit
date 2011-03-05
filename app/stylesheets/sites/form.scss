@@ -1,0 +1,11 @@
+@import "forms";
+
+form {
+  input[type=text].full_width { width: 538px; }
+  input[type=text].url { width: 384px; }
+  label {
+    @include inline-block;
+    color: #666;
+    margin-left: 11px;
+  }
+}

@@ -1,44 +1,49 @@
 @import "compass/css3";
 @import "blueprint/buttons";
 
+@import "constants";
 @import "shared";
-
-$form-width:                   600px;
 
 form {
   @include rounded-section;
-  width: $form-width;
+  padding: 15px 20px;
 
-  input[type=text], label { font-size: 1.5em; }
-
-  label {
-    color: #666;
-    display: inline-block;
-    margin-left: 11px;
-  }
+  input[type=text], label { @include text-size(1.5em); }
 
   input[type=text] {
     @include border-radius($standard-radius);
+    @include inline-block;
     @include linear-gradient(
                color-stops(#CCC, #FAFAFA 2%, #FAFAFA 98%, #CCC)
              );
     border: 2px solid #CCC;
-    display: inline-block;
     padding: 8px;
 
-    &.full_width { width: $form-width - 20px; }
-    &:placeholder { :background-color: #F00; }
     &:focus, &:hover { @include light-highlight(); }
   }
 
   input[type=submit] {
     @include action-button();
-    width: 250px;
+    @include inline-block;
   }
 
   .field { margin: 10px 0px; }
+  .field_with_errors {
+    @include inline-block;
+    input {
+      border-color: $error-border;
+    }
+  }
   .actions {
     margin: 20px 0px;
     text-align: right;
   }
+}
+
+#error_explanation {
+  @include rounded-section;
+  background-color: $error-color;
+  border: 1px solid $error-border;
+  margin-bottom: 10px;
+  padding: 5px 20px;
 }
