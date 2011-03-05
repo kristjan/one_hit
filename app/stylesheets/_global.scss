@@ -18,7 +18,7 @@ body {
 }
 
 a {
-  @include link-colors($text-color, $exciting-color, $action-color);
+  @include link-colors($exciting-color, $hover-color, $action-color);
   text-decoration: none;
 }
 
@@ -44,6 +44,7 @@ a {
     right: 10px;
     top: 0px;
     a {
+      @include link-colors($text-color, $exciting-color, $action-color);
       @include border-bottom-radius(5px);
       @include linear-gradient(color-stops(#222, #FFF 3%, #FFF));
       border: 1px solid #000;
@@ -52,6 +53,9 @@ a {
       font-weight: bold;
       margin: 0px 5px 10px;
       padding: 10px 20px;
+      &:active {
+        @include scale(.97);
+      }
     }
     a.home {
       @include linear-gradient(color-stops(

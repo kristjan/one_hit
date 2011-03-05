@@ -4,6 +4,11 @@
 - content_for :nav do
   = link_to "Edit Site", edit_site_path(@site)
   = link_to "Edit Quips", site_quips_path(@site)
-%p.quip
-  = @site.random_quip.text
-= link_to "Another!", @site
+- if quip = @site.random_quip
+  %p.quip= quip.text
+- else
+  %p.empty
+    There's nothing here!
+    %br/
+    = link_to "Add something", site_quips_path(@site)
+= link_to "Another!", @site, :class => 'action'

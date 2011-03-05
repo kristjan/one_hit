@@ -3,7 +3,6 @@ require 'spec_helper'
 describe "sites/index.html.haml" do
   it "renders a link to make a new site" do
     render
-    puts rendered
     assert_select "a[href=#{new_site_path}]"
   end
 

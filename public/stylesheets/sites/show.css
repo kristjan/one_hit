@@ -19,7 +19,7 @@
   width: 600px;
 }
 /* line 18, ../../../app/stylesheets/sites/show.scss */
-#content a {
+#content a.action {
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
   -o-border-radius: 15px;
@@ -39,7 +39,7 @@
   width: 150px;
 }
 /* line 17, ../../../app/stylesheets/_shared.scss */
-#content a:hover, #content a:focus {
+#content a.action:hover, #content a.action:focus {
   -moz-box-shadow: #f6e62c 0 0 15px 0;
   -webkit-box-shadow: #f6e62c 0 0 15px 0;
   -o-box-shadow: #f6e62c 0 0 15px 0;
@@ -47,7 +47,7 @@
   cursor: pointer;
 }
 /* line 21, ../../../app/stylesheets/_shared.scss */
-#content a:active {
+#content a.action:active {
   -moz-box-shadow: #d6c60c 0 0 10px 0;
   -webkit-box-shadow: #d6c60c 0 0 10px 0;
   -o-box-shadow: #d6c60c 0 0 10px 0;

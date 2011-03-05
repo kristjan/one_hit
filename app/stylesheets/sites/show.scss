@@ -15,7 +15,7 @@
     width: 600px;
   }
 
-  a {
+  a.action {
     @include action-button();
     padding: 15px;
     width: 150px;

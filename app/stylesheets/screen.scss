@@ -1,7 +1,8 @@
 $background-color: #FFF;
 $text-color: #333;
 $exciting-color: #FF9F05;
-$action-color: darken($exciting-color, 10%);
+$hover-color: lighten($exciting-color, 10%);
+$action-color: darken($exciting-color, 5%);
 $header-color: #F6F6AC;
 
 @import "compass/reset";

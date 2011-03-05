@@ -79,16 +79,16 @@ body {
 
 /* line 20, ../../app/stylesheets/_global.scss */
 a {
-  color: #333333;
+  color: #ff9f05;
   text-decoration: none;
 }
 /* line 24, ../../../../../../opt/local/lib/ruby/gems/1.8/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/utilities/links/_link-colors.scss */
 a:hover {
-  color: #ff9f05;
+  color: #ffb338;
 }
 /* line 27, ../../../../../../opt/local/lib/ruby/gems/1.8/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/utilities/links/_link-colors.scss */
 a:active {
-  color: #d18100;
+  color: #eb9000;
 }
 
 /* line 25, ../../app/stylesheets/_global.scss */
@@ -116,6 +116,7 @@ a:active {
 }
 /* line 46, ../../app/stylesheets/_global.scss */
 #header #nav a {
+  color: #333333;
   -moz-border-radius-bottomleft: 5px;
   -webkit-border-bottom-left-radius: 5px;
   -o-border-bottom-left-radius: 5px;
@@ -138,18 +139,33 @@ a:active {
   margin: 0px 5px 10px;
   padding: 10px 20px;
 }
+/* line 24, ../../../../../../opt/local/lib/ruby/gems/1.8/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/utilities/links/_link-colors.scss */
+#header #nav a:hover {
+  color: #ff9f05;
+}
+/* line 27, ../../../../../../opt/local/lib/ruby/gems/1.8/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/utilities/links/_link-colors.scss */
+#header #nav a:active {
+  color: #eb9000;
+}
 /* line 56, ../../app/stylesheets/_global.scss */
+#header #nav a:active {
+  -moz-transform: scale(0.97);
+  -webkit-transform: scale(0.97);
+  -o-transform: scale(0.97);
+  transform: scale(0.97);
+}
+/* line 60, ../../app/stylesheets/_global.scss */
 #header #nav a.home {
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #6b4200), color-stop(5%, #ffffff), color-stop(10%, #ffda9e), color-stop(100%, #ffffff));
   background-image: -moz-linear-gradient(top, #6b4200 0%, #ffffff 5%, #ffda9e 10%, #ffffff 100%);
   background-image: linear-gradient(top, #6b4200 0%, #ffffff 5%, #ffda9e 10%, #ffffff 100%);
 }
-/* line 63, ../../app/stylesheets/_global.scss */
+/* line 67, ../../app/stylesheets/_global.scss */
 #header #nav a.persistent {
   padding: 8px 20px;
 }
 
-/* line 69, ../../app/stylesheets/_global.scss */
+/* line 73, ../../app/stylesheets/_global.scss */
 #content {
   margin: 0px auto;
   width: 600px;
