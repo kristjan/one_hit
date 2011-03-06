@@ -47,14 +47,6 @@ describe QuipsController do
     end
   end
 
-  describe "GET show" do
-    it "assigns the requested quip as @quip" do
-      Quip.stub(:find).with("37") {mock_quip}
-      get :show, :id => "37", :site_id => SITE_URL
-      assigns(:quip).should be(mock_quip)
-    end
-  end
-
   describe "GET new" do
     it "redirects to the quips index" do
       get :new, :site_id => SITE_URL
