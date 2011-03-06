@@ -17,12 +17,6 @@ describe "global/_header.html.haml" do
     assert_select "h1", :text => @title
   end
 
-  it "renders the site name when there is one" do
-    @site = assign(:site, new_site)
-    render
-    assert_select "h1", :text => @site.name
-  end
-
   it "renders no title when nothing is present" do
     render
     assert_select "h1", :text => ""
