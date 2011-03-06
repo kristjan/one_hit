@@ -34,6 +34,21 @@ describe Site do
     site.quips.should include(site.random_quip)
   end
 
+  describe "fetching random sites" do
+    before(:each) do
+      Site.delete_all
+    end
+
+    it "is nil when there are no sites" do
+      Site.random.should be_nil
+    end
+
+    it "picks a site when there are any" do
+      sites = [create_site, create_site]
+      sites.should include(Site.random)
+    end
+  end
+
   describe "the url" do
     it "allows alphas" do
       new_site(:url => "AbCd").should be_valid

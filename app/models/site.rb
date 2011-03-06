@@ -10,6 +10,10 @@ class Site < ActiveRecord::Base
     :message => "can include letters, numbers, dashes and underscores"
   validates_uniqueness_of :url
 
+  def self.random
+    first :order => 'random()'
+  end
+
   def random_quip
     quips.rand
   end

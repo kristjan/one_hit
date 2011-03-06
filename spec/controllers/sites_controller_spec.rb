@@ -22,6 +22,20 @@ describe SitesController do
     end
   end
 
+  describe "GET random" do
+    it "redirects to a random Site" do
+      Site.should_receive(:random).and_return(mock_site)
+      get :random
+      response.should redirect_to(site_path(mock_site))
+    end
+
+    it "sends you home if there are no sites" do
+      Site.should_receive(:random).and_return(nil)
+      get :random
+      response.should redirect_to(root_path)
+    end
+  end
+
   describe "GET new" do
     it "assigns a new site as @site" do
       Site.stub(:new) { mock_site }

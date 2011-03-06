@@ -8,12 +8,15 @@ class SitesController < ApplicationController
   end
 
   def random
-    max_id = Site.maximum(:id)
-    begin
-      @site = Site.find_by_id(rand(max_id) + 1)
-    end while @site.nil?
-    respond_with @site, :location => site_path(@site) do |format|
-      format.html {redirect_to @site}
+    @site = Site.random
+    if @site
+      respond_with @site, :location => site_path(@site) do |format|
+        format.html {redirect_to @site}
+      end
+    else
+      respond_with nil, :status => :not_found do |format|
+        format.html {redirect_to sites_path}
+      end
     end
   end
 
