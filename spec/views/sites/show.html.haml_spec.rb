@@ -3,8 +3,8 @@ require 'spec_helper'
 describe "sites/show.html.haml" do
   before(:each) do
     @site = assign(:site, stub_model(Site,
-      :name => "One hit wonders",
-      :slug => "wonders",
+      :name       => "One hit wonders",
+      :url        => "wonders",
       :creator_id => 1
     ))
   end

@@ -10,18 +10,18 @@ describe Site do
     Site.new(:name => '').should have(1).error_on(:name)
   end
 
-  it "requires a slug" do
-    Site.new.should have(1).error_on(:slug)
-    Site.new(:slug => '').should have(1).error_on(:slug)
+  it "requires a url" do
+    Site.new.should have(1).error_on(:url)
+    Site.new(:url => '').should have(1).error_on(:url)
   end
 
   it "doens't require an author" do
     Site.new.should have(:no).errors_on(:author_id)
   end
 
-  it "uses its slug in the URL" do
+  it "uses its url in the URL" do
     site = new_site
-    site.to_param.should == site.slug
+    site.to_param.should == site.url
   end
 
   it "has many Quips" do
@@ -34,26 +34,26 @@ describe Site do
     site.quips.should include(site.random_quip)
   end
 
-  describe "the slug" do
+  describe "the url" do
     it "allows alphas" do
-      new_site(:slug => "AbCd").should be_valid
+      new_site(:url => "AbCd").should be_valid
     end
 
     it "allows numbers" do
-      new_site(:slug => "123").should be_valid
+      new_site(:url => "123").should be_valid
     end
 
     it "allows dashes and underscores" do
-      new_site(:slug => "a-b_c").should be_valid
+      new_site(:url => "a-b_c").should be_valid
     end
 
     it "doesn't allow funny characters" do
-      new_site(:slug => "ain't@cool").should_not be_valid
+      new_site(:url => "ain't@cool").should_not be_valid
     end
 
     it "must be unique" do
       site = create_site
-      new_site(:slug => site.slug).should have(1).error_on(:slug)
+      new_site(:url => site.url).should have(1).error_on(:url)
     end
   end
 end

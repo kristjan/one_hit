@@ -18,7 +18,6 @@ describe "quips/index.html.haml" do
 
   it "renders a field for a new quip" do
     render
-
-    assert_select "form", :action => site_quips_url(@site), :id => "new_quip"
+    assert_select "form#new_quip[action=?]", site_quips_path(@site)
   end
 end

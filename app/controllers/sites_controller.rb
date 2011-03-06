@@ -12,13 +12,13 @@ class SitesController < ApplicationController
     begin
       @site = Site.find_by_id(rand(max_id) + 1)
     end while @site.nil?
-    respond_with @site, :location => site_url(@site) do |format|
+    respond_with @site, :location => site_path(@site) do |format|
       format.html {redirect_to @site}
     end
   end
 
   def show
-    @site = Site.find_by_slug(params[:id])
+    @site = Site.find_by_url(params[:id])
     respond_with @site
   end
 
@@ -28,7 +28,7 @@ class SitesController < ApplicationController
   end
 
   def edit
-    @site = Site.find_by_slug(params[:id])
+    @site = Site.find_by_url(params[:id])
   end
 
   def create
@@ -45,7 +45,7 @@ class SitesController < ApplicationController
   end
 
   def update
-    @site = Site.find_by_slug(params[:id])
+    @site = Site.find_by_url(params[:id])
     if @site.update_attributes(params[:site])
       respond_with @site, :head => :ok,
         :notice => 'Site was successfully updated.'
@@ -57,8 +57,8 @@ class SitesController < ApplicationController
   end
 
   def destroy
-    @site = Site.find_by_slug(params[:id])
+    @site = Site.find_by_url(params[:id])
     @site.destroy
-    respond_with @site, :head => :ok, :location => sites_url
+    respond_with @site, :head => :ok, :location => sites_path
   end
 end

@@ -23,12 +23,12 @@ ActiveRecord::Schema.define(:version => 20110227213828) do
 
   create_table "sites", :force => true do |t|
     t.string   "name",       :null => false
-    t.string   "slug",       :null => false
+    t.string   "url",        :null => false
     t.integer  "creator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "sites", ["slug"], :name => "index_sites_on_slug", :unique => true
+  add_index "sites", ["url"], :name => "index_sites_on_url", :unique => true
 
 end

@@ -31,7 +31,7 @@ class QuipsController < ApplicationController
     @quip = Quip.new(params[:quip].merge(:site => @site))
     if @quip.save
       respond_with @quip, :status => :created,
-        :location => site_quips_url(@site),
+        :location => site_quips_path(@site),
         :notice => 'Quip was successfully created.'
     else
       respond_with @quip.errors, :status => :unprocessable_entity do |format|
@@ -46,7 +46,7 @@ class QuipsController < ApplicationController
   def update
     @quip = Quip.find(params[:id])
     if @quip.update_attributes(params[:quip])
-      respond_with @quip, :location => site_quips_url(@site),
+      respond_with @quip, :location => site_quips_path(@site),
                    :notice => 'Quip was successfully updated.'
     else
       respond_with @quip.errors, :status => :unprocessable_entity do |format|
@@ -59,14 +59,14 @@ class QuipsController < ApplicationController
   def destroy
     @quip = Quip.find(params[:id])
     @quip.destroy
-    respond_with @quip, :location => site_quips_url(@site), :head => :ok
+    respond_with @quip, :location => site_quips_path(@site), :head => :ok
   end
 
 private
 
   def load_site
-    @site = Site.find_by_slug(params[:site_id])
-    redirect_to sites_url, :notice => "That site doesn't exist" unless @site
+    @site = Site.find_by_url(params[:site_id])
+    redirect_to sites_path, :notice => "That site doesn't exist" unless @site
   end
 
 end

@@ -6,7 +6,7 @@ Fixjour do
   define_builder(Site) do |klass, overrides|
     klass.new(
       :name => Faker::Lorem.sentence(3),
-      :slug => Faker::Lorem.words(2).join.downcase
+      :url  => Faker::Lorem.words(2).join.downcase
     )
   end
 

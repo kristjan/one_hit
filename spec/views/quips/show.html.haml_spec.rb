@@ -9,8 +9,6 @@ describe "quips/show.html.haml" do
 
   it "renders attributes in <p>" do
     render
-
-    rendered.should match(/1/)
     rendered.should match(/Text/)
   end
 end
