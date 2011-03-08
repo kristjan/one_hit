@@ -18,6 +18,10 @@ class Site < ActiveRecord::Base
     quips.rand
   end
 
+  def singleton?
+    quips.size <= 1
+  end
+
   def to_param
     url
   end

@@ -34,6 +34,18 @@ describe Site do
     site.quips.should include(site.random_quip)
   end
 
+  it "knows if it has just one quip" do
+    site = new_site
+    site.quips = [new_quip]
+    site.should be_singleton
+  end
+
+  it "knows if it has more than one quip" do
+    site = new_site
+    site.quips = [new_quip, new_quip]
+    site.should_not be_singleton
+  end
+
   describe "fetching random sites" do
     before(:each) do
       Site.delete_all

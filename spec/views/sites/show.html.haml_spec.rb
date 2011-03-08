@@ -16,9 +16,26 @@ describe "sites/show.html.haml" do
     assert_select "p", :text => quip.text
   end
 
-  it "gives you a way to get another quip" do
-    render
-    assert_select "a[href=#{site_path(@site)}]"
+  describe "when there is more than one quip" do
+    before :each do
+      @site.stub(:quips).and_return([new_quip, new_quip])
+    end
+
+    it "gives you a way to get another quip" do
+      render
+      assert_select "a[href=#{site_path(@site)}]"
+    end
+  end
+
+  describe "when there is one quip" do
+    before :each do
+      @site.stub(:quips).and_return([new_quip])
+    end
+
+    it "doesn't show the more button" do
+      render
+      assert_select "a.action", :count => 0
+    end
   end
 
   describe "when there are no quips" do

@@ -11,4 +11,4 @@
     There's nothing here!
     %br/
     = link_to "Add something", site_quips_path(@site)
-= link_to "Another!", @site, :class => 'action'
+= link_to "Another!", @site, :class => 'action' unless @site.singleton?
