@@ -170,10 +170,12 @@ a:active {
 }
 /* line 68, ../../app/stylesheets/_global.scss */
 #header #nav a.persistent {
-  padding: 8px 20px;
+  font-size: 0.9em;
+  line-height: 1.2em;
+  padding: 5px 10px;
 }
 
-/* line 74, ../../app/stylesheets/_global.scss */
+/* line 75, ../../app/stylesheets/_global.scss */
 #content {
   margin: 0px auto;
   width: 600px;
