@@ -86,11 +86,11 @@ describe Site do
 
   describe "the url" do
     it "allows alphas" do
-      new_site(:url => "AbCd").should be_valid
+      new_site(:url => "AbCdYyZz").should be_valid
     end
 
     it "allows numbers" do
-      new_site(:url => "123").should be_valid
+      new_site(:url => "0123456789").should be_valid
     end
 
     it "allows dashes and underscores" do
