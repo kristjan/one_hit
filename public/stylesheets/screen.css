@@ -110,7 +110,7 @@ a:active {
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #000000), color-stop(5%, #ffffff), color-stop(20%, #f6f6ac), color-stop(100%, #ffffff));
   background-image: -moz-linear-gradient(top, #000000 0%, #ffffff 5%, #f6f6ac 20%, #ffffff 100%);
   background-image: linear-gradient(top, #000000 0%, #ffffff 5%, #f6f6ac 20%, #ffffff 100%);
-  margin: 0px 10px 5px 0px;
+  margin-bottom: 5px;
   padding-bottom: 10px;
   text-align: right;
 }
