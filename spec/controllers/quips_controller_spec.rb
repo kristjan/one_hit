@@ -16,7 +16,7 @@ describe QuipsController do
 
   before(:each) do
     @site = mock_site
-    Site.stub(:find_by_url).with(SITE_URL) {@site}
+    Site.stub(:fetch).with(SITE_URL) {@site}
   end
 
   it "loads the containing site" do
@@ -26,7 +26,7 @@ describe QuipsController do
   end
 
   it "redirects to root if the site doesn't exist" do
-    Site.stub(:find_by_url){nil}
+    Site.stub(:fetch){nil}
     controller.should_receive(:redirect_to).
       with(root_path, :notice => "That site doesn't exist")
     controller.send(:load_site)

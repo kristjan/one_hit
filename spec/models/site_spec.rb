@@ -52,6 +52,23 @@ describe Site do
     site.should_not be_singleton
   end
 
+  describe "fetching a site by URL" do
+    it "works with any case" do
+      site = create_site
+      Site.fetch(site.url.upcase).should == site
+      Site.fetch(site.url.downcase).should == site
+    end
+
+    it "works with numbers" do
+      site = create_site(:url => '123')
+      Site.fetch(123).should == site
+    end
+
+    it "NOPs on nil" do
+      Site.fetch(nil).should be_nil
+    end
+  end
+
   describe "fetching random sites" do
     before(:each) do
       Site.delete_all

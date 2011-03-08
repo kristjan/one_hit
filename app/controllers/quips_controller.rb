@@ -65,7 +65,7 @@ class QuipsController < ApplicationController
 private
 
   def load_site
-    @site = Site.find_by_url(params[:site_id])
+    @site = Site.fetch(params[:site_id])
     redirect_to sites_path, :notice => "That site doesn't exist" unless @site
   end
 

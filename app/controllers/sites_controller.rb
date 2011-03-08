@@ -21,7 +21,7 @@ class SitesController < ApplicationController
   end
 
   def show
-    @site = Site.find_by_url(params[:id])
+    @site = Site.fetch(params[:id])
     respond_with @site
   end
 
@@ -31,7 +31,7 @@ class SitesController < ApplicationController
   end
 
   def edit
-    @site = Site.find_by_url(params[:id])
+    @site = Site.fetch(params[:id])
   end
 
   def create
@@ -48,7 +48,7 @@ class SitesController < ApplicationController
   end
 
   def update
-    @site = Site.find_by_url(params[:id])
+    @site = Site.fetch(params[:id])
     if @site.update_attributes(params[:site])
       respond_with @site, :head => :ok,
         :notice => 'Site was successfully updated.'
@@ -60,7 +60,7 @@ class SitesController < ApplicationController
   end
 
   def destroy
-    @site = Site.find_by_url(params[:id])
+    @site = Site.fetch(params[:id])
     @site.destroy
     respond_with @site, :head => :ok, :location => sites_path
   end

@@ -16,7 +16,7 @@ describe SitesController do
 
   describe "GET show" do
     it "assigns the requested site as @site" do
-      Site.stub(:find_by_url).with("url") { mock_site }
+      Site.stub(:fetch).with("url") { mock_site }
       get :show, :id => "url"
       assigns(:site).should be(mock_site)
     end
@@ -46,7 +46,7 @@ describe SitesController do
 
   describe "GET edit" do
     it "assigns the requested site as @site" do
-      Site.stub(:find_by_url).with("url") { mock_site }
+      Site.stub(:fetch).with("url") { mock_site }
       get :edit, :id => "url"
       assigns(:site).should be(mock_site)
     end
@@ -85,19 +85,19 @@ describe SitesController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested site" do
-        Site.stub(:find_by_url).with("url") { mock_site }
+        Site.stub(:fetch).with("url") { mock_site }
         mock_site.should_receive(:update_attributes).with({'these' => 'params'})
         put :update, :id => "url", :site => {'these' => 'params'}
       end
 
       it "assigns the requested site as @site" do
-        Site.stub(:find_by_url) { mock_site(:update_attributes => true) }
+        Site.stub(:fetch) { mock_site(:update_attributes => true) }
         put :update, :id => "url"
         assigns(:site).should be(mock_site)
       end
 
       it "redirects to the site" do
-        Site.stub(:find_by_url) { mock_site(:update_attributes => true) }
+        Site.stub(:fetch) { mock_site(:update_attributes => true) }
         put :update, :id => "url"
         response.should redirect_to(site_path(mock_site))
       end
@@ -105,13 +105,13 @@ describe SitesController do
 
     describe "with invalid params" do
       it "assigns the site as @site" do
-        Site.stub(:find_by_url) { mock_site(:update_attributes => false) }
+        Site.stub(:fetch) { mock_site(:update_attributes => false) }
         put :update, :id => "url"
         assigns(:site).should be(mock_site)
       end
 
       it "re-renders the 'edit' template" do
-        Site.stub(:find_by_url) { mock_site(:update_attributes => false) }
+        Site.stub(:fetch) { mock_site(:update_attributes => false) }
         put :update, :id => "url"
         response.should render_template("edit")
       end
@@ -120,13 +120,13 @@ describe SitesController do
 
   describe "DELETE destroy" do
     it "destroys the requested site" do
-      Site.stub(:find_by_url).with("url") { mock_site }
+      Site.stub(:fetch).with("url") { mock_site }
       mock_site.should_receive(:destroy)
       delete :destroy, :id => "url"
     end
 
     it "redirects to the sites list" do
-      Site.stub(:find_by_url) { mock_site }
+      Site.stub(:fetch) { mock_site }
       delete :destroy, :id => "url"
       response.should redirect_to(sites_path)
     end
