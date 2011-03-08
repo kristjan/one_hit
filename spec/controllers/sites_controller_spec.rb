@@ -20,6 +20,12 @@ describe SitesController do
       get :show, :id => "url"
       assigns(:site).should be(mock_site)
     end
+
+    it "redirects nonexistent sites to /404" do
+      Site.stub(:fetch).with("nonexistent") { nil }
+      get :show, :id => "nonexistent"
+      response.should redirect_to '/404'
+    end
   end
 
   describe "GET random" do

@@ -22,7 +22,13 @@ class SitesController < ApplicationController
 
   def show
     @site = Site.fetch(params[:id])
-    respond_with @site
+    if @site
+      respond_with @site
+    else
+      respond_with :"404", :status => 404 do |format|
+        format.html {redirect_to '/404'}
+      end
+    end
   end
 
   def new
