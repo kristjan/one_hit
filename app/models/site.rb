@@ -4,9 +4,11 @@ class Site < ActiveRecord::Base
   has_many :quips, :dependent => :destroy
   accepts_nested_attributes_for :quips, :allow_destroy => true
 
+  before_validation :downcase_url
+
   validates_length_of :name,  :minimum => 1
   validates_length_of :url,   :minimum => 1
-  validates_format_of :url,   :with => /^[-_a-z1-9]+$/i,  :allow_blank => true,
+  validates_format_of :url,   :with => /^[-_a-z1-9]+$/,  :allow_blank => true,
     :message => "can include letters, numbers, dashes and underscores"
   validates_uniqueness_of :url
 
@@ -24,5 +26,11 @@ class Site < ActiveRecord::Base
 
   def to_param
     url
+  end
+
+private
+
+  def downcase_url
+    self.url.downcase! if url
   end
 end

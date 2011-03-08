@@ -15,6 +15,12 @@ describe Site do
     Site.new(:url => '').should have(1).error_on(:url)
   end
 
+  it "stores urls in lowercase" do
+    site = new_site(:url => 'CASE')
+    site.should be_valid
+    site.url.should == 'case'
+  end
+
   it "doens't require an author" do
     Site.new.should have(:no).errors_on(:author_id)
   end
