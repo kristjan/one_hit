@@ -24,35 +24,36 @@ a {
 
 #header {
   @include clearfix();
-  @include linear-gradient(
-    color-stops(
-      #000,
-      lighten($header-color, 20%) 5%,
-      $header-color               20%,
-      $background_color));
   h1 {
     font-size: 2.5em;
     line-height: 1.2em;
     font-weight: bold;
+    margin-top: 20px;
     padding: 10px;
     text-align: center;
   }
 
   #nav {
+    @include linear-gradient(
+      color-stops(
+        #000,
+        lighten($header-color, 20%) 5%,
+        $header-color               20%,
+        $background_color));
     margin: 0px 10px 5px 0px;
-    position: absolute;
-    right: 10px;
-    top: 0px;
+    padding-bottom: 10px;
+    text-align: right;
+
     a {
-      @include link-colors($text-color, $exciting-color, $action-color);
       @include border-bottom-radius(5px);
+      @include inline-block;
+      @include link-colors($text-color, $exciting-color, $action-color);
       @include linear-gradient(color-stops(#222, #FFF 3%, #FFF));
       border: 1px solid #000;
-      display: block;
-      float: left;
       font-weight: bold;
       margin: 0px 5px 10px;
       padding: 10px 20px;
+      vertical-align: top;
       &:active {
         @include scale(.97);
       }
