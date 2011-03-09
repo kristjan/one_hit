@@ -3,6 +3,13 @@ require 'ffaker'
 
 
 Fixjour do
+  define_builder(Quip) do |klass, overrides|
+    klass.new(
+      :site => new_site,
+      :text => Faker::Lorem.sentence(3)
+    )
+  end
+
   define_builder(Site) do |klass, overrides|
     klass.new(
       :name => Faker::Lorem.sentence(3),
@@ -10,10 +17,10 @@ Fixjour do
     )
   end
 
-  define_builder(Quip) do |klass, overrides|
+  define_builder(User) do |klass, overrides|
     klass.new(
-      :site => new_site,
-      :text => Faker::Lorem.sentence(3)
+      :name => Faker::Name.name,
+      :email => Faker::Internet.email
     )
   end
 end

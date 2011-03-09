@@ -39,6 +39,12 @@ describe UsersController do
         post :create, :user => {'these' => 'params'}
         response.should redirect_to('/finish_line')
       end
+
+      it "grants you your pending sites" do
+        mock_user.should_receive(:claim_sites).with(['waiting', 'twiddling'])
+        controller.stub(:pending_sites) { ['waiting', 'twiddling']}
+        post :create, :user => {'these' => 'params'}
+      end
     end
 
     describe "with invalid params" do
