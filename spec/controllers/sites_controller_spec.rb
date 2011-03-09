@@ -70,12 +70,6 @@ describe SitesController do
         assigns(:site).should be(mock_site)
       end
 
-      it "links you to the site" do
-        Site.stub(:new).with({'these' => 'params'}) { mock_site(:save => true) }
-        controller.should_receive(:save_to_session).with(mock_site)
-        post :create, :site => {'these' => 'params'}
-      end
-
       describe "when you're logged in" do
         before :each do
           controller.stub(:viewer) { mock_user }
@@ -98,6 +92,12 @@ describe SitesController do
         before :each do
           controller.stub(:viewer) { nil }
           Site.stub(:new) { mock_site(:save => true, :creator => nil) }
+        end
+
+        it "saves the site in your pending list" do
+          Site.stub(:new) { mock_site(:save => true) }
+          post :create, :site => {'these' => 'params'}
+          controller.session[:pending_sites].should include(mock_site.url)
         end
 
         it "sets a :next_url" do
@@ -174,20 +174,6 @@ describe SitesController do
       Site.stub(:fetch) { mock_site }
       delete :destroy, :id => "url"
       response.should redirect_to(sites_path)
-    end
-  end
-
-  describe "#save_to_session" do
-    it "works when the session has no sites yet" do
-      controller.session[:owned_sites] = nil
-      controller.send(:save_to_session, mock_site)
-      controller.session[:owned_sites].should == [mock_site.url]
-    end
-
-    it "works when the session has a site already" do
-      controller.session[:owned_sites] = ['onehit']
-      controller.send(:save_to_session, mock_site)
-      controller.session[:owned_sites].should == ['onehit', mock_site.url]
     end
   end
 end

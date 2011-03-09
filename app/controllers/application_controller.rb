@@ -9,6 +9,10 @@ private
   end
   helper_method :next_url
 
+  def pending_sites
+    session[:pending_sites] ||= []
+  end
+
   def viewer
     # TODO
   end

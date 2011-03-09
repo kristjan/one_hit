@@ -1,17 +1,18 @@
 require 'spec_helper'
 
 describe ApplicationController do
-  describe "when there's :next_url in your session" do
-    it "knows what it is" do
-      session[:next_url] = '/nonsense'
-      controller.send(:next_url).should == '/nonsense'
-    end
+  it "knows what your :next_url is" do
+    session[:next_url] = '/nonsense'
+    controller.send(:next_url).should == '/nonsense'
   end
 
-  describe "when there's no :next_url in your session" do
-    it "defaults to root" do
-      session[:next_url] = nil
-      controller.send(:next_url).should == root_url
-    end
+  it "has a default :next_url" do
+    session[:next_url] = nil
+    controller.send(:next_url).should == root_url
+  end
+
+  it "knows what sites are waiting to be claimed" do
+    controller.send(:pending_sites) << '/waiting'
+    controller.send(:pending_sites).should == ['/waiting']
   end
 end

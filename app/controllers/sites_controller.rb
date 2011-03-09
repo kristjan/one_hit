@@ -41,7 +41,7 @@ class SitesController < ApplicationController
     @site = Site.new(params[:site])
     @site.creator = viewer
     if @site.save
-      save_to_session(@site)
+      pending_sites << @site.url
       respond_with @site, :status => :created do |format|
         format.html {
           if @site.creator
@@ -77,10 +77,4 @@ class SitesController < ApplicationController
     respond_with @site, :head => :ok, :location => sites_path
   end
 
-private
-
-  def save_to_session(site)
-    session[:owned_sites] ||= []
-    session[:owned_sites] << site.url
-  end
 end

@@ -181,6 +181,24 @@ a:active {
   width: 600px;
 }
 
+/* line 80, ../../app/stylesheets/_global.scss */
+.prompt {
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -o-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -khtml-border-radius: 15px;
+  border-radius: 15px;
+  background-color: #EFEFEF;
+  padding: 15px 20px;
+  background-color: #c6c3e2;
+  margin: 10px 0px;
+}
+/* line 85, ../../app/stylesheets/_global.scss */
+.prompt h3 {
+  font-weight: bold;
+}
+
 /* line 7, ../../app/stylesheets/_forms.scss */
 form {
   -moz-border-radius: 15px;
