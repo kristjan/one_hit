@@ -1,0 +1,22 @@
+@import "compass/css3";
+@import "compass/utilities/links";
+
+@import "constants";
+
+form {
+  label {
+    @include inline-block;
+    margin-right: 10px;
+    width: 100px;
+  }
+
+  input[type=text], input[type=password] { width: 420px; }
+
+  .actions {
+    a {
+      @include link-colors($discouraged-color, $hover-color, $action-color);
+      display: block;
+      margin: 10px 10px 0px 0px;
+    }
+  }
+}

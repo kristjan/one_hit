@@ -8,7 +8,7 @@ describe "sites/new.html.haml" do
     ).as_new_record)
   end
 
-  it "renders new site form" do
+  it "renders the new site form" do
     render
     assert_select "form[action=?][method=?]", sites_path, :post do
       assert_select "input#site_name[name=?]", "site[name]"

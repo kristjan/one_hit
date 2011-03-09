@@ -1,7 +1,4 @@
 class SitesController < ApplicationController
-
-  respond_to :html, :json, :xml
-
   def index
     @sites = Site.all
     respond_with @sites
@@ -42,10 +39,19 @@ class SitesController < ApplicationController
 
   def create
     @site = Site.new(params[:site])
+    @site.creator = viewer
     if @site.save
-      respond_with @site, :status => :created,
-        :location => site_quips_path(@site),
-        :notice => 'Site was successfully created.'
+      save_to_session(@site)
+      respond_with @site, :status => :created do |format|
+        format.html {
+          if @site.creator
+            redirect_to site_quips_path(@site)
+          else
+            session[:next_url] = site_quips_path(@site)
+            redirect_to new_user_path
+          end
+        }
+      end
     else
       respond_with @site.errors, :status => :unprocessable_entity do |format|
         format.html {render :new}
@@ -69,5 +75,12 @@ class SitesController < ApplicationController
     @site = Site.fetch(params[:id])
     @site.destroy
     respond_with @site, :head => :ok, :location => sites_path
+  end
+
+private
+
+  def save_to_session(site)
+    session[:owned_sites] ||= []
+    session[:owned_sites] << site.url
   end
 end

@@ -8,9 +8,9 @@ form {
   @include rounded-section;
   padding: 15px 20px;
 
-  input[type=text], label { @include text-size(1.5em); }
+  input[type=text], input[type=password], label { @include text-size(1.5em); }
 
-  input[type=text] {
+  input[type=text], input[type=password] {
     @include border-radius($standard-radius);
     @include inline-block;
     @include linear-gradient(

@@ -1,8 +1,6 @@
 class QuipsController < ApplicationController
   before_filter :load_site
 
-  respond_to :html, :json, :xml
-
   def index
     @quips = @site.quips
     @quip = Quip.new(:site => @site)

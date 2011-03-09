@@ -194,12 +194,12 @@ form {
   padding: 15px 20px;
 }
 /* line 11, ../../app/stylesheets/_forms.scss */
-form input[type=text], form label {
+form input[type=text], form input[type=password], form label {
   font-size: 1.5em;
   line-height: 1.2em;
 }
 /* line 13, ../../app/stylesheets/_forms.scss */
-form input[type=text] {
+form input[type=text], form input[type=password] {
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
   -o-border-radius: 15px;
@@ -218,11 +218,11 @@ form input[type=text] {
   padding: 8px;
 }
 /* line 7, ../../../../../../opt/local/lib/ruby/gems/1.8/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
-form input[type=text] {
+form input[type=text], form input[type=password] {
   *display: inline;
 }
 /* line 22, ../../app/stylesheets/_forms.scss */
-form input[type=text]:focus, form input[type=text]:hover {
+form input[type=text]:focus, form input[type=text]:hover, form input[type=password]:focus, form input[type=password]:hover {
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #ffffff), color-stop(98%, #eaf0fa), color-stop(100%, #98b5e6));
   background-image: -moz-linear-gradient(top, #ffffff 0%, #eaf0fa 98%, #98b5e6 100%);
   background-image: linear-gradient(top, #ffffff 0%, #eaf0fa 98%, #98b5e6 100%);

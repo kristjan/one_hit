@@ -92,7 +92,7 @@ describe QuipsController do
     describe "with invalid params" do
       it "assigns a newly created but unsaved quip as @quip" do
         Quip.stub(:new) {mock_quip(:save => false)}
-        post :create, :quip => {'these' => 'params'}, :site_id => SITE_URL
+        post :create, :quip => {}, :site_id => SITE_URL
         assigns(:quip).should be(mock_quip)
       end
 

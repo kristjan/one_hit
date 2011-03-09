@@ -7,5 +7,7 @@ OneHit::Application.routes.draw do
     end
   end
 
+  resources :users
+
   root :to => "sites#index"
 end
