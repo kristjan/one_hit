@@ -82,6 +82,12 @@ describe Site do
       sites = [create_site, create_site]
       sites.should include(Site.random)
     end
+
+    it "never fetches 404" do
+      Site.should_receive(:first).
+        with(hash_including(:conditions => "url <> 404"))
+      Site.random
+    end
   end
 
   describe "the url" do

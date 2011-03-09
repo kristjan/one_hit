@@ -17,7 +17,7 @@ class Site < ActiveRecord::Base
   end
 
   def self.random
-    first :order => 'random()'
+    first :order => 'random()', :conditions => "url <> 404"
   end
 
   def random_quip
