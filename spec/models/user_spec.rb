@@ -13,6 +13,11 @@ describe User do
     User.new.should_not have(:any).errors_on(:email)
   end
 
+  it "doesn't duplicate emails" do
+    user = create_user
+    User.new(:email => user.email).should have(1).error_on(:email)
+  end
+
   it "can claim sites" do
     sites = [new_site, new_site]
     user = create_user

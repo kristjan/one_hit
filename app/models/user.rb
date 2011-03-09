@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
 
   before_save :encrypt_password!
 
+  validates_uniqueness_of :email, :allow_blank => true
+
   def claim_sites(urls)
     sites = urls.map{|url| Site.fetch(url)}
     sites.each {|site| site.update_attributes(:creator_id => self.id)}
