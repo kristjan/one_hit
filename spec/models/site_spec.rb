@@ -85,7 +85,7 @@ describe Site do
 
     it "never fetches 404" do
       Site.should_receive(:first).
-        with(hash_including(:conditions => "url <> 404"))
+        with(hash_including(:conditions => "url <> '404'"))
       Site.random
     end
   end
