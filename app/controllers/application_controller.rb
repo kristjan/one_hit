@@ -14,6 +14,6 @@ private
   end
 
   def viewer
-    # TODO
+    @viewer ||= (User.find_by_id(session[:viewer_id]) if session[:viewer_id])
   end
 end

@@ -29,15 +29,72 @@ describe UsersController do
         User.stub(:new).with('these' => 'params') {mock_user(:save => true)}
       end
 
-      it "assigns a newly created user as @user" do
-        post :create, :user => {'these' => 'params'}
-        assigns(:user).should be(mock_user)
+      describe "when you're a new user" do
+        it "assigns a newly created user as @user" do
+          post :create, :user => {'these' => 'params'}
+          assigns(:user).should be(mock_user)
+        end
+
+        it "redirects to next_url" do
+          session[:next_url] = '/finish_line'
+          post :create, :user => {'these' => 'params'}
+          response.should redirect_to('/finish_line')
+        end
+
+        it "logs you in" do
+          post :create, :user => {'these' => 'params'}
+          session[:viewer_id].should == mock_user.id
+        end
       end
 
-      it "redirects to next_url" do
-        session[:next_url] = '/finish_line'
-        post :create, :user => {'these' => 'params'}
-        response.should redirect_to('/finish_line')
+      describe "when you're a returning user with the right password" do
+        before :each do
+          User.stub(:find_by_login).
+               with('email' => 'test@example.com',
+                    'password' => 'god') { mock_user(:authenticated? => true) }
+        end
+
+        it "assigns your user object to @user" do
+          post :create, :user => {:email => 'test@example.com',
+                                  :password => 'god'}
+          assigns(:user).should be(mock_user)
+        end
+
+        it "redirects to next_url" do
+          session[:next_url] = '/finish_line'
+          post :create, :user => {:email => 'test@example.com',
+                                  :password => 'god'}
+          response.should redirect_to('/finish_line')
+        end
+
+        it "logs you in" do
+          post :create, :user => {:email => 'test@example.com',
+                                  :password => 'god'}
+          session[:viewer_id].should == mock_user.id
+        end
+      end
+
+      describe "with you're a returning user with the wrong password" do
+        before :each do
+          User.stub(:find_by_login) {
+            mock_user(:new_record? => true, :email => 'test@example.com')
+          }
+        end
+
+        it "assigns a new user to @user" do
+          post :create, :user => {'email' => 'test@example.com'}
+          assigns(:user).should be(mock_user)
+        end
+
+        it "remembers the email address" do
+          post :create, :user => {'email' => 'test@example.com'}
+          assigns(:user).email.should ==  'test@example.com'
+        end
+
+        it "re-renders the 'new' template" do
+          post :create, :user => {'email' => 'test@example.com'}
+          response.should render_template("new")
+        end
       end
 
       it "grants you your pending sites" do

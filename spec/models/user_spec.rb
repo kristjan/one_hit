@@ -49,4 +49,37 @@ describe User do
     end
   end
 
+  describe "logging in" do
+    before :each do
+      @user = create_user(:password => 'god')
+    end
+
+    describe "with the right password" do
+      it "returns the user" do
+        User.find_by_login(:email => @user.email, :password => 'god').
+          should == @user
+      end
+    end
+
+    describe "with the wrong password" do
+      it "returns a new user" do
+        User.find_by_login(:email => @user.email, :password => 'dog').
+          should be_new_record
+      end
+
+      it "sets the email" do
+        User.find_by_login(:email => @user.email, :password => 'dog').email.
+          should == @user.email
+      end
+    end
+
+    it "returns nil when the email isn't found" do
+      User.find_by_login(:email => @user.email.reverse).should be_nil
+    end
+
+    it "returns nil when you don't have an email" do
+      User.find_by_login(:password => 'dog').should be_nil
+    end
+  end
+
 end

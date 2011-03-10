@@ -15,4 +15,16 @@ describe ApplicationController do
     controller.send(:pending_sites) << '/waiting'
     controller.send(:pending_sites).should == ['/waiting']
   end
+
+  it "knows if you're logged in" do
+    user = new_user
+    session[:viewer_id] = 42
+    User.should_receive(:find_by_id).with(42).and_return(user)
+    controller.send(:viewer).should == user
+  end
+
+  it "knows when you're not logged in" do
+    session[:viewer_id] = nil
+    controller.send(:viewer).should be_nil
+  end
 end
