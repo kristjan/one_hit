@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110227213828) do
+ActiveRecord::Schema.define(:version => 20110307171706) do
 
   create_table "quips", :force => true do |t|
     t.integer  "site_id"
@@ -30,5 +30,17 @@ ActiveRecord::Schema.define(:version => 20110227213828) do
   end
 
   add_index "sites", ["url"], :name => "index_sites_on_url", :unique => true
+
+  create_table "users", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "crypted_password"
+    t.integer  "facebook_uid",     :limit => 8
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["facebook_uid"], :name => "index_users_on_facebook_uid", :unique => true
 
 end

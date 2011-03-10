@@ -1,8 +1,8 @@
 require 'array_extensions'
 
 class Site < ActiveRecord::Base
-  has_many :quips, :dependent => :destroy
-  accepts_nested_attributes_for :quips, :allow_destroy => true
+  belongs_to :creator, :class_name => 'User'
+  has_many   :quips, :dependent => :destroy
 
   before_validation :downcase_url
 

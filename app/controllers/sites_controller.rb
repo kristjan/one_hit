@@ -1,7 +1,4 @@
 class SitesController < ApplicationController
-
-  respond_to :html, :json, :xml
-
   def index
     @sites = Site.all
     respond_with @sites
@@ -42,10 +39,19 @@ class SitesController < ApplicationController
 
   def create
     @site = Site.new(params[:site])
+    @site.creator = viewer
     if @site.save
-      respond_with @site, :status => :created,
-        :location => site_quips_path(@site),
-        :notice => 'Site was successfully created.'
+      pending_sites << @site.url
+      respond_with @site, :status => :created do |format|
+        format.html {
+          if @site.creator
+            redirect_to site_quips_path(@site)
+          else
+            session[:next_url] = site_quips_path(@site)
+            redirect_to new_user_path
+          end
+        }
+      end
     else
       respond_with @site.errors, :status => :unprocessable_entity do |format|
         format.html {render :new}
@@ -70,4 +76,5 @@ class SitesController < ApplicationController
     @site.destroy
     respond_with @site, :head => :ok, :location => sites_path
   end
+
 end

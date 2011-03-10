@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe SitesController do
 
+  def mock_user(stubs={})
+    @mock_user ||= mock_model(User, stubs).as_null_object
+  end
+
   def mock_site(stubs={})
     @mock_site ||= mock_model(Site, stubs).as_null_object
   end
@@ -66,10 +70,45 @@ describe SitesController do
         assigns(:site).should be(mock_site)
       end
 
-      it "redirects to the quips index" do
-        Site.stub(:new) { mock_site(:save => true) }
-        post :create, :site => {}
-        response.should redirect_to(site_quips_path(mock_site))
+      describe "when you're logged in" do
+        before :each do
+          controller.stub(:viewer) { mock_user }
+        end
+
+        it "sets the site's creator" do
+          Site.stub(:new) { mock_site }
+          mock_site.should_receive(:creator=).with(mock_user)
+          post :create
+        end
+
+        it "redirects to the quips index" do
+          Site.stub(:new) { mock_site(:save => true, :creator => mock_user) }
+          post :create, :site => {}
+          response.should redirect_to(site_quips_path(mock_site))
+        end
+      end
+
+      describe "when you're not logged in" do
+        before :each do
+          controller.stub(:viewer) { nil }
+          Site.stub(:new) { mock_site(:save => true, :creator => nil) }
+        end
+
+        it "saves the site in your pending list" do
+          Site.stub(:new) { mock_site(:save => true) }
+          post :create, :site => {'these' => 'params'}
+          controller.session[:pending_sites].should include(mock_site.url)
+        end
+
+        it "sets a :next_url" do
+          post :create, :site => {}
+          controller.session[:next_url].should == site_quips_path(mock_site)
+        end
+
+        it "redirects to the user creation form" do
+          post :create, :site => {}
+          response.should redirect_to(new_user_path)
+        end
       end
     end
 
@@ -137,5 +176,4 @@ describe SitesController do
       response.should redirect_to(sites_path)
     end
   end
-
 end

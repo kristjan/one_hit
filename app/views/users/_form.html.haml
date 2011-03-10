@@ -1,0 +1,20 @@
+- content_for :head do
+  = stylesheet_link_tag 'users/form'
+= form_for(@user) do |f|
+  - if @user.errors.any?
+    #error_explanation
+      %ul
+        - @user.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :email
+    = f.text_field :email, :class => 'full_width',    |
+                   :placeholder => "Enter your email" |
+  .field
+    = f.label :password
+    = f.password_field :password, :placeholder => "Enter a password"
+  .actions
+    = f.submit "Remember me!"
+    %br/
+    = link_to "Nah, I'm not important", next_url, :id => 'cancel'
