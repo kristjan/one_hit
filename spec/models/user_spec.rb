@@ -18,6 +18,10 @@ describe User do
     User.new(:email => user.email).should have(1).error_on(:email)
   end
 
+  it "has many Authorizations" do
+    User.new.authorizations.should be_an(Array)
+  end
+
   it "can claim sites" do
     sites = [new_site, new_site]
     user = create_user

@@ -3,6 +3,15 @@ require 'ffaker'
 
 
 Fixjour do
+  define_builder(Authorization) do |klass, overrides|
+    klass.new(
+      :user     => new_user,
+      :provider => Faker::Lorem.word.downcase,
+      :uid      => Faker::Lorem.word.downcase,
+      :token    => Faker::Lorem.sentence.gsub(/\s+/, '')
+    )
+  end
+
   define_builder(Quip) do |klass, overrides|
     klass.new(
       :site => new_site,
