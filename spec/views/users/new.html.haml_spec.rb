@@ -19,4 +19,9 @@ describe "users/new.html.haml" do
       assert_select "a#cancel[href=?]", '/finish_line'
     end
   end
+
+  it "includes a link to Twitter" do
+    render
+    assert_select "a[href=?]", auth_path(:twitter)
+  end
 end

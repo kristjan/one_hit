@@ -14,6 +14,9 @@
   .field
     = f.label :password
     = f.password_field :password, :placeholder => "Enter a password"
+  .providers
+    %label Or if you like,
+    = login_with_twitter
   .actions
     = f.submit "Remember me!"
     %br/

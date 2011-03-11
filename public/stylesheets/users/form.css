@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/* line 7, ../../../app/stylesheets/users/form.scss */
+/* line 8, ../../../app/stylesheets/users/form.scss */
 form label {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
@@ -13,11 +13,11 @@ form label {
 form label {
   *display: inline;
 }
-/* line 13, ../../../app/stylesheets/users/form.scss */
+/* line 14, ../../../app/stylesheets/users/form.scss */
 form input[type=text], form input[type=password] {
   width: 420px;
 }
-/* line 16, ../../../app/stylesheets/users/form.scss */
+/* line 17, ../../../app/stylesheets/users/form.scss */
 form .actions a {
   color: #666666;
   display: block;
@@ -30,4 +30,20 @@ form .actions a:hover {
 /* line 27, ../../../../../../../opt/local/lib/ruby/gems/1.8/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/utilities/links/_link-colors.scss */
 form .actions a:active {
   color: #eb9000;
+}
+/* line 24, ../../../app/stylesheets/users/form.scss */
+form .providers {
+  margin-top: 20px;
+}
+/* line 27, ../../../app/stylesheets/users/form.scss */
+form .providers img {
+  height: 30;
+  margin-left: 10px;
+  width: 200;
+  vertical-align: middle;
+}
+/* line 34, ../../../app/stylesheets/users/form.scss */
+form .providers label {
+  font-size: 1em;
+  line-height: 1.2em;
 }

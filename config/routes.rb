@@ -9,5 +9,7 @@ OneHit::Application.routes.draw do
 
   resources :users
 
+  match '/auth/:provider/callback', :to => "users#create"
+
   root :to => "sites#index"
 end
