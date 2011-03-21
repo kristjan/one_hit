@@ -9,5 +9,9 @@ OneHit::Application.routes.draw do
 
   resources :users
 
+  %w[oops oops_js].each do |action|
+    get "health/#{action}"
+  end
+
   root :to => "sites#index"
 end
