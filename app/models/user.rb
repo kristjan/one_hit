@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   attr_accessor :password
 
+  has_many :authorizations
+
   before_save :encrypt_password!
 
   validates_uniqueness_of :email, :allow_blank => true

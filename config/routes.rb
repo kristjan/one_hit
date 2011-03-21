@@ -7,7 +7,13 @@ OneHit::Application.routes.draw do
     end
   end
 
-  resources :users
+  resources :users do
+    collection do
+      get :authorize
+    end
+  end
+
+  match '/auth/:provider/callback', :to => "users#authorize"
 
   %w[oops oops_js].each do |action|
     get "health/#{action}"

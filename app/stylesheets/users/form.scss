@@ -2,6 +2,7 @@
 @import "compass/utilities/links";
 
 @import "constants";
+@import "shared";
 
 form {
   label {
@@ -17,6 +18,21 @@ form {
       @include link-colors($discouraged-color, $hover-color, $action-color);
       display: block;
       margin: 10px 10px 0px 0px;
+    }
+  }
+
+  .providers {
+    margin-top: 20px;
+
+    img {
+      height: 30;
+      margin-left: 10px;
+      width: 200;
+      vertical-align: middle;
+    }
+
+    label {
+      @include text-size(1em);
     }
   }
 }

@@ -1,7 +1,14 @@
 class UsersController < ApplicationController
+  def authorize
+    auth_info = request.env['rack.auth']
+    auth = Authorization.find_or_build(auth_info, viewer)
+    set_viewer(auth.user)
+    redirect_to next_url
+  end
+
   def create
     login_user || create_user
-    session[:viewer_id] = @user.id
+    set_viewer(@user)
   end
 
   def new

@@ -1,9 +1,11 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.4'
+
 gem 'compass'
 gem 'haml'
 gem 'hoptoad_notifier', '2.4.7'
+gem 'omniauth'
 
 group :development, :test do
   gem 'sqlite3'
