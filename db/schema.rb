@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(:version => 20110311070350) do
     t.string   "provider",   :null => false
     t.string   "uid",        :null => false
     t.string   "token"
+    t.string   "secret"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

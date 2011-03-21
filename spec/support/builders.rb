@@ -8,7 +8,8 @@ Fixjour do
       :user     => new_user,
       :provider => Faker::Lorem.word.downcase,
       :uid      => Faker::Lorem.word.downcase,
-      :token    => Faker::Lorem.sentence.gsub(/\s+/, '')
+      :token    => Faker::Lorem.sentence.gsub(/\s+/, ''),
+      :secret   => Faker::Lorem.sentence.gsub(/\s+/, '')
     )
   end
 

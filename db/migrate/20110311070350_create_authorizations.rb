@@ -5,6 +5,7 @@ class CreateAuthorizations < ActiveRecord::Migration
       t.string  :provider, :null => false
       t.string  :uid,      :null => false
       t.string  :token
+      t.string  :secret
 
       t.timestamps
     end

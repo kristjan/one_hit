@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe ApplicationController do
+  def mock_user(stubs={})
+    @mock_user ||= mock_model(User, stubs).as_null_object
+  end
+
   it "knows what your :next_url is" do
     session[:next_url] = '/nonsense'
     controller.send(:next_url).should == '/nonsense'
@@ -26,5 +30,35 @@ describe ApplicationController do
   it "knows when you're not logged in" do
     session[:viewer_id] = nil
     controller.send(:viewer).should be_nil
+  end
+
+  describe "logging in" do
+    before :each do
+      session[:viewer_id] = nil
+      controller.send(:set_viewer, mock_user)
+    end
+
+    it "stores the viewer_id in the session" do
+      session[:viewer_id].should == mock_user.id
+    end
+
+    it "sets the current viewer" do
+      controller.send(:viewer).should == mock_user
+    end
+  end
+
+  describe "logging out" do
+    before :each do
+      session[:viewer_id] = mock_user.id
+      controller.send(:set_viewer, nil)
+    end
+
+    it "wipes the session" do
+      session[:viewer_id].should be_nil
+    end
+
+    it "clears the viewer" do
+      controller.send(:viewer).should be_nil
+    end
   end
 end

@@ -16,4 +16,14 @@ private
   def viewer
     @viewer ||= (User.find_by_id(session[:viewer_id]) if session[:viewer_id])
   end
+
+  def set_viewer(user)
+    if user
+      session[:viewer_id] = user.id
+      @viewer = user
+    else
+      session.delete(:viewer_id)
+      @viewer = nil
+    end
+  end
 end
