@@ -1,4 +1,7 @@
 #header
+  - if viewer
+    .greeting
+      = "Whatup, #{viewer.name}"
   #nav
     = yield :nav
     = link_to "Make a Hit", new_site_path, :class => 'persistent'

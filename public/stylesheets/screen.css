@@ -59,17 +59,17 @@ a img {
   border: none;
 }
 
-/* line 5, ../../app/stylesheets/_global.scss */
+/* line 4, ../../app/stylesheets/_global.scss */
 * {
   outline: none;
 }
 
-/* line 9, ../../app/stylesheets/_global.scss */
+/* line 8, ../../app/stylesheets/_global.scss */
 html, body {
   height: 100%;
 }
 
-/* line 13, ../../app/stylesheets/_global.scss */
+/* line 12, ../../app/stylesheets/_global.scss */
 body {
   background-color: white;
   color: #333333;
@@ -77,7 +77,7 @@ body {
   line-height: 1.2em;
 }
 
-/* line 20, ../../app/stylesheets/_global.scss */
+/* line 19, ../../app/stylesheets/_global.scss */
 a {
   color: #ff9f05;
   text-decoration: none;
@@ -91,12 +91,18 @@ a:active {
   color: #eb9000;
 }
 
-/* line 25, ../../app/stylesheets/_global.scss */
+/* line 24, ../../app/stylesheets/_global.scss */
 #header {
   overflow: hidden;
   *zoom: 1;
 }
 /* line 27, ../../app/stylesheets/_global.scss */
+#header .greeting {
+  display: inline;
+  float: left;
+  margin: 5px;
+}
+/* line 32, ../../app/stylesheets/_global.scss */
 #header h1 {
   font-size: 2.5em;
   line-height: 1.2em;
@@ -105,7 +111,7 @@ a:active {
   padding: 10px;
   text-align: center;
 }
-/* line 36, ../../app/stylesheets/_global.scss */
+/* line 41, ../../app/stylesheets/_global.scss */
 #header #nav {
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #000000), color-stop(5%, #ffffff), color-stop(20%, #f6f6ac), color-stop(100%, #ffffff));
   background-image: -moz-linear-gradient(top, #000000 0%, #ffffff 5%, #f6f6ac 20%, #ffffff 100%);
@@ -114,7 +120,7 @@ a:active {
   padding-bottom: 10px;
   text-align: right;
 }
-/* line 47, ../../app/stylesheets/_global.scss */
+/* line 52, ../../app/stylesheets/_global.scss */
 #header #nav a {
   -moz-border-radius-bottomleft: 5px;
   -webkit-border-bottom-left-radius: 5px;
@@ -155,33 +161,33 @@ a:active {
 #header #nav a:active {
   color: #eb9000;
 }
-/* line 57, ../../app/stylesheets/_global.scss */
+/* line 62, ../../app/stylesheets/_global.scss */
 #header #nav a:active {
   -moz-transform: scale(0.97);
   -webkit-transform: scale(0.97);
   -o-transform: scale(0.97);
   transform: scale(0.97);
 }
-/* line 61, ../../app/stylesheets/_global.scss */
+/* line 66, ../../app/stylesheets/_global.scss */
 #header #nav a.home {
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #6b4200), color-stop(5%, #ffffff), color-stop(10%, #ffda9e), color-stop(100%, #ffffff));
   background-image: -moz-linear-gradient(top, #6b4200 0%, #ffffff 5%, #ffda9e 10%, #ffffff 100%);
   background-image: linear-gradient(top, #6b4200 0%, #ffffff 5%, #ffda9e 10%, #ffffff 100%);
 }
-/* line 68, ../../app/stylesheets/_global.scss */
+/* line 73, ../../app/stylesheets/_global.scss */
 #header #nav a.persistent {
   font-size: 0.9em;
   line-height: 1.2em;
   padding: 5px 10px;
 }
 
-/* line 75, ../../app/stylesheets/_global.scss */
+/* line 80, ../../app/stylesheets/_global.scss */
 #content {
   margin: 0px auto;
   width: 600px;
 }
 
-/* line 80, ../../app/stylesheets/_global.scss */
+/* line 85, ../../app/stylesheets/_global.scss */
 .prompt {
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
@@ -194,7 +200,7 @@ a:active {
   background-color: #c6c3e2;
   margin: 10px 0px;
 }
-/* line 85, ../../app/stylesheets/_global.scss */
+/* line 90, ../../app/stylesheets/_global.scss */
 .prompt h3 {
   font-weight: bold;
 }

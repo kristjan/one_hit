@@ -1,6 +1,5 @@
 @import "compass/css3";
-@import "compass/utilities/general/clearfix";
-@import "compass/utilities/links";
+@import "compass/utilities";
 
 * {
   outline: none;
@@ -24,6 +23,12 @@ a {
 
 #header {
   @include clearfix();
+
+  .greeting {
+    @include float(left);
+    margin: 5px;
+  }
+
   h1 {
     font-size: 2.5em;
     line-height: 1.2em;

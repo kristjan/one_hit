@@ -16,6 +16,7 @@ private
   def viewer
     @viewer ||= (User.find_by_id(session[:viewer_id]) if session[:viewer_id])
   end
+  helper_method :viewer
 
   def set_viewer(user)
     if user
