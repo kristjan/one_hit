@@ -32,10 +32,36 @@ describe ApplicationController do
     controller.send(:viewer).should be_nil
   end
 
+  describe "checking the viewer" do
+    before :all do
+      @user = create_user
+    end
+
+    before :each do
+      controller.send :viewer!, @user
+    end
+
+    it "recognizes one user" do
+      controller.send(:viewer?, @user).should be_true
+    end
+
+    it "recognizes an array of users" do
+      controller.send(:viewer?, [@user]).should be_true
+    end
+
+    it "recognizes mixed users and arrays" do
+      controller.send(:viewer?, new_user, [new_user, @user]).should be_true
+    end
+
+    it "recognizes when you're not someone we care about" do
+      controller.send(:viewer?, new_user).should be_false
+    end
+  end
+
   describe "logging in" do
     before :each do
       session[:viewer_id] = nil
-      controller.send(:set_viewer, mock_user)
+      controller.send(:viewer!, mock_user)
     end
 
     it "stores the viewer_id in the session" do
@@ -50,7 +76,7 @@ describe ApplicationController do
   describe "logging out" do
     before :each do
       session[:viewer_id] = mock_user.id
-      controller.send(:set_viewer, nil)
+      controller.send(:viewer!, nil)
     end
 
     it "wipes the session" do

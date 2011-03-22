@@ -18,7 +18,11 @@ private
   end
   helper_method :viewer
 
-  def set_viewer(user)
+  def viewer?(*users)
+    users.flatten.include?(viewer)
+  end
+
+  def viewer!(user)
     if user
       session[:viewer_id] = user.id
       @viewer = user
@@ -27,4 +31,5 @@ private
       @viewer = nil
     end
   end
+
 end
