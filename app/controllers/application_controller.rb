@@ -9,8 +9,22 @@ private
   end
   helper_method :next_url
 
+  def load_site
+    @site = Site.fetch(params[:id])
+  end
+
   def pending_sites
     session[:pending_sites] ||= []
+  end
+
+  def require_creator
+    return if @site.creator.nil?
+    unless viewer?(@site.creator)
+      respond_with :unauthorized, :status => 401,
+                   :location => site_url(@site) do |format|
+        format.html { redirect_to @site }
+      end
+    end
   end
 
   def viewer

@@ -1,4 +1,5 @@
 require 'spec_helper'
+include AuthorizationTestHelper
 
 describe SitesController do
 
@@ -55,10 +56,43 @@ describe SitesController do
   end
 
   describe "GET edit" do
-    it "assigns the requested site as @site" do
+    before :each do
       Site.stub(:fetch).with("url") { mock_site }
+    end
+
+    it "assigns the requested site as @site" do
       get :edit, :id => "url"
       assigns(:site).should be(mock_site)
+    end
+
+    describe "when there is a creator" do
+      before :each do
+        mock_site.stub(:creator).and_return(mock_user)
+      end
+
+      it "admits the creator" do
+        log_in_as(mock_site.creator)
+        get :edit, :id => "url"
+        response.should be_success
+      end
+
+      it "denies non-creators" do
+        log_in_as_guest
+        get :edit, :id => "url"
+        response.should be_redirect
+      end
+    end
+
+    describe "when there is no creator" do
+      before :each do
+        mock_site.stub(:creator).and_return(nil)
+      end
+
+      it "allows anyone" do
+        log_in_as_guest
+        get :edit, :id => "url"
+        response.should be_success
+      end
     end
   end
 

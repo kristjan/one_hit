@@ -1,4 +1,7 @@
 class SitesController < ApplicationController
+  before_filter :load_site, :only => [:show, :edit, :update, :destroy]
+  before_filter :require_creator, :only => :edit
+
   def index
     @sites = Site.all
     respond_with @sites
@@ -18,7 +21,6 @@ class SitesController < ApplicationController
   end
 
   def show
-    @site = Site.fetch(params[:id])
     if @site
       respond_with @site
     else
@@ -33,9 +35,7 @@ class SitesController < ApplicationController
     respond_with @site
   end
 
-  def edit
-    @site = Site.fetch(params[:id])
-  end
+  def edit; end
 
   def create
     @site = Site.new(params[:site])
@@ -60,7 +60,6 @@ class SitesController < ApplicationController
   end
 
   def update
-    @site = Site.fetch(params[:id])
     if @site.update_attributes(params[:site])
       respond_with @site, :head => :ok,
         :notice => 'Site was successfully updated.'
@@ -72,7 +71,6 @@ class SitesController < ApplicationController
   end
 
   def destroy
-    @site = Site.fetch(params[:id])
     @site.destroy
     respond_with @site, :head => :ok, :location => sites_path
   end
