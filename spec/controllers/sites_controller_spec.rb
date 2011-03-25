@@ -1,4 +1,5 @@
 require 'spec_helper'
+include AuthorizationTestHelper
 
 describe SitesController do
 
@@ -55,10 +56,43 @@ describe SitesController do
   end
 
   describe "GET edit" do
-    it "assigns the requested site as @site" do
+    before :each do
       Site.stub(:fetch).with("url") { mock_site }
+    end
+
+    it "assigns the requested site as @site" do
       get :edit, :id => "url"
       assigns(:site).should be(mock_site)
+    end
+
+    describe "when there is a creator" do
+      before :each do
+        mock_site.stub(:creator).and_return(mock_user)
+      end
+
+      it "admits the creator" do
+        log_in_as(mock_site.creator)
+        get :edit, :id => "url"
+        response.should be_success
+      end
+
+      it "denies non-creators" do
+        log_in_as_guest
+        get :edit, :id => "url"
+        response.should be_redirect
+      end
+    end
+
+    describe "when there is no creator" do
+      before :each do
+        mock_site.stub(:creator).and_return(nil)
+      end
+
+      it "allows anyone" do
+        log_in_as_guest
+        get :edit, :id => "url"
+        response.should be_success
+      end
     end
   end
 
@@ -129,51 +163,170 @@ describe SitesController do
 
   describe "PUT update" do
     describe "with valid params" do
-      it "updates the requested site" do
-        Site.stub(:fetch).with("url") { mock_site }
-        mock_site.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => "url", :site => {'these' => 'params'}
+      before :each do
+        Site.stub(:fetch).and_return(mock_site(:update_attributes => true))
       end
 
       it "assigns the requested site as @site" do
-        Site.stub(:fetch) { mock_site(:update_attributes => true) }
         put :update, :id => "url"
         assigns(:site).should be(mock_site)
       end
 
-      it "redirects to the site" do
-        Site.stub(:fetch) { mock_site(:update_attributes => true) }
-        put :update, :id => "url"
-        response.should redirect_to(site_path(mock_site))
+      describe "when you are the creator" do
+        before :each do
+          log_in_as mock_site.creator
+        end
+
+        it "updates the requested site" do
+          mock_site.should_receive(:update_attributes).with({'these' => 'params'})
+          put :update, :id => "url", :site => {'these' => 'params'}
+        end
+
+        it "redirects to the site" do
+          put :update, :id => "url"
+          response.should redirect_to(site_path(mock_site))
+        end
+      end
+
+      describe "when you are not the creator" do
+        before :each do
+          log_in_as_guest
+        end
+
+        it "does not update the requested site" do
+          mock_site.should_not_receive(:update_attributes)
+          put :update, :id => "url"
+        end
+
+        it "redirects to the site" do
+          put :update, :id => "url"
+          response.should redirect_to(site_path(mock_site))
+        end
+      end
+
+      describe "when there is no creator" do
+        before :each do
+          mock_site.stub(:creator).and_return(nil)
+          log_in_as_guest
+        end
+
+        it "updates the requested site" do
+          mock_site.should_receive(:update_attributes).with({'these' => 'params'})
+          put :update, :id => "url", :site => {'these' => 'params'}
+        end
+
+        it "redirects to the site" do
+          put :update, :id => "url"
+          response.should redirect_to(site_path(mock_site))
+        end
       end
     end
 
     describe "with invalid params" do
-      it "assigns the site as @site" do
-        Site.stub(:fetch) { mock_site(:update_attributes => false) }
-        put :update, :id => "url"
-        assigns(:site).should be(mock_site)
+      before :each do
+        Site.stub(:fetch).and_return(mock_site(:update_attributes => false))
       end
 
-      it "re-renders the 'edit' template" do
-        Site.stub(:fetch) { mock_site(:update_attributes => false) }
-        put :update, :id => "url"
-        response.should render_template("edit")
+      describe "when you are the creator" do
+        before :each do
+          log_in_as mock_site.creator
+        end
+
+        it "assigns the site as @site" do
+          put :update, :id => "url"
+          assigns(:site).should be(mock_site)
+        end
+
+        it "re-renders the 'edit' template" do
+          put :update, :id => "url"
+          response.should render_template("edit")
+        end
+      end
+
+      describe "when you are not the creator" do
+        before :each do
+          log_in_as_guest
+        end
+
+        it "redirects to the site" do
+          put :update, :id => "url"
+          response.should redirect_to(site_path(mock_site))
+        end
+      end
+
+      describe "when there is no creator" do
+        before :each do
+          mock_site.stub(:creator).and_return(nil)
+          log_in_as_guest
+        end
+
+        it "assigns the site as @site" do
+          put :update, :id => "url"
+          assigns(:site).should be(mock_site)
+        end
+
+        it "re-renders the 'edit' template" do
+          put :update, :id => "url"
+          response.should render_template("edit")
+        end
       end
     end
   end
 
   describe "DELETE destroy" do
-    it "destroys the requested site" do
-      Site.stub(:fetch).with("url") { mock_site }
-      mock_site.should_receive(:destroy)
-      delete :destroy, :id => "url"
+    describe "when you are the creator" do
+      before :each do
+        log_in_as mock_site.creator
+      end
+
+      it "destroys the requested site" do
+        Site.stub(:fetch).with("url") { mock_site }
+        mock_site.should_receive(:destroy)
+        delete :destroy, :id => "url"
+      end
+
+      it "redirects to the sites list" do
+        Site.stub(:fetch) { mock_site }
+        delete :destroy, :id => "url"
+        response.should redirect_to(sites_path)
+      end
     end
 
-    it "redirects to the sites list" do
-      Site.stub(:fetch) { mock_site }
-      delete :destroy, :id => "url"
-      response.should redirect_to(sites_path)
+    describe "when you are not the creator" do
+      before :each do
+        log_in_as_guest
+      end
+
+      it "does not destroy the requested site" do
+        Site.stub(:fetch).with("url") { mock_site }
+        mock_site.should_not_receive(:destroy)
+        delete :destroy, :id => "url"
+      end
+
+      it "redirects to the site" do
+        Site.stub(:fetch) { mock_site }
+        delete :destroy, :id => "url"
+        response.should redirect_to(site_path(mock_site))
+      end
+    end
+
+    describe "when there is no creator" do
+      before :each do
+        mock_site(:creator => nil)
+        log_in_as_guest
+      end
+
+      it "destroys the requested site" do
+        Site.stub(:fetch).with("url") { mock_site }
+        mock_site.should_receive(:destroy)
+        delete :destroy, :id => "url"
+      end
+
+      it "redirects to the sites list" do
+        Site.stub(:fetch) { mock_site }
+        delete :destroy, :id => "url"
+        response.should redirect_to(sites_path)
+      end
     end
   end
 end

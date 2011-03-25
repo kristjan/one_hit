@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe QuipsController do
+  include AuthorizationTestHelper
+
   SITE_URL = "onehitwonders"
 
   def mock_quip(stubs={})
@@ -16,12 +18,19 @@ describe QuipsController do
 
   before(:each) do
     @site = mock_site
+    log_in_as @site.creator
     Site.stub(:fetch).with(SITE_URL) {@site}
   end
 
   it "loads the containing site" do
     QuipsController._process_action_callbacks.find do |callback|
       callback.kind == :before && callback.filter == :load_site
+    end.should be
+  end
+
+  it "restricts access to the site creator" do
+    QuipsController._process_action_callbacks.find do |callback|
+      callback.kind == :before && callback.filter == :require_creator
     end.should be
   end
 

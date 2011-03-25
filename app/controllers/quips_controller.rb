@@ -1,5 +1,6 @@
 class QuipsController < ApplicationController
   before_filter :load_site
+  before_filter :require_creator
 
   def index
     @quips = @site.quips

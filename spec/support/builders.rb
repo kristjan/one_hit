@@ -22,6 +22,7 @@ Fixjour do
 
   define_builder(Site) do |klass, overrides|
     klass.new(
+      :creator => new_user,
       :name => Faker::Lorem.sentence(3),
       :url  => Faker::Lorem.words(2).join.downcase
     )
