@@ -274,16 +274,59 @@ describe SitesController do
   end
 
   describe "DELETE destroy" do
-    it "destroys the requested site" do
-      Site.stub(:fetch).with("url") { mock_site }
-      mock_site.should_receive(:destroy)
-      delete :destroy, :id => "url"
+    describe "when you are the creator" do
+      before :each do
+        log_in_as mock_site.creator
+      end
+
+      it "destroys the requested site" do
+        Site.stub(:fetch).with("url") { mock_site }
+        mock_site.should_receive(:destroy)
+        delete :destroy, :id => "url"
+      end
+
+      it "redirects to the sites list" do
+        Site.stub(:fetch) { mock_site }
+        delete :destroy, :id => "url"
+        response.should redirect_to(sites_path)
+      end
     end
 
-    it "redirects to the sites list" do
-      Site.stub(:fetch) { mock_site }
-      delete :destroy, :id => "url"
-      response.should redirect_to(sites_path)
+    describe "when you are not the creator" do
+      before :each do
+        log_in_as_guest
+      end
+
+      it "does not destroy the requested site" do
+        Site.stub(:fetch).with("url") { mock_site }
+        mock_site.should_not_receive(:destroy)
+        delete :destroy, :id => "url"
+      end
+
+      it "redirects to the site" do
+        Site.stub(:fetch) { mock_site }
+        delete :destroy, :id => "url"
+        response.should redirect_to(site_path(mock_site))
+      end
+    end
+
+    describe "when there is no creator" do
+      before :each do
+        mock_site(:creator => nil)
+        log_in_as_guest
+      end
+
+      it "destroys the requested site" do
+        Site.stub(:fetch).with("url") { mock_site }
+        mock_site.should_receive(:destroy)
+        delete :destroy, :id => "url"
+      end
+
+      it "redirects to the sites list" do
+        Site.stub(:fetch) { mock_site }
+        delete :destroy, :id => "url"
+        response.should redirect_to(sites_path)
+      end
     end
   end
 end
