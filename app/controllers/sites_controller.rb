@@ -1,6 +1,6 @@
 class SitesController < ApplicationController
   before_filter :load_site, :only => [:show, :edit, :update, :destroy]
-  before_filter :require_creator, :only => :edit
+  before_filter :require_creator, :only => [:edit, :update]
 
   def index
     @sites = Site.all
