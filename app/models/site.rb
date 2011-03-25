@@ -20,6 +20,10 @@ class Site < ActiveRecord::Base
     first :order => 'random()', :conditions => "url <> '404'"
   end
 
+  def editable_by?(user)
+    creator.nil? || creator == user
+  end
+
   def random_quip
     quips.rand
   end

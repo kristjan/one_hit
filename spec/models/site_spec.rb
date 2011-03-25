@@ -112,4 +112,21 @@ describe Site do
       new_site(:url => site.url).should have(1).error_on(:url)
     end
   end
+
+  describe "editing" do
+    it "is allowed for the creator" do
+      site = new_site
+      site.should be_editable_by(site.creator)
+    end
+
+    it "is not allowed for others" do
+      site = new_site
+      site.should_not be_editable_by(new_user)
+    end
+
+    it "is allowed if the site has no creator" do
+      site = new_site(:creator => nil)
+      site.should be_editable_by(new_user)
+    end
+  end
 end
