@@ -31,7 +31,7 @@ describe Site do
   end
 
   it "has many Quips" do
-    new_site.quips.should be_a(Array)
+    create_site.quips.should be_a(Array)
   end
 
   it "fetches random quips" do

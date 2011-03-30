@@ -19,7 +19,7 @@ describe User do
   end
 
   it "has many Authorizations" do
-    User.new.authorizations.should be_an(Array)
+    create_user.authorizations.should be_an(Array)
   end
 
   it "can claim sites" do
