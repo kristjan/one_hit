@@ -16,6 +16,11 @@ class UsersController < ApplicationController
     @pending_sites = pending_sites.map{|url| Site.fetch(url)}
   end
 
+  def show
+    @user = User.find_by_id(params[:id])
+    @user ? respond_with(@user) : respond_with_404
+  end
+
 private
 
   def create_user

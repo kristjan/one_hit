@@ -221,4 +221,17 @@ describe UsersController do
       end
     end
   end
+
+  describe "GET show" do
+    it "assigns the requested user as @user" do
+      User.stub(:find_by_id).and_return(mock_user)
+      get :show, :id => mock_user.id
+      assigns(:user).should be(mock_user)
+    end
+
+    it "redirects nonexistent users to /404" do
+      get :show, :id => -1
+      response.should redirect_to '/404'
+    end
+  end
 end

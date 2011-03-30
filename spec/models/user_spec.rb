@@ -22,6 +22,10 @@ describe User do
     User.new.authorizations.should be_an(Array)
   end
 
+  it "has many Sites" do
+    create_user.sites.should be_an(Array)
+  end
+
   it "can claim sites" do
     sites = [new_site, new_site]
     user = create_user

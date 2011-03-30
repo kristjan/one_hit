@@ -21,13 +21,7 @@ class SitesController < ApplicationController
   end
 
   def show
-    if @site
-      respond_with @site
-    else
-      respond_with :"404", :status => 404 do |format|
-        format.html {redirect_to '/404'}
-      end
-    end
+    @site ? respond_with(@site) : respond_with_404
   end
 
   def new

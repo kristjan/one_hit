@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   attr_accessor :password
 
   has_many :authorizations
+  has_many :sites, :foreign_key => :creator_id
 
   before_save :encrypt_password!
 
