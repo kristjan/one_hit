@@ -39,7 +39,29 @@ describe "global/_header.html.haml" do
 
     it "says hello" do
       render
+      assert_select ".greeting", :text => /Whatup/
+    end
+
+    it "addresses you if we know your name" do
+      render
       assert_select ".greeting", :text => /#{@user.name}/
+    end
+
+    it "uses your email if we won't know a name" do
+      @user.name = nil
+      render
+      assert_select ".greeting", :text => /#{@user.email}/
+    end
+  end
+
+  describe "when you are not logged in" do
+    before :each do
+      view.stub(:viewer).and_return(nil)
+    end
+
+    it "renders a login button" do
+      render
+      assert_select ".greeting a", :text => "Log in"
     end
   end
 end

@@ -102,7 +102,57 @@ a:active {
   float: left;
   margin: 5px;
 }
-/* line 32, ../../app/stylesheets/_global.scss */
+/* line 31, ../../app/stylesheets/_global.scss */
+#header .greeting a {
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -o-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -khtml-border-radius: 15px;
+  border-radius: 15px;
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #ff9f05), color-stop(2%, #ffcf55), color-stop(20%, #ff9f05), color-stop(80%, #df7f05), color-stop(100%, #af4f00));
+  background-image: -moz-linear-gradient(top, #ff9f05 0%, #ffcf55 2%, #ff9f05 20%, #df7f05 80%, #af4f00 100%);
+  background-image: linear-gradient(top, #ff9f05 0%, #ffcf55 2%, #ff9f05 20%, #df7f05 80%, #af4f00 100%);
+  border: none;
+  color: #FFF;
+  text-align: center;
+  padding: 3px 5px;
+}
+/* line 7, ../../../../../../opt/local/lib/ruby/gems/1.8/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
+#header .greeting a {
+  *display: inline;
+}
+/* line 15, ../../app/stylesheets/_shared.scss */
+#header .greeting a:hover, #header .greeting a:focus {
+  cursor: pointer;
+}
+/* line 18, ../../app/stylesheets/_shared.scss */
+#header .greeting a:active {
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #ff9f05), color-stop(2%, #dfaf35), color-stop(20%, #df7f00), color-stop(80%, #bf5f00), color-stop(100%, #8f2f00));
+  background-image: -moz-linear-gradient(top, #ff9f05 0%, #dfaf35 2%, #df7f00 20%, #bf5f00 80%, #8f2f00 100%);
+  background-image: linear-gradient(top, #ff9f05 0%, #dfaf35 2%, #df7f00 20%, #bf5f00 80%, #8f2f00 100%);
+  color: #DDD;
+}
+/* line 42, ../../app/stylesheets/_shared.scss */
+#header .greeting a:hover, #header .greeting a:focus {
+  -moz-box-shadow: #f6e62c 0 0 5px 0;
+  -webkit-box-shadow: #f6e62c 0 0 5px 0;
+  -o-box-shadow: #f6e62c 0 0 5px 0;
+  box-shadow: #f6e62c 0 0 5px 0;
+}
+/* line 45, ../../app/stylesheets/_shared.scss */
+#header .greeting a:active {
+  -moz-box-shadow: #d6c60c 0 0 3px 0;
+  -webkit-box-shadow: #d6c60c 0 0 3px 0;
+  -o-box-shadow: #d6c60c 0 0 3px 0;
+  box-shadow: #d6c60c 0 0 3px 0;
+}
+/* line 34, ../../app/stylesheets/_global.scss */
 #header h1 {
   font-size: 2.5em;
   line-height: 1.2em;
@@ -111,7 +161,7 @@ a:active {
   padding: 10px;
   text-align: center;
 }
-/* line 41, ../../app/stylesheets/_global.scss */
+/* line 43, ../../app/stylesheets/_global.scss */
 #header #nav {
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #000000), color-stop(5%, #ffffff), color-stop(20%, #f6f6ac), color-stop(100%, #ffffff));
   background-image: -moz-linear-gradient(top, #000000 0%, #ffffff 5%, #f6f6ac 20%, #ffffff 100%);
@@ -120,7 +170,7 @@ a:active {
   padding-bottom: 10px;
   text-align: right;
 }
-/* line 52, ../../app/stylesheets/_global.scss */
+/* line 54, ../../app/stylesheets/_global.scss */
 #header #nav a {
   -moz-border-radius-bottomleft: 5px;
   -webkit-border-bottom-left-radius: 5px;
@@ -161,33 +211,33 @@ a:active {
 #header #nav a:active {
   color: #eb9000;
 }
-/* line 62, ../../app/stylesheets/_global.scss */
+/* line 64, ../../app/stylesheets/_global.scss */
 #header #nav a:active {
   -moz-transform: scale(0.97);
   -webkit-transform: scale(0.97);
   -o-transform: scale(0.97);
   transform: scale(0.97);
 }
-/* line 66, ../../app/stylesheets/_global.scss */
+/* line 68, ../../app/stylesheets/_global.scss */
 #header #nav a.home {
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #6b4200), color-stop(5%, #ffffff), color-stop(10%, #ffda9e), color-stop(100%, #ffffff));
   background-image: -moz-linear-gradient(top, #6b4200 0%, #ffffff 5%, #ffda9e 10%, #ffffff 100%);
   background-image: linear-gradient(top, #6b4200 0%, #ffffff 5%, #ffda9e 10%, #ffffff 100%);
 }
-/* line 73, ../../app/stylesheets/_global.scss */
+/* line 75, ../../app/stylesheets/_global.scss */
 #header #nav a.persistent {
   font-size: 0.9em;
   line-height: 1.2em;
   padding: 5px 10px;
 }
 
-/* line 80, ../../app/stylesheets/_global.scss */
+/* line 82, ../../app/stylesheets/_global.scss */
 #content {
   margin: 0px auto;
   width: 600px;
 }
 
-/* line 85, ../../app/stylesheets/_global.scss */
+/* line 87, ../../app/stylesheets/_global.scss */
 .prompt {
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
@@ -200,7 +250,7 @@ a:active {
   background-color: #c6c3e2;
   margin: 10px 0px;
 }
-/* line 90, ../../app/stylesheets/_global.scss */
+/* line 92, ../../app/stylesheets/_global.scss */
 .prompt h3 {
   font-weight: bold;
 }
@@ -260,19 +310,19 @@ form input[type=submit] {
   -ms-border-radius: 15px;
   -khtml-border-radius: 15px;
   border-radius: 15px;
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #ff9f05), color-stop(2%, #ffcf55), color-stop(20%, #ff9f05), color-stop(80%, #df7f05), color-stop(100%, #af4f00));
-  background-image: -moz-linear-gradient(top, #ff9f05 0%, #ffcf55 2%, #ff9f05 20%, #df7f05 80%, #af4f00 100%);
-  background-image: linear-gradient(top, #ff9f05 0%, #ffcf55 2%, #ff9f05 20%, #df7f05 80%, #af4f00 100%);
   display: -moz-inline-box;
   -moz-box-orient: vertical;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #ff9f05), color-stop(2%, #ffcf55), color-stop(20%, #ff9f05), color-stop(80%, #df7f05), color-stop(100%, #af4f00));
+  background-image: -moz-linear-gradient(top, #ff9f05 0%, #ffcf55 2%, #ff9f05 20%, #df7f05 80%, #af4f00 100%);
+  background-image: linear-gradient(top, #ff9f05 0%, #ffcf55 2%, #ff9f05 20%, #df7f05 80%, #af4f00 100%);
   border: none;
   color: #FFF;
+  text-align: center;
   font-size: 2em;
   padding: 10px 15px;
-  text-align: center;
   display: -moz-inline-box;
   -moz-box-orient: vertical;
   display: inline-block;
@@ -283,24 +333,30 @@ form input[type=submit] {
 form input[type=submit] {
   *display: inline;
 }
-/* line 17, ../../app/stylesheets/_shared.scss */
+/* line 15, ../../app/stylesheets/_shared.scss */
+form input[type=submit]:hover, form input[type=submit]:focus {
+  cursor: pointer;
+}
+/* line 18, ../../app/stylesheets/_shared.scss */
+form input[type=submit]:active {
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #ff9f05), color-stop(2%, #dfaf35), color-stop(20%, #df7f00), color-stop(80%, #bf5f00), color-stop(100%, #8f2f00));
+  background-image: -moz-linear-gradient(top, #ff9f05 0%, #dfaf35 2%, #df7f00 20%, #bf5f00 80%, #8f2f00 100%);
+  background-image: linear-gradient(top, #ff9f05 0%, #dfaf35 2%, #df7f00 20%, #bf5f00 80%, #8f2f00 100%);
+  color: #DDD;
+}
+/* line 30, ../../app/stylesheets/_shared.scss */
 form input[type=submit]:hover, form input[type=submit]:focus {
   -moz-box-shadow: #f6e62c 0 0 15px 0;
   -webkit-box-shadow: #f6e62c 0 0 15px 0;
   -o-box-shadow: #f6e62c 0 0 15px 0;
   box-shadow: #f6e62c 0 0 15px 0;
-  cursor: pointer;
 }
-/* line 21, ../../app/stylesheets/_shared.scss */
+/* line 33, ../../app/stylesheets/_shared.scss */
 form input[type=submit]:active {
   -moz-box-shadow: #d6c60c 0 0 10px 0;
   -webkit-box-shadow: #d6c60c 0 0 10px 0;
   -o-box-shadow: #d6c60c 0 0 10px 0;
   box-shadow: #d6c60c 0 0 10px 0;
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #ff9f05), color-stop(2%, #dfaf35), color-stop(20%, #df7f00), color-stop(80%, #bf5f00), color-stop(100%, #8f2f00));
-  background-image: -moz-linear-gradient(top, #ff9f05 0%, #dfaf35 2%, #df7f00 20%, #bf5f00 80%, #8f2f00 100%);
-  background-image: linear-gradient(top, #ff9f05 0%, #dfaf35 2%, #df7f00 20%, #bf5f00 80%, #8f2f00 100%);
-  color: #DDD;
 }
 /* line 7, ../../../../../../opt/local/lib/ruby/gems/1.8/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
 form input[type=submit] {

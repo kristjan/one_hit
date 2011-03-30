@@ -27,6 +27,8 @@ a {
   .greeting {
     @include float(left);
     margin: 5px;
+
+    a { @include small-button; }
   }
 
   h1 {

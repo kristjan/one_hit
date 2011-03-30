@@ -26,19 +26,19 @@
   -ms-border-radius: 15px;
   -khtml-border-radius: 15px;
   border-radius: 15px;
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #ff9f05), color-stop(2%, #ffcf55), color-stop(20%, #ff9f05), color-stop(80%, #df7f05), color-stop(100%, #af4f00));
-  background-image: -moz-linear-gradient(top, #ff9f05 0%, #ffcf55 2%, #ff9f05 20%, #df7f05 80%, #af4f00 100%);
-  background-image: linear-gradient(top, #ff9f05 0%, #ffcf55 2%, #ff9f05 20%, #df7f05 80%, #af4f00 100%);
   display: -moz-inline-box;
   -moz-box-orient: vertical;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #ff9f05), color-stop(2%, #ffcf55), color-stop(20%, #ff9f05), color-stop(80%, #df7f05), color-stop(100%, #af4f00));
+  background-image: -moz-linear-gradient(top, #ff9f05 0%, #ffcf55 2%, #ff9f05 20%, #df7f05 80%, #af4f00 100%);
+  background-image: linear-gradient(top, #ff9f05 0%, #ffcf55 2%, #ff9f05 20%, #df7f05 80%, #af4f00 100%);
   border: none;
   color: #FFF;
+  text-align: center;
   font-size: 2em;
   padding: 10px 15px;
-  text-align: center;
   padding: 15px;
   width: 150px;
 }
@@ -46,22 +46,28 @@
 #content a.action {
   *display: inline;
 }
-/* line 17, ../../../app/stylesheets/_shared.scss */
+/* line 15, ../../../app/stylesheets/_shared.scss */
+#content a.action:hover, #content a.action:focus {
+  cursor: pointer;
+}
+/* line 18, ../../../app/stylesheets/_shared.scss */
+#content a.action:active {
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #ff9f05), color-stop(2%, #dfaf35), color-stop(20%, #df7f00), color-stop(80%, #bf5f00), color-stop(100%, #8f2f00));
+  background-image: -moz-linear-gradient(top, #ff9f05 0%, #dfaf35 2%, #df7f00 20%, #bf5f00 80%, #8f2f00 100%);
+  background-image: linear-gradient(top, #ff9f05 0%, #dfaf35 2%, #df7f00 20%, #bf5f00 80%, #8f2f00 100%);
+  color: #DDD;
+}
+/* line 30, ../../../app/stylesheets/_shared.scss */
 #content a.action:hover, #content a.action:focus {
   -moz-box-shadow: #f6e62c 0 0 15px 0;
   -webkit-box-shadow: #f6e62c 0 0 15px 0;
   -o-box-shadow: #f6e62c 0 0 15px 0;
   box-shadow: #f6e62c 0 0 15px 0;
-  cursor: pointer;
 }
-/* line 21, ../../../app/stylesheets/_shared.scss */
+/* line 33, ../../../app/stylesheets/_shared.scss */
 #content a.action:active {
   -moz-box-shadow: #d6c60c 0 0 10px 0;
   -webkit-box-shadow: #d6c60c 0 0 10px 0;
   -o-box-shadow: #d6c60c 0 0 10px 0;
   box-shadow: #d6c60c 0 0 10px 0;
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #ff9f05), color-stop(2%, #dfaf35), color-stop(20%, #df7f00), color-stop(80%, #bf5f00), color-stop(100%, #8f2f00));
-  background-image: -moz-linear-gradient(top, #ff9f05 0%, #dfaf35 2%, #df7f00 20%, #bf5f00 80%, #8f2f00 100%);
-  background-image: linear-gradient(top, #ff9f05 0%, #dfaf35 2%, #df7f00 20%, #bf5f00 80%, #8f2f00 100%);
-  color: #DDD;
 }

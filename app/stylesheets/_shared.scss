@@ -3,26 +3,47 @@
 $standard-radius: 15px;
 $light-highlight-color: #EAF0FA;
 
-@mixin action-button {
+@mixin button {
   @include border-radius($standard-radius);
+  @include inline-block;
   @include linear-gradient(
     color-stops(#FF9F05, #FFCF55 2%, #FF9F05 20%, #DF7F05 80%, #AF4F00));
-  @include inline-block;
   border: none;
   color: #FFF;
-  font-size: 2em;
-  padding: 10px 15px;
   text-align: center;
 
   &:hover, &:focus {
-    @include box-shadow(#F6E62C, 0, 0, 15px);
     cursor: pointer;
   }
   &:active {
-    @include box-shadow(#D6C60C, 0, 0, 10px);
     @include linear-gradient(
       color-stops(#FF9F05, #DFAF35 2%, #DF7F00 20%, #BF5F00 80%, #8F2F00));
     color: #DDD;
+  }
+}
+
+@mixin action-button {
+  @include button;
+  font-size: 2em;
+  padding: 10px 15px;
+
+  &:hover, &:focus {
+    @include box-shadow(#F6E62C, 0, 0, 15px);
+  }
+  &:active {
+    @include box-shadow(#D6C60C, 0, 0, 10px);
+  }
+}
+
+@mixin small-button {
+  @include button;
+  padding: 3px 5px;
+
+  &:hover, &:focus {
+    @include box-shadow(#F6E62C, 0, 0, 5px);
+  }
+  &:active {
+    @include box-shadow(#D6C60C, 0, 0, 3px);
   }
 }
 
