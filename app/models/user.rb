@@ -34,6 +34,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def first_name
+    name ? name.split.first : email.split('@').first
+  end
+
   def password_matches?(pass)
     User.encrypt_password(pass) == self.crypted_password
   end

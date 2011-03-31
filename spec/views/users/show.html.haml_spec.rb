@@ -7,6 +7,11 @@ describe "users/show.html.haml" do
       :creator_id => 1))
   end
 
+  it "shows this is the user's profile" do
+    view.should_receive(:title).with "#{@user.first_name}'s Greatest Hits"
+    render
+  end
+
   it "shows a list of sites the user created" do
     @user.stub(:sites).and_return([new_site, new_site])
     render
