@@ -27,6 +27,12 @@ private
     end
   end
 
+  def respond_with_404
+    respond_with :"404", :status => 404 do |format|
+      format.html {redirect_to '/404'}
+    end
+  end
+
   def viewer
     @viewer ||= (User.find_by_id(session[:viewer_id]) if session[:viewer_id])
   end

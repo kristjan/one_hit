@@ -103,7 +103,7 @@ a:active {
   margin: 5px;
 }
 /* line 31, ../../app/stylesheets/_global.scss */
-#header .greeting a {
+#header .greeting a.login {
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
   -o-border-radius: 15px;
@@ -124,29 +124,29 @@ a:active {
   padding: 3px 5px;
 }
 /* line 7, ../../../../../../opt/local/lib/ruby/gems/1.8/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
-#header .greeting a {
+#header .greeting a.login {
   *display: inline;
 }
 /* line 15, ../../app/stylesheets/_shared.scss */
-#header .greeting a:hover, #header .greeting a:focus {
+#header .greeting a.login:hover, #header .greeting a.login:focus {
   cursor: pointer;
 }
 /* line 18, ../../app/stylesheets/_shared.scss */
-#header .greeting a:active {
+#header .greeting a.login:active {
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #ff9f05), color-stop(2%, #dfaf35), color-stop(20%, #df7f00), color-stop(80%, #bf5f00), color-stop(100%, #8f2f00));
   background-image: -moz-linear-gradient(top, #ff9f05 0%, #dfaf35 2%, #df7f00 20%, #bf5f00 80%, #8f2f00 100%);
   background-image: linear-gradient(top, #ff9f05 0%, #dfaf35 2%, #df7f00 20%, #bf5f00 80%, #8f2f00 100%);
   color: #DDD;
 }
 /* line 42, ../../app/stylesheets/_shared.scss */
-#header .greeting a:hover, #header .greeting a:focus {
+#header .greeting a.login:hover, #header .greeting a.login:focus {
   -moz-box-shadow: #f6e62c 0 0 5px 0;
   -webkit-box-shadow: #f6e62c 0 0 5px 0;
   -o-box-shadow: #f6e62c 0 0 5px 0;
   box-shadow: #f6e62c 0 0 5px 0;
 }
 /* line 45, ../../app/stylesheets/_shared.scss */
-#header .greeting a:active {
+#header .greeting a.login:active {
   -moz-box-shadow: #d6c60c 0 0 3px 0;
   -webkit-box-shadow: #d6c60c 0 0 3px 0;
   -o-box-shadow: #d6c60c 0 0 3px 0;

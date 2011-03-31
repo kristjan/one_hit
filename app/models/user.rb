@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   attr_accessor :password
 
   has_many :authorizations
+  has_many :sites, :foreign_key => :creator_id
 
   before_save :encrypt_password!
 
@@ -31,6 +32,10 @@ class User < ActiveRecord::Base
     unless password.blank?
       self.crypted_password = User.encrypt_password(password)
     end
+  end
+
+  def first_name
+    name ? name.split.first : email.split('@').first
   end
 
   def password_matches?(pass)

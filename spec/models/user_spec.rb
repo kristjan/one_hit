@@ -22,6 +22,10 @@ describe User do
     create_user.authorizations.should be_an(Array)
   end
 
+  it "has many Sites" do
+    create_user.sites.should be_an(Array)
+  end
+
   it "can claim sites" do
     sites = [new_site, new_site]
     user = create_user
@@ -83,6 +87,20 @@ describe User do
 
     it "returns nil when you don't have an email" do
       User.find_by_login(:password => 'dog').should be_nil
+    end
+  end
+
+  describe "the user's first name" do
+    it "is the first word in their name, if there is one" do
+      new_user(:name => "Bow Wow Wow").first_name.should == "Bow"
+    end
+
+    it "is the only word in their name, if there is just one" do
+      new_user(:name => "Prince").first_name.should == "Prince"
+    end
+
+    it "is their email username if there is no name" do
+      new_user(:name => nil, :email => "bow@wow.wow").first_name.should == 'bow'
     end
   end
 

@@ -1,9 +1,10 @@
 #header
   .greeting
     - if viewer
-      = "Whatup, #{viewer.name || viewer.email}"
+      Whatup,
+      = link_to viewer.name || viewer.email, user_path(viewer)
     - else
-      = link_to "Log in", new_user_path
+      = link_to "Log in", new_user_path, :class => 'login'
   #nav
     = yield :nav
     = link_to "Make a Hit", new_site_path, :class => 'persistent'

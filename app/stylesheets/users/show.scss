@@ -1,0 +1,22 @@
+@import "compass/css3";
+@import "compass/utilities/links";
+
+@import "constants";
+@import "shared";
+
+#content h1 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+ul.sites {
+  @include rounded-section;
+  a {
+    @include border-radius($standard-radius);
+    @include text-size(1.5em);
+
+    display: block;
+    padding: 5px 10px;
+    &:hover { @include light-highlight(); }
+  }
+}

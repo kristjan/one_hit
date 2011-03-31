@@ -1,0 +1,38 @@
+@charset "UTF-8";
+/* line 7, ../../../app/stylesheets/users/show.scss */
+#content h1 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+/* line 12, ../../../app/stylesheets/users/show.scss */
+ul.sites {
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -o-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -khtml-border-radius: 15px;
+  border-radius: 15px;
+  background-color: #EFEFEF;
+  padding: 15px 20px;
+}
+/* line 14, ../../../app/stylesheets/users/show.scss */
+ul.sites a {
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -o-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -khtml-border-radius: 15px;
+  border-radius: 15px;
+  font-size: 1.5em;
+  line-height: 1.2em;
+  display: block;
+  padding: 5px 10px;
+}
+/* line 20, ../../../app/stylesheets/users/show.scss */
+ul.sites a:hover {
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #ffffff), color-stop(98%, #eaf0fa), color-stop(100%, #98b5e6));
+  background-image: -moz-linear-gradient(top, #ffffff 0%, #eaf0fa 98%, #98b5e6 100%);
+  background-image: linear-gradient(top, #ffffff 0%, #eaf0fa 98%, #98b5e6 100%);
+  border-color: #9C9;
+}

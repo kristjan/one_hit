@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe "global/_header.html.haml" do
+  def mock_user(stubs={})
+    @mock_user ||= mock_model(User, stubs).as_null_object
+  end
+
   before :each do
     view.stub(:viewer).and_return(nil)
   end
@@ -33,8 +37,8 @@ describe "global/_header.html.haml" do
 
   describe "when you are logged in" do
     before :each do
-      @user = new_user
-      view.stub(:viewer).and_return(@user)
+      mock_user(:name => Faker::Name.name, :email => Faker::Internet.email)
+      view.stub(:viewer).and_return(mock_user)
     end
 
     it "says hello" do
@@ -44,13 +48,18 @@ describe "global/_header.html.haml" do
 
     it "addresses you if we know your name" do
       render
-      assert_select ".greeting", :text => /#{@user.name}/
+      assert_select ".greeting", :text => /#{mock_user.name}/
     end
 
     it "uses your email if we won't know a name" do
-      @user.name = nil
+      mock_user.stub(:name).and_return(nil)
       render
-      assert_select ".greeting", :text => /#{@user.email}/
+      assert_select ".greeting", :text => /#{mock_user.email}/
+    end
+
+    it "links to your profile" do
+      render
+      assert_select ".greeting a[href=?]", user_path(mock_user)
     end
   end
 

@@ -28,7 +28,7 @@ a {
     @include float(left);
     margin: 5px;
 
-    a { @include small-button; }
+    a.login { @include small-button; }
   }
 
   h1 {
