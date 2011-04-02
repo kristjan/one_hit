@@ -1,4 +1,5 @@
 require 'spec_helper'
+include AuthorizationTestHelper
 
 describe UsersController do
 
@@ -103,6 +104,39 @@ describe UsersController do
           get :authorize
           response.should redirect_to(next_url)
         end
+      end
+    end
+  end
+
+  describe "GET edit" do
+    before :each do
+      User.stub(:find_by_id).and_return(mock_user)
+    end
+
+    it "assigns the requested user as @user" do
+      get :edit, :id => mock_user.id
+      assigns(:user).should be(mock_user)
+    end
+
+    describe "when you are the user" do
+      before :each do
+        log_in_as mock_user
+      end
+
+      it "renders the edit form" do
+        get :edit, :id => mock_user.id
+        response.should render_template("edit")
+      end
+    end
+
+    describe "when you are not the user" do
+      before :each do
+        log_in_as_guest
+      end
+
+      it "redirects you to the user profile" do
+        get :edit, :id => mock_user.id
+        response.should redirect_to(user_path(mock_user))
       end
     end
   end
@@ -232,6 +266,84 @@ describe UsersController do
     it "redirects nonexistent users to /404" do
       get :show, :id => -1
       response.should redirect_to '/404'
+    end
+  end
+
+  describe "PUT update" do
+    describe "with valid params" do
+      before :each do
+        User.stub(:find_by_id).and_return(mock_user(:update_attributes => true))
+      end
+
+      it "assigns the requested user as @user" do
+        put :update, :id => "1"
+        assigns(:user).should be(mock_user)
+      end
+
+      describe "when you are the user" do
+        before :each do
+          log_in_as mock_user
+        end
+
+        it "updates the requested user" do
+          mock_user.should_receive(:update_attributes).with({'these' => 'params'})
+          put :update, :id => "1", :user => {'these' => 'params'}
+        end
+
+        it "redirects to the user" do
+          put :update, :id => "1"
+          response.should redirect_to(user_path(mock_user))
+        end
+      end
+
+      describe "when you are not the user" do
+        before :each do
+          log_in_as_guest
+        end
+
+        it "does not update the requested user" do
+          mock_user.should_not_receive(:update_attributes)
+          put :update, :id => "1"
+        end
+
+        it "redirects to the user" do
+          put :update, :id => "1"
+          response.should redirect_to(user_path(mock_user))
+        end
+      end
+    end
+
+    describe "with invalid params" do
+      before :each do
+        User.stub(:find_by_id).and_return(mock_user(:update_attributes => false))
+      end
+
+      describe "when you are the user" do
+        before :each do
+          log_in_as mock_user
+        end
+
+        it "assigns the user as @user" do
+          put :update, :id => "1"
+          assigns(:user).should be(mock_user)
+        end
+
+        it "re-renders the 'edit' template" do
+          put :update, :id => "1"
+          response.should render_template("edit")
+        end
+      end
+
+      describe "when you are not the user" do
+        before :each do
+          log_in_as_guest
+        end
+
+        it "redirects to the user" do
+          put :update, :id => "1"
+          response.should redirect_to(user_path(mock_user))
+        end
+      end
     end
   end
 end

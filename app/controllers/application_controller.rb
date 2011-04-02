@@ -21,7 +21,7 @@ private
     return if @site.creator.nil?
     unless viewer?(@site.creator)
       respond_with :unauthorized, :status => 401,
-                   :location => site_url(@site) do |format|
+                   :location => site_path(@site) do |format|
         format.html { redirect_to @site }
       end
     end

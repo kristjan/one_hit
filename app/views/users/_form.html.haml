@@ -7,17 +7,11 @@
         - @user.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.label :email
-    = f.text_field :email, :class => 'full_width',    |
-                   :placeholder => "Enter your email" |
-  .field
-    = f.label :password
-    = f.password_field :password, :placeholder => "Enter a password"
-  .providers
-    %label Or if you like,
-    = login_with_twitter
+  = render 'users/form/basic_info', :f => f unless @user.new_record?
+  = render 'users/form/login_info', :f => f
+  = render 'users/form/providers' if @user.new_record?
   .actions
     = f.submit "Remember me!"
-    %br/
-    = link_to "Nah, I'm not important", next_url, :id => 'cancel'
+    - if @user.new_record?
+      %br/
+      = link_to "Nah, I'm not important", next_url, :id => 'cancel'
