@@ -3,6 +3,7 @@
     - if viewer
       Whatup,
       = link_to viewer.name || viewer.email, user_path(viewer)
+      = link_to "[Edit]", edit_user_path(viewer), :class => 'small'
     - else
       = link_to "Log in", new_user_path, :class => 'login'
   #nav

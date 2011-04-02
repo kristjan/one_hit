@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_filter :load_user, :only => [:edit, :show, :update]
+  before_filter :require_correct_user, :only => [:edit, :update]
+
   def authorize
     auth_info = request.env['rack.auth']
     auth = Authorization.find_or_build(auth_info, viewer)
@@ -11,14 +14,28 @@ class UsersController < ApplicationController
     viewer!(@user)
   end
 
+  def edit
+    @user ? respond_with(@user) : respond_with_404
+  end
+
   def new
     @user = User.new
     @pending_sites = pending_sites.map{|url| Site.fetch(url)}
   end
 
   def show
-    @user = User.find_by_id(params[:id])
     @user ? respond_with(@user) : respond_with_404
+  end
+
+  def update
+    if @user.update_attributes(params[:user])
+      respond_with @user, :head => :ok,
+        :notice => "It's almost like you're a new person!"
+    else
+      respond_with @user.errors, :status => :unprocessable_entity do |format|
+        format.html  {render :edit}
+      end
+    end
   end
 
 private
@@ -33,6 +50,10 @@ private
     end
   end
 
+  def load_user
+    @user = User.find_by_id(params[:id])
+  end
+
   def login_user
     @user = User.find_by_login(params[:user])
     return if @user.nil?
@@ -41,6 +62,15 @@ private
     else
       @user.claim_sites(pending_sites)
       respond_with @user, :location => next_url
+    end
+  end
+
+  def require_correct_user
+    unless viewer?(@user)
+      respond_with :unauthorized, :status => 401,
+                   :location => user_path(@user) do |format|
+        format.html { redirect_to @user }
+      end
     end
   end
 

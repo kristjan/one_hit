@@ -1,0 +1,8 @@
+.field
+  = f.label :email
+  = f.text_field :email, :class => 'full_width',    |
+                 :placeholder => "Enter your email" |
+- if @user.new_record?
+  .field
+    = f.label :password
+    = f.password_field :password, :placeholder => "Enter a password"

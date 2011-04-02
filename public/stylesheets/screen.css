@@ -255,6 +255,12 @@ a:active {
   font-weight: bold;
 }
 
+/* line 97, ../../app/stylesheets/_global.scss */
+.small {
+  font-size: 0.8em;
+  line-height: 1.2em;
+}
+
 /* line 7, ../../app/stylesheets/_forms.scss */
 form {
   -moz-border-radius: 15px;
