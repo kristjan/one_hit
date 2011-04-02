@@ -22,3 +22,8 @@
     = render 'global/header'
     #content
       = yield
+
+    %footer#footer
+      - if @include_twitter_js
+        %script{:type => "text/javascript",
+                :src  => "http://platform.twitter.com/widgets.js"}

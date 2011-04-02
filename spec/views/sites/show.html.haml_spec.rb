@@ -83,4 +83,11 @@ describe "sites/show.html.haml" do
       end
     end
   end
+
+  describe "the sharing bar" do
+    it "lets you tweet" do
+      render
+      assert_select "a.twitter-share-button"
+    end
+  end
 end
