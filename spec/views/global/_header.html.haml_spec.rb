@@ -61,6 +61,11 @@ describe "global/_header.html.haml" do
       render
       assert_select ".greeting a[href=?]", user_path(mock_user)
     end
+
+    it "links to the edit account page" do
+      render
+      assert_select ".greeting a[href=?]", edit_user_path(mock_user)
+    end
   end
 
   describe "when you are not logged in" do

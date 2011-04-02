@@ -93,3 +93,5 @@ a {
     font-weight: bold;
   }
 }
+
+.small { @include text-size(.8em); }
