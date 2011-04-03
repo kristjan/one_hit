@@ -89,5 +89,10 @@ describe "sites/show.html.haml" do
       render
       assert_select "a.twitter-share-button"
     end
+
+    it "lets you like" do
+      render
+      assert_select ".fb_like"
+    end
   end
 end
