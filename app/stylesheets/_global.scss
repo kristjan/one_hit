@@ -95,3 +95,11 @@ a {
 }
 
 .small { @include text-size(.8em); }
+
+.fb_iframe_widget iframe {
+  height: 25px !important;
+  width: 75px !important;
+}
+.twitter-count-horizontal {
+  height: 21px !important;
+}

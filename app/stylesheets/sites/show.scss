@@ -3,6 +3,7 @@
 
 #content {
   text-align: center;
+  width: 800px;
 
   h1 {
     @include text-size(3em);
@@ -10,14 +11,19 @@
 
   p {
     @include text-size(2.5em);
-    @include min-height(200px);
+    @include min-height(150px);
     margin: 50px auto;
-    width: 600px;
   }
 
   a.action {
     @include action-button();
     padding: 15px;
     width: 150px;
+  }
+
+  .share {
+    margin: 10px auto;
+    padding-left: 10px;
+    width: 190px;
   }
 }
