@@ -37,7 +37,7 @@ $light-highlight-color: #EAF0FA;
 
 @mixin small-button {
   @include button;
-  padding: 3px 5px;
+  padding: 3px 10px;
 
   &:hover, &:focus {
     @include box-shadow(#F6E62C, 0, 0, 5px);

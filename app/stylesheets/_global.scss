@@ -28,7 +28,10 @@ a {
     @include float(left);
     margin: 5px;
 
-    a.login { @include small-button; }
+    a.login {
+      @include small-button;
+      margin-left: 5px;
+    }
   }
 
   h1 {
@@ -41,40 +44,30 @@ a {
   }
 
   #nav {
-    @include linear-gradient(
-      color-stops(
-        #000,
-        lighten($header-color, 20%) 5%,
-        $header-color               20%,
-        $background_color));
-    margin-bottom: 5px;
-    padding-bottom: 10px;
+    @include border-bottom-radius($standard-radius);
+    background-color: $header-color;
+    border: 1px solid darken($header-color, 30%);
+    border-top-width: 0px;
+    margin: 0px 3px 5px;
+    padding: 5px;
     text-align: right;
 
     a {
-      @include border-bottom-radius(5px);
       @include inline-block;
       @include link-colors($text-color, $exciting-color, $action-color);
-      @include linear-gradient(color-stops(#222, #FFF 3%, #FFF));
-      border: 1px solid #000;
+      @include text-size(.9em);
       font-weight: bold;
-      margin: 0px 5px 10px;
-      padding: 10px 20px;
+      padding: 5px 10px;
       vertical-align: top;
       &:active {
-        @include scale(.97);
+        margin-top: +1px;
+        margin-right: -1px;
+        margin-bottom: -1px;
+        margin-left: +1px;
       }
-    }
-    a.home {
-      @include linear-gradient(color-stops(
-        darken($exciting-color, 30%),
-        #FFF 5%,
-        lighten($exciting-color, 30%) 10%,
-        #FFF));
-    }
-    a.persistent {
-      @include text-size(.9em);
-      padding: 5px 10px;
+      &.home {
+        color: $exciting-color;
+      }
     }
   }
 }
