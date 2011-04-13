@@ -56,6 +56,11 @@ describe Site do
     Site.new.views.should be_a(Views)
   end
 
+  it "links itself to the views during initialization" do
+    site = Site.new
+    site.views.site.should be(site)
+  end
+
   describe "fetching a site by URL" do
     it "works with any case" do
       site = create_site

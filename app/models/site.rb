@@ -46,6 +46,6 @@ private
   end
 
   def initialize_views
-    build_views if new_record?
+    build_views(:site => self) if new_record?
   end
 end
