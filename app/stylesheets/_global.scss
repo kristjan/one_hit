@@ -16,65 +16,51 @@ body {
   line-height: 1.2em;
 }
 
+h1 {
+  font-size: 2.5em;
+  line-height: 1.2em;
+  font-weight: bold;
+  margin-top: 20px;
+  padding: 10px;
+  text-align: center;
+}
+
 a {
   @include link-colors($exciting-color, $hover-color, $action-color);
   text-decoration: none;
 }
 
 #header {
+  @include border-bottom-radius($standard-radius);
   @include clearfix();
+  background-color: $header-color;
+  border: 1px solid darken($header-color, 30%);
+  border-top-width: 0px;
+  margin: 0px 3px 5px;
+  padding: 5px 10px 10px;
 
   .greeting {
     @include float(left);
-    margin: 5px;
 
-    a.login { @include small-button; }
-  }
-
-  h1 {
-    font-size: 2.5em;
-    line-height: 1.2em;
-    font-weight: bold;
-    margin-top: 20px;
-    padding: 10px;
-    text-align: center;
+    a.login {
+      @include small-button;
+    }
   }
 
   #nav {
-    @include linear-gradient(
-      color-stops(
-        #000,
-        lighten($header-color, 20%) 5%,
-        $header-color               20%,
-        $background_color));
-    margin-bottom: 5px;
-    padding-bottom: 10px;
-    text-align: right;
-
+    @include float(right);
     a {
-      @include border-bottom-radius(5px);
       @include inline-block;
       @include link-colors($text-color, $exciting-color, $action-color);
-      @include linear-gradient(color-stops(#222, #FFF 3%, #FFF));
-      border: 1px solid #000;
-      font-weight: bold;
-      margin: 0px 5px 10px;
-      padding: 10px 20px;
-      vertical-align: top;
-      &:active {
-        @include scale(.97);
-      }
-    }
-    a.home {
-      @include linear-gradient(color-stops(
-        darken($exciting-color, 30%),
-        #FFF 5%,
-        lighten($exciting-color, 30%) 10%,
-        #FFF));
-    }
-    a.persistent {
       @include text-size(.9em);
-      padding: 5px 10px;
+      font-weight: bold;
+      margin: 0px 10px;
+      &:active {
+        margin: 1px 9px -1px 11px;
+      }
+      &.home {
+        @include link-colors($exciting-color, $exciting-color, $action-color);
+      }
     }
   }
 }
