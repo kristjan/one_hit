@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110311070350) do
+ActiveRecord::Schema.define(:version => 20110413050223) do
 
   create_table "authorizations", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -55,5 +55,19 @@ ActiveRecord::Schema.define(:version => 20110311070350) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["facebook_uid"], :name => "index_users_on_facebook_uid", :unique => true
+
+  create_table "views", :force => true do |t|
+    t.integer  "site_id",                   :null => false
+    t.integer  "today",      :default => 0
+    t.integer  "this_week",  :default => 0
+    t.integer  "all_time",   :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "views", ["all_time"], :name => "index_views_on_all_time"
+  add_index "views", ["site_id"], :name => "index_views_on_site_id", :unique => true
+  add_index "views", ["this_week"], :name => "index_views_on_this_week"
+  add_index "views", ["today"], :name => "index_views_on_today"
 
 end

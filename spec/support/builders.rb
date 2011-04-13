@@ -34,4 +34,11 @@ Fixjour do
       :email => Faker::Internet.email
     )
   end
+
+  define_builder(Views) do |klass, overrides|
+    klass.new(
+      :site => new_site
+    )
+  end
+
 end

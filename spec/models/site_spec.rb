@@ -52,6 +52,10 @@ describe Site do
     site.should_not be_singleton
   end
 
+  it "tracks views from the moment its initialized" do
+    Site.new.views.should be_a(Views)
+  end
+
   describe "fetching a site by URL" do
     it "works with any case" do
       site = create_site
