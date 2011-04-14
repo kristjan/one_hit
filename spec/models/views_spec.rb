@@ -31,10 +31,28 @@ describe Views do
     end
   end
 
-  it "increments counts in the database" do
-    views = create_views
-    views.view!
-    views.reload
-    Views::TIME_PERIODS.map{|period| views.send(period)}.should == [1,1,1]
+  describe "rolling over" do
+    it "resets the daily count" do
+      views = new_views
+      views.view!
+      views.rollover!
+      views.today.should == 0
+    end
+
+    it "resets the weekly count on Monday" do
+      monday = Date.today.beginning_of_week
+      Date.stub(:today).and_return(monday)
+      views = new_views
+      views.view!
+      views.rollover!
+      views.this_week.should == 0
+    end
+
+    it "can be run on each view object" do
+      all_views = [mock(Views), mock(Views)]
+      all_views.each {|views| views.should_receive(:rollover!)}
+      Views.stub(:all).and_return(all_views)
+      Views.rollover!
+    end
   end
 end

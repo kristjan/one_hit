@@ -5,8 +5,18 @@ class Views < ActiveRecord::Base
 
   validates_presence_of :site
 
+  def self.rollover!
+    all.each(&:rollover!)
+  end
+
   def counts
     TIME_PERIODS.map{|period| send(period)}
+  end
+
+  def rollover!
+    resets = {:today => 0}
+    resets[:this_week] = 0 if Date.today.cwday == 1 # Monday
+    update_attributes!(resets)
   end
 
   def view!
