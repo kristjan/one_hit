@@ -12,10 +12,22 @@ describe Views do
     end
   end
 
-  it "increments counts in memory" do
-    views = new_views
-    Views::TIME_PERIODS.each do |period|
-      expect {views.view!}.to change(views, period).by(1)
+  it "knows all its counts for convenience" do
+    new_views.counts.should == [0,0,0]
+  end
+
+  describe "incrementing" do
+    it "counts in memory" do
+      views = new_views
+      views.view!
+      views.counts.should == [1,1,1]
+    end
+
+    it "counts in the database" do
+      views = create_views
+      views.view!
+      views.reload
+      views.counts.should == [1,1,1]
     end
   end
 
