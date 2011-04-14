@@ -20,8 +20,11 @@ describe SitesController do
   end
 
   describe "GET show" do
-    it "assigns the requested site as @site" do
+    before :each do
       Site.stub(:fetch).with("url") { mock_site }
+    end
+
+    it "assigns the requested site as @site" do
       get :show, :id => "url"
       assigns(:site).should be(mock_site)
     end
@@ -30,6 +33,11 @@ describe SitesController do
       Site.stub(:fetch).with("nonexistent") { nil }
       get :show, :id => "nonexistent"
       response.should redirect_to '/404'
+    end
+
+    it "registers that the site has been viewed" do
+      mock_site.should_receive(:view!)
+      get :show, :id => "url"
     end
   end
 

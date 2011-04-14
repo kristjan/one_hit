@@ -11,4 +11,10 @@
     = link_to "Make a Hit", new_site_path, :class => 'persistent'
     = link_to "Random Hit", random_sites_path, :class => 'persistent'
     = link_to "Home", root_path, :class => 'persistent home'
+- if @site
+  #stats
+    - Views::TIME_PERIODS.each do |period|
+      %span
+        = number_with_delimiter @site.views.send(period)
+        %small= period.to_s.humanize
 %h1= @title

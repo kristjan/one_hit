@@ -52,6 +52,23 @@ describe Site do
     site.should_not be_singleton
   end
 
+  describe "views" do
+    it "tracks views from the moment its initialized" do
+      Site.new.views.should be_a(Views)
+    end
+
+    it "links itself to the views during initialization" do
+      site = Site.new
+      site.views.site.should be(site)
+    end
+
+    it "passes through a view increment" do
+      site = new_site
+      site.views.should_receive(:view!)
+      site.view!
+    end
+  end
+
   describe "fetching a site by URL" do
     it "works with any case" do
       site = create_site

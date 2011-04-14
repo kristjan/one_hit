@@ -30,14 +30,19 @@ a {
   text-decoration: none;
 }
 
+#content {
+  margin: 0px auto;
+  width: 600px;
+}
+
 #header {
   @include border-bottom-radius($standard-radius);
   @include clearfix();
+  @include box-shadow(#777);
+  @include text-size(.9em);
   background-color: $header-color;
-  border: 1px solid darken($header-color, 30%);
-  border-top-width: 0px;
-  margin: 0px 3px 5px;
-  padding: 5px 10px 10px;
+  margin: 0px 3px;
+  padding: 5px 10px;
 
   .greeting {
     @include float(left);
@@ -52,9 +57,10 @@ a {
     a {
       @include inline-block;
       @include link-colors($text-color, $exciting-color, $action-color);
-      @include text-size(.9em);
       font-weight: bold;
       margin: 0px 10px;
+      padding: 1px 0px;
+
       &:active {
         margin: 1px 9px -1px 11px;
       }
@@ -65,9 +71,35 @@ a {
   }
 }
 
-#content {
-  margin: 0px auto;
-  width: 600px;
+#stats {
+  position: absolute;
+  right: 50px;
+  top: 30px;
+
+  span {
+    @include linear-gradient(color-stops(#000, #666 10%, #222 50%, #000));
+    @include min-width(75px);
+    @include text-size(1.1em);
+    border-left: 1px solid #000;
+    color: #FFF;
+    display: block;
+    float: left;
+    padding: 4px 10px 5px;
+    text-align: center;
+
+    small {
+      @include text-size(.5em);
+      text-transform: uppercase;
+    }
+
+    &:first-child {
+      @include border-bottom-left-radius($standard-radius/2);
+      border-left: none;
+    }
+    &:last-child {
+      @include border-bottom-right-radius($standard-radius/2);
+    }
+  }
 }
 
 .prompt {

@@ -34,4 +34,21 @@ Fixjour do
       :email => Faker::Internet.email
     )
   end
+
+  def new_views(overrides={})
+    new_site.views.tap do |views|
+      overrides.each {|attr, value| views.send("#{attr}=", value) }
+    end
+  end
+
+  # Rails v3.0.6 has a bug wherin if you initialize an owner object and a
+  # target linked by has_one, then save both, the finder_sql isn't update when
+  # the owner acquires an ID. Work around it by explicitly loading a fresh Views
+  # object, thereby avoiding the AssociationProxy.
+  def create_views(overrides={})
+    views = new_views(overrides)
+    views.site.save
+    Views.find(views.id)
+  end
+
 end
