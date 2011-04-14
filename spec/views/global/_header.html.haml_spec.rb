@@ -78,4 +78,17 @@ describe "global/_header.html.haml" do
       assert_select ".greeting a", :text => "Log in"
     end
   end
+
+  it "renders site stats when there is a site" do
+    site = assign(:site, new_site)
+    site.views.today = 1
+    site.views.this_week = 2
+    site.views.all_time = 3
+    render
+    assert_select "#stats" do
+      assert_select "span", :text => /1/
+      assert_select "span", :text => /2/
+      assert_select "span", :text => /3/
+    end
+  end
 end
