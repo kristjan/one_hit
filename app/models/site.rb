@@ -39,6 +39,10 @@ class Site < ActiveRecord::Base
     url
   end
 
+  def view!
+    views.view!
+  end
+
 private
 
   def downcase_url

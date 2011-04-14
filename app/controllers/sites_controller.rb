@@ -21,7 +21,12 @@ class SitesController < ApplicationController
   end
 
   def show
-    @site ? respond_with(@site) : respond_with_404
+    if @site
+      @site.view!
+      respond_with(@site)
+    else
+      respond_with_404
+    end
   end
 
   def new
