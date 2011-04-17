@@ -5,6 +5,8 @@ class Badge < ActiveRecord::Base
   validates_presence_of :user
   validates_uniqueness_of :type, :scope => :user_id
 
+  class StraightOuttaTheLab < Badge; end
+
   def image_path
     "badges/#{to_s(:underscore)}.png"
   end
