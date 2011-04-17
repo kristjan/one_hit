@@ -24,6 +24,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def badge_target
+    self
+  end
+
   def claim_sites(urls)
     sites = urls.map{|url| Site.fetch(url)}
     sites.each {|site| site.update_attributes(:creator_id => self.id)}

@@ -31,4 +31,62 @@ describe Badge do
     badge = new_badge
     badge.image_path.should == "badges/test_pilot.png"
   end
+
+  it "knows if it's been granted" do
+    user = create_user
+    Badge::TestPilot.granted?(user).should be_false
+    Badge::TestPilot.create(:user => user)
+    Badge::TestPilot.granted?(user).should be_true
+  end
+
+  it "does not grant the same badge twice" do
+    user = new_user
+    Badge::TestPilot.stub(:granted?).with(user).and_return(true)
+    Badge::TestPilot.should_not_receive(:grant)
+    Badge.grant(user, :create)
+  end
+
+  describe "routing" do
+    describe "User creation" do
+      it "notifies StraightOuttaTheLab" do
+        user = new_user
+        Badge::StraightOuttaTheLab.should_receive(:grant).with(user, :create)
+        Badge.grant(user, :create)
+      end
+    end
+  end
+
+  describe "StraightOuttaTheLab" do
+    before :each do
+      @user = new_user
+    end
+
+    describe "before July 1" do
+      before :each do
+        Date.stub(:today).and_return(Date.new(2011,6,30))
+      end
+
+      it "is granted to a new user" do
+        Badge::StraightOuttaTheLab.should_receive(:create).
+          with(hash_including(:user => @user))
+        Badge::StraightOuttaTheLab.grant(@user, :create)
+      end
+
+      it "is only granted to Users" do
+        Badge::StraightOuttaTheLab.should_not_receive(:create)
+        Badge::StraightOuttaTheLab.grant(new_site, :create)
+      end
+    end
+
+    describe "on or after July 1" do
+      before :each do
+        Date.stub(:today).and_return(Date.new(2011,7,1))
+      end
+
+      it "is not granted" do
+        Badge::StraightOuttaTheLab.should_not_receive(:create)
+        Badge::StraightOuttaTheLab.grant(@user, :create)
+      end
+    end
+  end
 end

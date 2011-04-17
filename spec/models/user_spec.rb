@@ -32,6 +32,11 @@ describe User do
     create_user.sites.should be_an(Array)
   end
 
+  it "collects badges on behalf of itself" do
+    user = new_user
+    user.badge_target.should be(user)
+  end
+
   it "can claim sites" do
     sites = [new_site, new_site]
     user = create_user
