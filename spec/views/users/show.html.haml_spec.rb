@@ -28,12 +28,7 @@ describe "users/show.html.haml" do
     @user.stub(:badges).and_return([new_badge, new_badge])
     render
     assert_select "#badges ul" do
-      @user.badges.each do |badge|
-        assert_select "li" do
-          assert_select "img[src$=?][alt=?][title=?]",
-            badge.image_path, badge.to_s, badge.to_s
-        end
-      end
+      assert_select "li .badge", :count => 2
     end
   end
 end

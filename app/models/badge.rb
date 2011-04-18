@@ -5,6 +5,10 @@ class Badge < ActiveRecord::Base
   validates_presence_of :user
   validates_uniqueness_of :type, :scope => :user_id
 
+  def self.description
+    const_get('DESCRIPTION').squish
+  end
+
   def self.grant(model, event)
     descendants.each do |badge|
       badge.grant(model, event) unless badge.granted?(model.badge_target)
@@ -13,6 +17,10 @@ class Badge < ActiveRecord::Base
 
   def self.granted?(user)
     self.exists?(:user_id => user.id)
+  end
+
+  def description
+    self.class.description
   end
 
   def image_path
@@ -29,6 +37,10 @@ class Badge < ActiveRecord::Base
 
   class StraightOuttaTheLab < Badge
     DEADLINE = Date.new(2011,7,1)
+    DESCRIPTION = <<-TXT
+      Joined up early, when most of the place was on fire and void demons were a
+      daily occurence
+    TXT
 
     def self.grant(model, event)
       return unless Date.today < DEADLINE

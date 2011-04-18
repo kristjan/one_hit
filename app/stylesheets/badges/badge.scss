@@ -1,0 +1,58 @@
+@import "compass/css3";
+@import "compass/utilities";
+
+@import "constants";
+@import "shared";
+
+$badge-width: 75px;
+$badge-flyover-padding: 10px;
+$badge-flyover-width: 300px;
+$badge-flyover-nib-width: 10px;
+$badge-flyover-nib-height: 5px;
+
+.badge {
+  position: relative;
+  width: $badge-width;
+
+  &:hover .flyover_container { display: block; }
+
+  .flyover_container {
+    display: none;
+    height: 0px;
+    width: 0px;
+  }
+
+  .flyover {
+    @include border-radius($standard-radius);
+    @include text-size(.8em);
+
+    background-color: #000;
+    color: #EEE;
+    left: -($badge-flyover-width + $badge-flyover-padding*2 - $badge-width)/2;
+    padding: $badge-flyover-padding;
+    position: relative;
+    text-align: center;
+    top: -3px;
+    width: $badge-flyover-width;
+    z-index: 100;
+
+    h3 {
+      border-bottom: 1px solid #666;
+      margin-bottom: 5px;
+      padding-bottom: 5px;
+      text-transform: uppercase;
+    }
+
+    p { font-size: .9em; }
+
+    .nib {
+      @include border-top-radius($badge-flyover-nib-width);
+      background-color: #000;
+      height: $badge-flyover-nib-height;
+      left: ($badge-flyover-width + $badge-flyover-nib-width)/2;
+      position: absolute;
+      top: -$badge-flyover-nib-height;
+      width: $badge-flyover-nib-width;
+    }
+  }
+}

@@ -5,7 +5,7 @@
   %h2 Badges
   %ul
     - @user.badges.each do |badge|
-      %li= badge_tag(badge)
+      %li= render 'badges/badge', :badge => badge
 
 #sites
   %ul

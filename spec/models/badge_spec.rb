@@ -56,6 +56,18 @@ describe Badge do
     end
   end
 
+  Badge.descendants.each do |badge|
+    describe badge do
+      it "has a description (#{badge})" do
+        badge.description.should_not be_empty
+      end
+
+      it "can access the description from an instance" do
+        badge.new.description.should == badge.description
+      end
+    end
+  end
+
   describe "StraightOuttaTheLab" do
     before :each do
       @user = new_user

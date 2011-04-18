@@ -13,7 +13,6 @@ Fixjour do
     )
   end
 
-  class Badge::TestPilot < Badge; end
   define_builder(Badge::TestPilot, :as => :badge) do |klass, overrides|
     klass.new(
       :user => new_user

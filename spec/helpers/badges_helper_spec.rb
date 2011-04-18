@@ -4,7 +4,7 @@ describe BadgesHelper do
   describe "generating badge tags" do
     before :each do
       @badge = new_badge
-      @tag = badge_tag(@badge)
+      @tag = badge_image(@badge)
     end
 
     it "creates an image" do
@@ -27,8 +27,8 @@ describe BadgesHelper do
       @tag.should =~ %r(alt="#{@badge.to_s}")
     end
 
-    it "sets the title" do
-      @tag.should =~ %r(title="#{@badge.to_s}")
+    it "sets an empty title" do
+      @tag.should =~ %r(title="")
     end
   end
 end
