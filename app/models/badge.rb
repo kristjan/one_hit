@@ -15,6 +15,12 @@ class Badge < ActiveRecord::Base
     end
   end
 
+  def self.require_descendants
+    Dir[File.join(File.dirname(__FILE__), 'badge', '*')].each do |badge|
+      require badge
+    end
+  end
+
   def self.granted?(user)
     self.exists?(:user_id => user.id)
   end
@@ -35,3 +41,5 @@ class Badge < ActiveRecord::Base
     end
   end
 end
+
+Badge.require_descendants

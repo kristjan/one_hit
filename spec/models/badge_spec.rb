@@ -56,6 +56,13 @@ describe Badge do
     end
   end
 
+  it "eager-loads its descendants" do
+    Dir[File.join(Rails.root, 'app', 'models', 'badge', '*')].each do |badge|
+      Object.should_receive(:require).with(badge)
+    end
+    Badge.require_descendants
+  end
+
   Badge.descendants.each do |badge|
     describe badge do
       it "has a description (#{badge})" do
