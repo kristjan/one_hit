@@ -2,6 +2,6 @@ class BadgeObserver < ActiveRecord::Observer
   observe :user
 
   def after_create(model)
-    Badge.grant(model, :create)
+    Badge.grant(model)
   end
 end

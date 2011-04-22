@@ -9,9 +9,9 @@ class Badge < ActiveRecord::Base
     const_get('DESCRIPTION').squish
   end
 
-  def self.grant(model, event)
+  def self.grant(model)
     descendants.each do |badge|
-      badge.grant(model, event) unless badge.granted?(model.badge_target)
+      badge.grant(model) unless badge.granted?(model.badge_target)
     end
   end
 
@@ -32,20 +32,6 @@ class Badge < ActiveRecord::Base
     when nil: self.class.model_name.human.titleize
     when :underscore: self.class.model_name.split('::').last.underscore
     else; super()
-    end
-  end
-
-  class StraightOuttaTheLab < Badge
-    DEADLINE = Date.new(2011,7,1)
-    DESCRIPTION = <<-TXT
-      Joined up early, when most of the place was on fire and void demons were a
-      daily occurence
-    TXT
-
-    def self.grant(model, event)
-      return unless Date.today < DEADLINE
-      return unless model.is_a?(User)
-      self.create(:user => model)
     end
   end
 end

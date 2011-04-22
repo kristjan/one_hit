@@ -43,15 +43,15 @@ describe Badge do
     user = new_user
     Badge::TestPilot.stub(:granted?).with(user).and_return(true)
     Badge::TestPilot.should_not_receive(:grant)
-    Badge.grant(user, :create)
+    Badge.grant(user)
   end
 
   describe "routing" do
     describe "User creation" do
       it "notifies StraightOuttaTheLab" do
         user = new_user
-        Badge::StraightOuttaTheLab.should_receive(:grant).with(user, :create)
-        Badge.grant(user, :create)
+        Badge::StraightOuttaTheLab.should_receive(:grant).with(user)
+        Badge.grant(user)
       end
     end
   end
@@ -81,12 +81,12 @@ describe Badge do
       it "is granted to a new user" do
         Badge::StraightOuttaTheLab.should_receive(:create).
           with(hash_including(:user => @user))
-        Badge::StraightOuttaTheLab.grant(@user, :create)
+        Badge::StraightOuttaTheLab.grant(@user)
       end
 
       it "is only granted to Users" do
         Badge::StraightOuttaTheLab.should_not_receive(:create)
-        Badge::StraightOuttaTheLab.grant(new_site, :create)
+        Badge::StraightOuttaTheLab.grant(new_site)
       end
     end
 
@@ -97,7 +97,7 @@ describe Badge do
 
       it "is not granted" do
         Badge::StraightOuttaTheLab.should_not_receive(:create)
-        Badge::StraightOuttaTheLab.grant(@user, :create)
+        Badge::StraightOuttaTheLab.grant(@user)
       end
     end
   end
