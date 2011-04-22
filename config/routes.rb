@@ -1,4 +1,6 @@
 OneHit::Application.routes.draw do
+  match 'thanks' => "sites#show", :id => 'thanks'
+
   resources :sites, :path => '/' do
     resources :quips
 

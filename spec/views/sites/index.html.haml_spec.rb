@@ -1,13 +1,21 @@
 require 'spec_helper'
 
 describe "sites/index.html.haml" do
-  it "renders a link to make a new site" do
+  include ContentForTestHelper
+
+  before :each do
     render
-    assert_select "a[href=#{new_site_path}]"
+  end
+
+  it "renders a link to make a new site" do
+    assert_select "a[href=?]", new_site_path
   end
 
   it "renders a link to a random site" do
-    render
-    assert_select "a[href=#{random_sites_path}]"
+    assert_select "a[href=?]", random_sites_path
+  end
+
+  it "renders a link to the thanks page" do
+    assert_select content_for(:footer), "a[href=?]", thanks_path
   end
 end
