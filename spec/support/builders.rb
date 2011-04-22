@@ -13,6 +13,12 @@ Fixjour do
     )
   end
 
+  define_builder(Badge::TestPilot, :as => :badge) do |klass, overrides|
+    klass.new(
+      :user => new_user
+    )
+  end
+
   define_builder(Quip) do |klass, overrides|
     klass.new(
       :site => new_site,

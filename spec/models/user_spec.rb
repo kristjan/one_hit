@@ -18,12 +18,23 @@ describe User do
     User.new(:email => user.email).should have(1).error_on(:email)
   end
 
+  # Using a new User record here short circuits. Use a saved object to verify
+  # that the correct SQL is built.
   it "has many Authorizations" do
     create_user.authorizations.should be_an(Array)
   end
 
+  it "has many Badges" do
+    create_user.badges.should be_an(Array)
+  end
+
   it "has many Sites" do
     create_user.sites.should be_an(Array)
+  end
+
+  it "collects badges on behalf of itself" do
+    user = new_user
+    user.badge_target.should be(user)
   end
 
   it "can claim sites" do

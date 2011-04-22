@@ -1,0 +1,8 @@
+- add_stylesheet 'badges/badge'
+.badge
+  = badge_image(badge)
+  .flyover_container
+    .flyover
+      .nib
+      %h3= badge
+      %p=  badge.description

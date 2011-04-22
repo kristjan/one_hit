@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   attr_accessor :password
 
   has_many :authorizations
+  has_many :badges
   has_many :sites, :foreign_key => :creator_id
 
   before_save :encrypt_password!
@@ -21,6 +22,10 @@ class User < ActiveRecord::Base
     else
       return User.new(:email => info[:email])
     end
+  end
+
+  def badge_target
+    self
   end
 
   def claim_sites(urls)

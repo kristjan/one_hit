@@ -1,15 +1,33 @@
 @import "compass/css3";
-@import "compass/utilities/links";
+@import "compass/utilities";
 
 @import "constants";
 @import "shared";
 
-#content h1 {
-  font-size: 1.5em;
-  margin-bottom: 10px;
+#content {
+  h1 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    margin: 5px 0px;
+  }
 }
 
-ul.sites {
+#badges {
+  margin: 10px 0px 20px;
+
+  ul {
+    margin: 0px auto;
+    li {
+      @include inline-block;
+      margin: 0px 5px;
+    }
+  }
+}
+
+#sites {
   @include rounded-section;
   a {
     @include border-radius($standard-radius);

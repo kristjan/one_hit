@@ -12,6 +12,11 @@ describe Views do
     end
   end
 
+  it "collects badges for its site's creator" do
+    views = new_views
+    views.badge_target.should == views.site.creator
+  end
+
   it "knows all its counts for convenience" do
     new_views.counts.should == [0,0,0]
   end
@@ -28,6 +33,12 @@ describe Views do
       views.view!
       views.reload
       views.counts.should == [1,1,1]
+    end
+
+    it "notifies Badge" do
+      views = new_views
+      Badge.should_receive(:grant).with(views)
+      views.view!
     end
   end
 

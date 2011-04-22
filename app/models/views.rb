@@ -9,6 +9,10 @@ class Views < ActiveRecord::Base
     all.each(&:rollover!)
   end
 
+  def badge_target
+    site.creator
+  end
+
   def counts
     TIME_PERIODS.map{|period| send(period)}
   end
@@ -23,5 +27,6 @@ class Views < ActiveRecord::Base
     increments = Hash[TIME_PERIODS.map{|period| [period, 1]}]
     self.class.update_counters self.id, increments
     TIME_PERIODS.map{|period| increment(period)}
+    Badge.grant(self) # Can't observe this because after_update doesn't fire
   end
 end
