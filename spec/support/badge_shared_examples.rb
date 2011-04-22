@@ -6,6 +6,14 @@ shared_examples_for 'badges' do
                           described_class.new.image_path)
     assert File.exists?(file_path)
   end
+
+  it "has a description" do
+    described_class.description.should_not be_empty
+  end
+
+  it "can access the description from an instance" do
+    described_class.new.description.should == described_class.description
+  end
 end
 
 shared_examples_for 'eyeballs badges' do

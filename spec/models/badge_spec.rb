@@ -46,66 +46,10 @@ describe Badge do
     Badge.grant(user)
   end
 
-  describe "routing" do
-    describe "User creation" do
-      it "notifies StraightOuttaTheLab" do
-        user = new_user
-        Badge::StraightOuttaTheLab.should_receive(:grant).with(user)
-        Badge.grant(user)
-      end
-    end
-  end
-
   it "eager-loads its descendants" do
     Dir[File.join(Rails.root, 'app', 'models', 'badge', '*')].each do |badge|
       Object.should_receive(:require).with(badge)
     end
     Badge.require_descendants
-  end
-
-  Badge.descendants.each do |badge|
-    describe badge do
-      it "has a description (#{badge})" do
-        badge.description.should_not be_empty
-      end
-
-      it "can access the description from an instance" do
-        badge.new.description.should == badge.description
-      end
-    end
-  end
-
-  describe "StraightOuttaTheLab" do
-    before :each do
-      @user = new_user
-    end
-
-    describe "before July 1" do
-      before :each do
-        Date.stub(:today).and_return(Date.new(2011,6,30))
-      end
-
-      it "is granted to a new user" do
-        Badge::StraightOuttaTheLab.should_receive(:create).
-          with(hash_including(:user => @user))
-        Badge::StraightOuttaTheLab.grant(@user)
-      end
-
-      it "is only granted to Users" do
-        Badge::StraightOuttaTheLab.should_not_receive(:create)
-        Badge::StraightOuttaTheLab.grant(new_site)
-      end
-    end
-
-    describe "on or after July 1" do
-      before :each do
-        Date.stub(:today).and_return(Date.new(2011,7,1))
-      end
-
-      it "is not granted" do
-        Badge::StraightOuttaTheLab.should_not_receive(:create)
-        Badge::StraightOuttaTheLab.grant(@user)
-      end
-    end
   end
 end
