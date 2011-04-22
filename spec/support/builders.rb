@@ -30,7 +30,7 @@ Fixjour do
     klass.new(
       :creator => new_user,
       :name => Faker::Lorem.sentence(3),
-      :url  => Faker::Lorem.words(2).join.downcase
+      :url  => Faker::Lorem.words(5).join.downcase
     )
   end
 
