@@ -12,16 +12,15 @@ describe "sites/show.html.haml" do
     view.stub(:viewer).and_return(new_user)
   end
 
-  it "shows a random quip" do
-    quip = new_quip
-    @site.stub(:random_quip).and_return(quip)
+  it "shows the assigned quip" do
+    quip = assign(:quip, new_quip)
     render
     assert_select "p", :text => quip.text
   end
 
   describe "when there is more than one quip" do
     before :each do
-      @site.stub(:quips).and_return([new_quip, new_quip])
+      @site.stub(:singleton?).and_return(false)
     end
 
     it "gives you a way to get another quip" do
@@ -32,7 +31,7 @@ describe "sites/show.html.haml" do
 
   describe "when there is one quip" do
     before :each do
-      @site.stub(:quips).and_return([new_quip])
+      @site.stub(:singleton?).and_return(true)
     end
 
     it "doesn't show the more button" do

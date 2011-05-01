@@ -5,8 +5,8 @@
   - if @site.editable_by?(viewer)
     = link_to "Edit Hit", edit_site_path(@site)
     = link_to "Edit Quips", site_quips_path(@site)
-- if quip = @site.random_quip
-  %p.quip= quip.text
+- if @quip
+  %p.quip= @quip.text
 - else
   %p.empty
     There's nothing here!
