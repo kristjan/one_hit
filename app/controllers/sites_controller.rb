@@ -23,6 +23,7 @@ class SitesController < ApplicationController
   def show
     if @site
       @site.view!
+      @quip = @site.random_quip
       respond_with(@site)
     else
       respond_with_404

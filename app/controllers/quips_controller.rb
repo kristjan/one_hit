@@ -10,7 +10,9 @@ class QuipsController < ApplicationController
 
   def show
     @quip = Quip.find(params[:id])
-    respond_with @quip
+    respond_with @quip do |format|
+      format.html { render '/sites/show' }
+    end
   end
 
   def new

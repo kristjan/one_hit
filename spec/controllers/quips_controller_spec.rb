@@ -77,6 +77,21 @@ describe QuipsController do
     end
   end
 
+  describe "GET show" do
+    before :each do
+      Quip.stub(:find).with("37") {mock_quip}
+      get :show, :id => "37", :site_id => SITE_URL
+    end
+
+    it "assigns the requested quip as @quip" do
+      assigns(:quip).should be(mock_quip)
+    end
+
+    it "renders Sites#show" do
+      response.should render_template('/sites/show')
+    end
+  end
+
   describe "POST create" do
     describe "with valid params" do
       it "assigns a newly created quip as @quip" do

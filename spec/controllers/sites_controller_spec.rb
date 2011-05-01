@@ -11,6 +11,10 @@ describe SitesController do
     @mock_site ||= mock_model(Site, stubs).as_null_object
   end
 
+  def mock_quip(stubs={})
+    @mock_quip ||= mock_model(Quip, stubs).as_null_object
+  end
+
   describe "GET index" do
     it "assigns all sites as @sites" do
       Site.stub(:all) { [mock_site] }
@@ -27,6 +31,12 @@ describe SitesController do
     it "assigns the requested site as @site" do
       get :show, :id => "url"
       assigns(:site).should be(mock_site)
+    end
+
+    it "assigns a random quip as @quip" do
+      mock_site.stub(:random_quip).and_return(mock_quip)
+      get :show, :id => "url"
+      assigns(:quip).should be(mock_quip)
     end
 
     it "redirects nonexistent sites to /404" do
