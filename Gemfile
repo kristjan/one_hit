@@ -6,6 +6,7 @@ gem 'compass'
 gem 'haml'
 gem 'hoptoad_notifier', '2.4.7'
 gem 'omniauth'
+gem 'twitter'
 
 group :development, :test do
   gem 'sqlite3'
