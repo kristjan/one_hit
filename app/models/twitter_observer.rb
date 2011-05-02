@@ -10,6 +10,8 @@ class TwitterObserver < ActiveRecord::Observer
     when Site
       client.update(self.class.site_creation_tweet(model))
     end
+  rescue Twitter::Error => oboe
+    HoptoadNotifier.notify(oboe)
   end
 
 private

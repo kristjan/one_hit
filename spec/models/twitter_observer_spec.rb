@@ -33,4 +33,22 @@ describe TwitterObserver do
       TwitterObserver.site_creation_tweet(@site).should include(@site.name)
     end
   end
+
+  describe "when Twitter fails" do
+    before :each do
+      @site = new_site
+      Twitter::Client.stub(:new).and_return(mock_twitter_client)
+      mock_twitter_client.should_receive(:update).and_raise(Twitter::Error)
+    end
+
+    it "still creates the site" do
+      expect { @site.save }.to change(Site, :count).by(1)
+    end
+
+    it "notifies Hoptoad" do
+      HoptoadNotifier.should_receive(:notify).
+        with(an_instance_of(Twitter::Error))
+      @site.save
+    end
+  end
 end
