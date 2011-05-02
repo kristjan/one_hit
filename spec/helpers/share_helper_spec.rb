@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe ShareHelper do
-  before(:all) do
+  before(:each) do
     @site = create_site
   end
 
