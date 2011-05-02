@@ -7,7 +7,7 @@ Bundler.require(:default, Rails.env) if defined?(Bundler)
 module OneHit
   class Application < Rails::Application
     config.autoload_paths += %W(#{config.root}/lib)
-    config.active_record.observers = :badge_observer
+    config.active_record.observers = :badge_observer, :twitter_observer
     config.encoding = "utf-8"
     config.filter_parameters += [:password]
   end
