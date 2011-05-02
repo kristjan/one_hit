@@ -8,13 +8,13 @@ class TwitterObserver < ActiveRecord::Observer
   def after_create(model)
     case model
     when Site
-      Twitter::Client.new.update(self.class.site_creation_tweet(model))
+      client.update(self.class.site_creation_tweet(model))
     end
   end
 
 private
 
   def client
-    @client ||= Twitter::Client.new
+    Twitter::Client.new
   end
 end
