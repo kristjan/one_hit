@@ -16,7 +16,7 @@ describe QuipsController do
     @mock_site ||= mock_model(Site, stubs).as_null_object
   end
 
-  before(:each) do
+  before :each do
     @site = mock_site
     log_in_as @site.creator
     Site.stub(:fetch).with(SITE_URL) {@site}

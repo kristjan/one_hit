@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "sites/edit.html.haml" do
-  before(:each) do
+  before :each do
     @site = assign(:site, stub_model(Site,
       :name       => "MyString",
       :url        => 'myurl',

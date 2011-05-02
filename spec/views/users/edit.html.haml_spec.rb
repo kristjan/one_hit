@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "users/edit.html.haml" do
-  before(:each) do
+  before :each do
     @user = assign(:user, stub_model(User,
       :name  => Faker::Name.name,
       :email => Faker::Internet.email

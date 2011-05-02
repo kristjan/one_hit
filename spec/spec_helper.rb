@@ -11,7 +11,7 @@ RSpec.configure do |config|
   config.mock_with :rspec
   config.use_transactional_fixtures = true
 
-  config.before(:each) do
+  config.before :each do
     Twitter::Client.stub(:new).and_return(mock.as_null_object)
   end
 end
