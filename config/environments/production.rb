@@ -1,3 +1,6 @@
+ENV['TWITTER_OAUTH_TOKEN']     = 'token'
+ENV['TWITTER_OAUTH_SECRET']    = 'secret'
+
 OneHit::Application.configure do
   config.cache_classes                     = true
   config.consider_all_requests_local       = false
@@ -7,6 +10,3 @@ OneHit::Application.configure do
   config.i18n.fallbacks                    = true
   config.active_support.deprecation        = :notify
 end
-
-ENV['TWITTER_OAUTH_TOKEN']     = 'token'
-ENV['TWITTER_OAUTH_SECRET']    = 'secret'
