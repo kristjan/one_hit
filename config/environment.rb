@@ -3,3 +3,6 @@ require File.expand_path('../application', __FILE__)
 
 # Initialize the rails application
 OneHit::Application.initialize!
+
+ENV['TWITTER_CONSUMER_KEY']    = 'key'
+ENV['TWITTER_CONSUMER_SECRET'] = 'key'
