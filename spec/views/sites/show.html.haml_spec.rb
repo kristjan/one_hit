@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "sites/show.html.haml" do
   include ContentForTestHelper
 
-  before(:each) do
+  before :each do
     @site = assign(:site, stub_model(Site,
       :name       => "One hit wonders",
       :url        => "wonders",

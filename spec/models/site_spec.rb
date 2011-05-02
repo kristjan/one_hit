@@ -87,7 +87,7 @@ describe Site do
   end
 
   describe "fetching random sites" do
-    before(:each) do
+    before :each do
       Site.delete_all
     end
 

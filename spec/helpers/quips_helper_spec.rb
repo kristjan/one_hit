@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe QuipsHelper do
-  before(:all) do
+  before :each do
     @site = create_site
   end
 
