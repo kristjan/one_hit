@@ -7,11 +7,13 @@
         - @site.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
+  .field.name
     = f.text_field :name, :class => 'full_width',   |
                    :placeholder => "Name your site" |
-  .field
+    = tip(:name)
+  .field.url
     = f.label      :url, "http://oneh.it/"
     = f.text_field :url, :class => 'url', :placeholder => "your_url"
+    = tip(:url)
   .actions
     = f.submit "Hit it!"
