@@ -8,4 +8,26 @@ form {
     color: #666;
     margin-left: 11px;
   }
+
+  .field {
+    position: relative;
+
+    .tip {
+      display: none;
+      position: absolute;
+    }
+
+    input:hover + .tip,
+    input:focus + .tip { display: block; }
+
+    &.name .tip {
+      left: 435px;
+      top: -110px;
+    }
+
+    &.url .tip {
+      left: -295px;
+      top: -200px;
+    }
+  }
 }
