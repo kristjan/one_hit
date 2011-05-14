@@ -12,4 +12,8 @@ module ApplicationHelper
   def title(title)
     @title = title
   end
+
+  def oneline(&block)
+    haml_concat capture_haml(&block).gsub("\n", '').gsub(/>\s+</, '><')
+  end
 end

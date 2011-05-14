@@ -55,7 +55,7 @@ $footer-text-color: #EEE;
     border-top: 1px solid #000;
     height: $footer-height;
 
-    .greeting, .nav { line-height: $footer-height - 5px; }
+    .greeting, .nav a { line-height: $footer-height; }
 
     .greeting {
       @include float(left);
@@ -68,19 +68,44 @@ $footer-text-color: #EEE;
     }
 
     .nav {
+      @include border-left-radius($standard-radius);
       @include float(right);
+      @include linear-gradient(color-stops(#292929, #393939 10%, #393939));
+      padding-right: 10px;
+
       a {
         @include inline-block;
-        @include link-colors($footer-text-color,
-                             $exciting-color, $action-color);
-        margin: 0px 10px;
-        padding: 1px 0px;
+        @include link-colors($footer-text-color, #222);
 
-        &:active {
-          margin: 1px 9px -1px 11px;
+        padding: 0px 10px;
+        text-align: center;
+        width: 75px;
+
+        &:first-child {
+          @include border-left-radius($standard-radius);
         }
         &.home {
-          @include link-colors($exciting-color, $exciting-color, $action-color);
+          @include link-colors($exciting-color, #000);
+        }
+        &:hover {
+          @include linear-gradient(
+            color-stops(darken($exciting-color, 40%),
+                        $exciting-color 10%,
+                        $exciting-color 85%,
+                        lighten($exciting-color, 15%)));
+
+          border: 1px solid darken($exciting-color, 40%);
+          border-width: 0px 1px;
+
+          cursor: pointer;
+          padding: 0px 9px;
+        }
+        &:active {
+          @include linear-gradient(
+            color-stops(darken($exciting-color, 40%),
+                        darken($exciting-color, 5%) 10%,
+                        darken($exciting-color, 5%) 85%,
+                        lighten($exciting-color, 15%)));
         }
       }
     }
