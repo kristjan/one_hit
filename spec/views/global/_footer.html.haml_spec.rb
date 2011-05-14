@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "global/_header.html.haml" do
+describe "global/_footer.html.haml" do
   def mock_user(stubs={})
     @mock_user ||= mock_model(User, stubs).as_null_object
   end
@@ -22,17 +22,6 @@ describe "global/_header.html.haml" do
   it "renders a link to a random site" do
     render
     assert_select "a[href=?]", random_sites_path
-  end
-
-  it "renders a title when there is one" do
-    @title = assign(:title, Faker::Lorem.sentence)
-    render
-    assert_select "h1", :text => @title
-  end
-
-  it "renders no title when nothing is present" do
-    render
-    assert_select "h1", :text => ""
   end
 
   describe "when you are logged in" do

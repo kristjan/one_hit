@@ -16,6 +16,6 @@ describe "sites/index.html.haml" do
   end
 
   it "renders a link to the thanks page" do
-    assert_select content_for(:footer), "a[href=?]", thanks_path
+    assert_select "a[href=?]", thanks_path
   end
 end

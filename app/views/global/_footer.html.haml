@@ -1,0 +1,21 @@
+#footer
+  .fade
+  .content
+    .greeting
+      - if viewer
+        Whatup,
+        = link_to viewer.name || viewer.email, user_path(viewer)
+        = link_to "[Edit]", edit_user_path(viewer), :class => 'small'
+      - else
+        = link_to "Log in", new_user_path, :class => 'login'
+    .nav
+      = yield :nav
+      = link_to "Make a Hit", new_site_path, :class => 'persistent'
+      = link_to "Random Hit", random_sites_path, :class => 'persistent'
+      = link_to "Home", root_path, :class => 'persistent home'
+- if @site && !@site.new_record?
+  #stats
+    - Views::TIME_PERIODS.each do |period|
+      %span
+        = number_with_delimiter @site.views.send(period)
+        %small= period.to_s.humanize
