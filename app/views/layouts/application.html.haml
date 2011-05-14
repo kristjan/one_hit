@@ -21,15 +21,13 @@
     = render 'global/google_analytics'
 
   %body
-    = render 'global/header'
     #content
+      %h1= @title
       = yield
-
-    %footer#footer
-      = yield :footer
-      - if @include_fb_js
-        %script{:type => "text/javascript",
-                :src  => "http://connect.facebook.net/en_US/all.js#xfbml=1"}
-      - if @include_twitter_js
-        %script{:type => "text/javascript",
-                :src  => "http://platform.twitter.com/widgets.js"}
+    = render 'global/footer'
+    - if @include_fb_js
+      %script{:type => "text/javascript",
+              :src  => "http://connect.facebook.net/en_US/all.js#xfbml=1"}
+    - if @include_twitter_js
+      %script{:type => "text/javascript",
+              :src  => "http://platform.twitter.com/widgets.js"}

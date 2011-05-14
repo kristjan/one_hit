@@ -1,10 +1,9 @@
-- title "1h¡t"
 - content_for :head do
   = stylesheet_link_tag 'sites/index'
+%h1 OneH¡t
 .actions
   .action
     = link_to "Make a Hit", new_site_path
   .action
     = link_to "Random Hit", random_sites_path
-- content_for :footer do
-  = link_to "Thanks!", thanks_path
+= link_to "Thanks!", thanks_path, :class => 'thanks'

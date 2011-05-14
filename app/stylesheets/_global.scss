@@ -5,10 +5,6 @@
   outline: none;
 }
 
-html, body {
-  height: 100%;
-}
-
 body {
   background-color: $background-color;
   color: $text-color;
@@ -35,37 +31,78 @@ a {
   width: 600px;
 }
 
-#header {
-  @include border-bottom-radius($standard-radius);
-  @include clearfix();
-  @include box-shadow(#777);
-  @include text-size(.9em);
-  background-color: $header-color;
-  margin: 0px 3px;
-  padding: 5px 10px;
+$footer-height: 50px;
+$footer-text-color: #EEE;
+#footer {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
 
-  .greeting {
-    @include float(left);
-
-    a.login {
-      @include small-button;
-    }
+  .fade {
+    @include linear-gradient(color-stops(#FFF, #666));
+    height: 5px;
   }
+  .content {
+    @include linear-gradient(color-stops(#222, #333 10%, #333));
+    @include text-size(.9em);
 
-  #nav {
-    @include float(right);
-    a {
-      @include inline-block;
-      @include link-colors($text-color, $exciting-color, $action-color);
-      font-weight: bold;
+    background-color: #333;
+    color: $footer-text-color;
+    border-top: 1px solid #000;
+    height: $footer-height;
+
+    .greeting, .nav a { line-height: $footer-height; }
+
+    .greeting {
+      @include float(left);
       margin: 0px 10px;
-      padding: 1px 0px;
 
-      &:active {
-        margin: 1px 9px -1px 11px;
+      a.login {
+        @include small-button;
+        line-height: 1.2em;
       }
-      &.home {
-        @include link-colors($exciting-color, $exciting-color, $action-color);
+    }
+
+    .nav {
+      @include border-left-radius($standard-radius);
+      @include float(right);
+      @include linear-gradient(color-stops(#292929, #393939 10%, #393939));
+      padding-right: 10px;
+
+      a {
+        @include inline-block;
+        @include link-colors($footer-text-color, #222);
+
+        padding: 0px 10px;
+        text-align: center;
+        width: 80px;
+
+        &:first-child {
+          @include border-left-radius($standard-radius);
+        }
+        &.home {
+          @include link-colors($exciting-color, #000);
+        }
+        &:hover {
+          @include linear-gradient(
+            color-stops(darken($exciting-color, 40%),
+                        $exciting-color 10%,
+                        $exciting-color 85%,
+                        lighten($exciting-color, 15%)));
+
+          border: 1px solid darken($exciting-color, 40%);
+          border-width: 0px 1px;
+
+          cursor: pointer;
+          padding: 0px 9px;
+        }
+        &:active {
+          @include linear-gradient(
+            color-stops(darken($exciting-color, 40%),
+                        darken($exciting-color, 5%) 10%,
+                        darken($exciting-color, 5%) 85%,
+                        lighten($exciting-color, 15%)));
+        }
       }
     }
   }
@@ -73,8 +110,9 @@ a {
 
 #stats {
   position: absolute;
-  right: 50px;
-  top: 30px;
+  left: 50%;
+  top: -25px;
+  margin-left: -144px;
 
   span {
     @include linear-gradient(color-stops(#000, #666 10%, #222 50%, #000));
@@ -93,11 +131,11 @@ a {
     }
 
     &:first-child {
-      @include border-bottom-left-radius($standard-radius/2);
+      @include border-top-left-radius($standard-radius/2);
       border-left: none;
     }
     &:last-child {
-      @include border-bottom-right-radius($standard-radius/2);
+      @include border-top-right-radius($standard-radius/2);
     }
   }
 }
