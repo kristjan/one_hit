@@ -5,7 +5,6 @@
   - if @site.editable_by?(viewer)
     = link_to "Edit Hit", edit_site_path(@site)
     = link_to "Edit Quips", site_quips_path(@site)
-%h1= @site.name
 - if @quip
   %p.quip= @quip.text
 - else

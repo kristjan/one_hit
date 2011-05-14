@@ -12,11 +12,6 @@ describe "sites/show.html.haml" do
     view.stub(:viewer).and_return(new_user)
   end
 
-  it "shows the title" do
-    render
-    assert_select "h1", :text => @site.name
-  end
-
   it "shows the assigned quip" do
     quip = assign(:quip, new_quip)
     render
