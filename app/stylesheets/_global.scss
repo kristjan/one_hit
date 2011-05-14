@@ -114,8 +114,9 @@ $footer-text-color: #EEE;
 
 #stats {
   position: absolute;
-  right: 50px;
-  top: 0px;
+  left: 50%;
+  top: -25px;
+  margin-left: -144px;
 
   span {
     @include linear-gradient(color-stops(#000, #666 10%, #222 50%, #000));
@@ -134,11 +135,11 @@ $footer-text-color: #EEE;
     }
 
     &:first-child {
-      @include border-bottom-left-radius($standard-radius/2);
+      @include border-top-left-radius($standard-radius/2);
       border-left: none;
     }
     &:last-child {
-      @include border-bottom-right-radius($standard-radius/2);
+      @include border-top-right-radius($standard-radius/2);
     }
   }
 }
