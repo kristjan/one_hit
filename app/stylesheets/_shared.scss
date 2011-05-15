@@ -1,24 +1,36 @@
 @import "compass/css3";
+@import "constants";
 
 $standard-radius: 15px;
 $light-highlight-color: #EAF0FA;
 
+@mixin highlight-gradient($color) {
+  @include linear-gradient(
+    color-stops($color,
+                lighten($color, 15%) 2%,
+                $color 10%,
+                $color 95%,
+                darken($color, 20%)));
+}
+
 @mixin button {
   @include border-radius($standard-radius);
   @include inline-block;
-  @include linear-gradient(
-    color-stops(#FF9F05, #FFCF55 2%, #FF9F05 20%, #DF7F05 80%, #AF4F00));
+  @include highlight-gradient($exciting-color);
   border: none;
   color: #FFF;
   text-align: center;
+  text-shadow: darken($exciting-color, 35%) 0px -1px 0px,
+               lighten($exciting-color, 35%) 0px 1px 0px;
 
+    @include transition();
   &:hover, &:focus {
     cursor: pointer;
+    @include highlight-gradient(lighten($exciting-color, 3%));
   }
   &:active {
-    @include linear-gradient(
-      color-stops(#FF9F05, #DFAF35 2%, #DF7F00 20%, #BF5F00 80%, #8F2F00));
-    color: #DDD;
+    @include highlight-gradient(darken($exciting-color, 2%));
+    color: #F0F0F0;
   }
 }
 
@@ -26,25 +38,11 @@ $light-highlight-color: #EAF0FA;
   @include button;
   font-size: 2em;
   padding: 10px 15px;
-
-  &:hover, &:focus {
-    @include box-shadow(#F6E62C, 0, 0, 15px);
-  }
-  &:active {
-    @include box-shadow(#D6C60C, 0, 0, 10px);
-  }
 }
 
 @mixin small-button {
   @include button;
   padding: 1px 10px;
-
-  &:hover, &:focus {
-    @include box-shadow(#F6E62C, 0, 0, 5px);
-  }
-  &:active {
-    @include box-shadow(#D6C60C, 0, 0, 3px);
-  }
 }
 
 @mixin light-highlight {

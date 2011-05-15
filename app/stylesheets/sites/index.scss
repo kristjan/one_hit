@@ -12,9 +12,8 @@
     width: 900px;
 
     .action {
-      @include rounded-section;
       @include inline-block;
-      margin: 20px 40px;
+      margin: 20px 50px;
       width: 300px;
 
       a {
