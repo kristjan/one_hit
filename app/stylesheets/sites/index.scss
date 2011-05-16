@@ -10,6 +10,12 @@ $home-width: 750px;
 
   .intro_container {
     background-color: $home-bg-color;
+    @include linear-gradient(
+      color-stops($home-bg-color,
+                  lighten($home-bg-color, 5%) 40%,
+                  lighten($home-bg-color, 5%) 60%,
+                  $home-bg-color),
+      left);
   }
 
   .intro {
