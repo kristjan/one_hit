@@ -5,6 +5,7 @@ gem 'rails', '3.0.4'
 gem 'compass'
 gem 'haml'
 gem 'hoptoad_notifier', '2.4.7'
+gem 'jquery-rails', '>= 0.2.6'
 gem 'omniauth'
 gem 'twitter'
 
