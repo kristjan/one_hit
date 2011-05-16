@@ -3,10 +3,14 @@
 
 #content {
   @include clearfix;
-  @include linear-gradient(
-    color-stops($home-bg-color, $home-bg-color 33%, #FFF 50%, #FFF));
-
   width: 100%;
+
+  .intro_container {
+    @include linear-gradient(
+      color-stops($home-bg-color, $home-bg-color 70%, #D4EFFF));
+    margin-bottom: 10px;
+    padding-bottom: 35px;
+  }
 
   .intro {
     @include clearfix;
@@ -55,7 +59,6 @@
 
   .examples {
     color: #444;
-    margin-top: 25px;
 
     .site_container {
       width: 100%;
