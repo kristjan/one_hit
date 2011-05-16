@@ -1,9 +1,28 @@
 - content_for :head do
+  = javascript_include_tag 'plugins/jquery.easing'
+  = javascript_include_tag 'plugins/jquery.cycle.all.min'
+  = javascript_include_tag 'sites/index'
   = stylesheet_link_tag 'sites/index'
-%h1 OneH¡t
-.actions
-  .action
-    = link_to "Make a Hit", new_site_path
-  .action
-    = link_to "Random Hit", random_sites_path
+.intro_container
+  .intro
+    .teaser
+      %h1 OneH¡t
+      %ol
+        %li Build a silly site.
+        %li Make the internet happy.
+    .actions
+      .action
+        = link_to "Make a Hit", new_site_path
+      .action
+        = link_to "Random Hit", random_sites_path
+.examples
+  %h2
+    %span Latest Hits
+  .cycle_container
+    - @sites.each do |site|
+      .site_container
+        .site
+          %h1= site.name
+          %p= site.random_quip.text
+
 = link_to "Thanks!", thanks_path, :class => 'thanks'

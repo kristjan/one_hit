@@ -1,25 +1,109 @@
-@import "compass/utilities/general/clearfix";
-@import "compass/utilities/general/float";
+@import "compass/utilities/general";
 @import "shared";
+
+$home-bg-color: #63D7FF;
+$home-width: 750px;
 
 #content {
   @include clearfix;
   width: 100%;
 
-  .actions {
-    margin: 50px auto;
-    text-align: center;
-    width: 900px;
+  .intro_container {
+    background-color: $home-bg-color;
+    @include linear-gradient(
+      color-stops($home-bg-color,
+                  lighten($home-bg-color, 5%) 40%,
+                  lighten($home-bg-color, 5%) 60%,
+                  $home-bg-color),
+      left);
+  }
 
-    .action {
-      @include inline-block;
-      margin: 20px 50px;
+  .intro {
+    @include clearfix;
+    margin: 0px auto;
+    padding-bottom: 15px;
+    width: $home-width;
+
+    h1 {
+      @include text-size(4em);
+      text-align: left;
+      margin: 10px 0px;
+      padding: 0px;
+    }
+
+    .teaser {
+      @include transform(1, -8deg, 0, 0, -8deg);
+      @include float(left);
+      width: 400px;
+
+      ol {
+        @include text-size(2em);
+        margin-top: -10px;
+        padding: 10px 0px;
+
+        li { margin: 20px 0px; }
+      }
+    }
+
+    .actions {
+      @include float(left);
+      text-align: center;
+      margin-left: 50px;
       width: 300px;
 
-      a {
-        @include action-button;
-        @include text-size(2.5em);
-        width: 275px;
+      .action {
+        margin: 30px 0px;
+        width: 300px;
+
+        a {
+          @include action-button;
+          @include text-size(2.5em);
+          width: 270px;
+        }
+      }
+    }
+  }
+
+  h2 {
+    @include text-size(1.5em);
+
+    color: #FFF;
+    margin: 0px auto;
+    text-align: right;
+    text-shadow: #000 0px -1px 0px;
+    width: $home-width;
+
+    span {
+      @include border-bottom-radius($standard-radius);
+      @include inline-block();
+
+      background-color: $home-bg-color;
+      border-top: 1px dashed darken($home-bg-color, 25%);
+      padding: 5px 10px;
+    }
+  }
+
+  .examples {
+    color: #444;
+
+    .site_container {
+      width: 100%;
+    }
+
+    .site {
+      @include min-height(300px);
+      text-align: center;
+      margin: 0px auto;
+      padding: 0px 10px;
+      width: 680px;
+
+      h1 {
+        margin: 0px 0px 15px;
+        padding: 0px;
+      }
+
+      p {
+        @include text-size(2em);
       }
     }
   }

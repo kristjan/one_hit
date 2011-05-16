@@ -16,10 +16,16 @@ describe SitesController do
   end
 
   describe "GET index" do
-    it "assigns all sites as @sites" do
-      Site.stub(:all) { [mock_site] }
+    it "assigns random sites as @sites" do
+      Site.stub(:random) { [mock_site(:quips => [mock_quip])] }
       get :index
       assigns(:sites).should eq([mock_site])
+    end
+
+    it "ignores sites with no quips" do
+      Site.stub(:random) { [mock_site(:quips => [])]}
+      get :index
+      assigns(:sites).should eq([])
     end
   end
 

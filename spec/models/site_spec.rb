@@ -91,19 +91,32 @@ describe Site do
       Site.delete_all
     end
 
-    it "is nil when there are no sites" do
-      Site.random.should be_nil
+    describe "when there are no sites" do
+      it "is nil" do
+        Site.random.should be_nil
+      end
     end
 
-    it "picks a site when there are any" do
-      sites = [create_site, create_site]
-      sites.should include(Site.random)
-    end
+    describe "when there are sites" do
+      before :each do
+        @sites = [create_site, create_site, create_site]
+      end
 
-    it "never fetches 404" do
-      Site.should_receive(:first).
-        with(hash_including(:conditions => "url <> '404'"))
-      Site.random
+      it "returns 1 site by default" do
+        @sites.should include(Site.random)
+      end
+
+      it "returns several sites when a count is provided" do
+        sites = Site.random(2)
+        sites.size.should == 2
+      end
+
+      it "never fetches 404" do
+        Site.should_receive(:all).
+          with(hash_including(:conditions => "url <> '404'")).
+          and_return(@sites)
+        Site.random
+      end
     end
   end
 

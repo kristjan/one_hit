@@ -3,7 +3,7 @@ class SitesController < ApplicationController
   before_filter :require_creator, :only => [:edit, :update, :destroy]
 
   def index
-    @sites = Site.all
+    @sites = Site.random(5).select{|s| s.quips.any?}
     respond_with @sites
   end
 

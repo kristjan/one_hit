@@ -19,8 +19,9 @@ class Site < ActiveRecord::Base
     find_by_url(url.to_s.downcase) if url
   end
 
-  def self.random
-    first :order => 'random()', :conditions => "url <> '404'"
+  def self.random(n=1)
+    sites = all :limit => n, :order => 'random()', :conditions => "url <> '404'"
+    n > 1 ? sites : sites.first
   end
 
   def editable_by?(user)
