@@ -1,21 +1,22 @@
 @import "compass/utilities/general";
 @import "shared";
 
+$home-bg-color: #63D7FF;
+$home-width: 750px;
+
 #content {
   @include clearfix;
   width: 100%;
 
   .intro_container {
-    @include linear-gradient(
-      color-stops($home-bg-color, $home-bg-color 70%, #D4EFFF));
-    margin-bottom: 10px;
-    padding-bottom: 35px;
+    background-color: $home-bg-color;
   }
 
   .intro {
     @include clearfix;
     margin: 0px auto;
-    width: 750px;
+    padding-bottom: 15px;
+    width: $home-width;
 
     h1 {
       @include text-size(4em);
@@ -57,6 +58,25 @@
     }
   }
 
+  h2 {
+    @include text-size(1.5em);
+
+    color: #FFF;
+    margin: 0px auto;
+    text-align: right;
+    text-shadow: #000 0px -1px 0px;
+    width: $home-width;
+
+    span {
+      @include border-bottom-radius($standard-radius);
+      @include inline-block();
+
+      background-color: $home-bg-color;
+      border-top: 1px dashed darken($home-bg-color, 25%);
+      padding: 5px 10px;
+    }
+  }
+
   .examples {
     color: #444;
 
@@ -68,7 +88,7 @@
       @include min-height(300px);
       text-align: center;
       margin: 0px auto;
-      padding: 10px;
+      padding: 0px 10px;
       width: 680px;
 
       h1 {

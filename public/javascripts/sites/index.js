@@ -2,7 +2,7 @@ if (typeof (OneHit) === 'undefined') OneHit = {};
 
 OneHit.Sites = (function() {
   var index = function() {
-    $('.examples').cycle({
+    $('.examples .cycle_container').cycle({
       fx: 'scrollLeft'
     , easing: 'easeInOutBack'
     , timeout: 8000
