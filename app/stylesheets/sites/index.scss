@@ -34,6 +34,8 @@ $home-width: 750px;
     .teaser {
       @include transform(1, -8deg, 0, 0, -8deg);
       @include float(left);
+      text-shadow: #000 0px -1px 0px,
+                   #FFF 0px 1px 0px;
       width: 400px;
 
       ol {
