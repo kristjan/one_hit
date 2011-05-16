@@ -4,24 +4,58 @@
 
 #content {
   @include clearfix;
+  @include linear-gradient(
+    color-stops($home-bg-color, $home-bg-color 33%, #FFF 50%, #FFF));
+
   width: 100%;
 
-  .actions {
-    margin: 50px auto;
-    text-align: center;
-    width: 900px;
+  h1 {
+    @include text-size(4em);
+    text-align: left;
+    margin: 10px 0px;
+    padding: 0px;
+  }
 
-    .action {
-      @include inline-block;
-      margin: 20px 50px;
-      width: 300px;
+  .intro {
+    @include clearfix;
+    margin: 0px auto;
+    width: 750px;
 
-      a {
-        @include action-button;
-        @include text-size(2.5em);
-        width: 275px;
+    .teaser {
+      @include transform(1, -8deg, 0, 0, -8deg);
+      @include float(left);
+      width: 400px;
+
+      ol {
+        @include text-size(2em);
+        margin-top: -10px;
+        padding: 10px 0px;
+
+        li { margin: 20px 0px; }
       }
     }
+
+    .actions {
+      @include float(left);
+      text-align: center;
+      margin-left: 50px;
+      width: 300px;
+
+      .action {
+        margin: 30px 0px;
+        width: 300px;
+
+        a {
+          @include action-button;
+          @include text-size(2.5em);
+          width: 270px;
+        }
+      }
+    }
+  }
+
+  .examples {
+    height: 400px;
   }
 
   .thanks {

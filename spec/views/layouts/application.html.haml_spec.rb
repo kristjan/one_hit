@@ -13,7 +13,7 @@ describe "layouts/application.html.haml" do
 
    it "renders no title when nothing is present" do
      render
-     assert_select "h1", :text => ""
+     assert_select "h1", :count => 0
    end
 
   it "renders accumulated stylesheets" do

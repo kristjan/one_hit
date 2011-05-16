@@ -1,9 +1,16 @@
 - content_for :head do
   = stylesheet_link_tag 'sites/index'
-%h1 OneH¡t
-.actions
-  .action
-    = link_to "Make a Hit", new_site_path
-  .action
-    = link_to "Random Hit", random_sites_path
+.intro
+  .teaser
+    %h1 OneH¡t
+    %ol
+      %li Build a silly site.
+      %li Make the internet happy.
+  .actions
+    .action
+      = link_to "Make a Hit", new_site_path
+    .action
+      = link_to "Random Hit", random_sites_path
+.examples
+
 = link_to "Thanks!", thanks_path, :class => 'thanks'

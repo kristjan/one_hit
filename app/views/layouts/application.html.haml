@@ -22,7 +22,8 @@
 
   %body
     #content
-      %h1= @title
+      - if @title
+        %h1= @title
       = yield
     = render 'global/footer'
     - if @include_fb_js
