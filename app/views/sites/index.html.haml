@@ -1,4 +1,7 @@
 - content_for :head do
+  = javascript_include_tag 'plugins/jquery.easing'
+  = javascript_include_tag 'plugins/jquery.cycle.all.min'
+  = javascript_include_tag 'sites/index'
   = stylesheet_link_tag 'sites/index'
 .intro
   .teaser
@@ -13,8 +16,9 @@
       = link_to "Random Hit", random_sites_path
 .examples
   - @sites.each do |site|
-    .site
-      %h1= site.name
-      %p= site.random_quip.text
+    .site_container
+      .site
+        %h1= site.name
+        %p= site.random_quip.text
 
 = link_to "Thanks!", thanks_path, :class => 'thanks'
