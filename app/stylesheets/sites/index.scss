@@ -9,17 +9,17 @@
 
   width: 100%;
 
-  h1 {
-    @include text-size(4em);
-    text-align: left;
-    margin: 10px 0px;
-    padding: 0px;
-  }
-
   .intro {
     @include clearfix;
     margin: 0px auto;
     width: 750px;
+
+    h1 {
+      @include text-size(4em);
+      text-align: left;
+      margin: 10px 0px;
+      padding: 0px;
+    }
 
     .teaser {
       @include transform(1, -8deg, 0, 0, -8deg);
@@ -56,6 +56,12 @@
 
   .examples {
     height: 400px;
+    .site {
+      p {
+        @include text-size(2.5em);
+        text-align: center;
+      }
+    }
   }
 
   .thanks {
