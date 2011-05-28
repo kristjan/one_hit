@@ -46,6 +46,11 @@ describe Badge do
     Badge.grant(user)
   end
 
+  it "doesn't try to grant a badge to a nil target" do
+    Badge::TestPilot.should_not_receive(:grant)
+    Badge.grant(mock(Site, :badge_target => nil))
+  end
+
   it "eager-loads its descendants" do
     Dir[File.join(Rails.root, 'app', 'models', 'badge', '*')].each do |badge|
       Object.should_receive(:require).with(badge)

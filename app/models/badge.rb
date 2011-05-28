@@ -10,6 +10,7 @@ class Badge < ActiveRecord::Base
   end
 
   def self.grant(model)
+    return unless model.badge_target
     descendants.each do |badge|
       badge.grant(model) unless badge.granted?(model.badge_target)
     end
