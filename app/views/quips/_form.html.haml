@@ -1,3 +1,5 @@
+- content_for :head do
+  = stylesheet_link_tag 'quips/form'
 = form_for(@quip, :url => form_path(@quip)) do |f|
   - if @quip.errors.any?
     #error_explanation
