@@ -22,6 +22,7 @@ body {
 
     h1 {
       @include text-size(4em);
+      font-family: 'Amaranth', $default-fonts;
       text-align: left;
       margin: 10px 0px;
       padding: 0px;
@@ -32,7 +33,8 @@ body {
       @include float(left);
       text-shadow: #000 0px -1px 0px,
                    #FFF 0px 1px 0px;
-      width: 400px;
+      margin-left: 25px;
+      width: 375px;
 
       ol {
         @include text-size(2em);
