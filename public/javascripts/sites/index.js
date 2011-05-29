@@ -3,7 +3,7 @@ if (typeof (OneHit) === 'undefined') OneHit = {};
 OneHit.Sites = (function() {
   var index = function() {
     $('.examples .cycle_container').cycle({
-      fx: 'scrollLeft'
+      fx: 'scrollUp'
     , easing: 'easeInOutBack'
     , timeout: 8000
     });

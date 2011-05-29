@@ -1,19 +1,18 @@
 @import "compass/utilities/general";
 @import "shared";
+body {
+  background-color: $home-bg-color;
+  @include linear-gradient(
+    color-stops($home-bg-color,
+                lighten($home-bg-color, 5%) 40%,
+                lighten($home-bg-color, 5%) 60%,
+                $home-bg-color),
+    left);
+}
 
 #content {
   @include clearfix;
   width: 100%;
-
-  .intro_container {
-    background-color: $home-bg-color;
-    @include linear-gradient(
-      color-stops($home-bg-color,
-                  lighten($home-bg-color, 5%) 40%,
-                  lighten($home-bg-color, 5%) 60%,
-                  $home-bg-color),
-      left);
-  }
 
   .intro {
     @include clearfix;
@@ -63,36 +62,29 @@
 
   .examples {
     color: #444;
+    margin: 15px auto 0px;
+    width: $home-width;
 
     h2 {
+      @include border-top-radius($standard-radius);
       @include text-size(1.5em);
-
+      background-color: darken($home-bg-color, 40%);
       color: #FFF;
-      margin: 0px auto;
-      text-align: right;
+      padding: 5px 10px 3px 25px;
       text-shadow: #000 0px -1px 0px;
-      width: $home-width;
-
-      span {
-        @include border-bottom-radius($standard-radius);
-        @include inline-block();
-
-        background-color: $home-bg-color;
-        border-top: 1px dashed darken($home-bg-color, 25%);
-        padding: 5px 10px;
-      }
     }
 
-    .site_container {
-      width: 100%;
+    .cycle_container {
+      @include border-bottom-radius($standard-radius);
+      background-color: #FFF;
     }
 
     .site {
       @include min-height(300px);
       text-align: center;
       margin: 0px auto;
-      padding: 0px 10px;
-      width: 680px;
+      padding: 20px 0px 10px;
+      width: $home-width;
 
       h1 {
         margin: 0px 0px 15px;
