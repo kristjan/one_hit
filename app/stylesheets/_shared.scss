@@ -1,7 +1,7 @@
 @import "compass/css3";
 @import "constants";
 
-$standard-radius: 15px;
+$standard-radius: 10px;
 $light-highlight-color: #EAF0FA;
 
 @mixin highlight-gradient($color) {

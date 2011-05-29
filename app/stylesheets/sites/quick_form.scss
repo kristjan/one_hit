@@ -1,0 +1,40 @@
+@import "constants";
+@import "shared";
+@import "forms";
+
+.form {
+  margin: 20px 0px;
+}
+
+form {
+  @include text-size(.9em);
+  @include border-top-radius(0px);
+  padding: 5px 15px 10px;
+  background-color: darken($home-bg-color, 25%);
+  border-style: solid;
+  border-width: 1px 0px;
+  border-top-color: darken($home-bg-color, 30%);
+  border-bottom-color: lighten($home-bg-color, 10%);
+
+  input[type=text].full_width { width: 358px; }
+
+  input[type=text] {
+    border-color: darken($home-bg-color, 35%);
+    border-width: 1px;
+    padding: 3px 5px;
+  }
+
+  input[type=submit] {
+    @include text-size(1.5em);
+    padding: 5px 10px;
+    width: 100%;
+  }
+
+  .actions {
+    margin: 10px 0px 5px;
+  }
+  .field {
+    margin: 5px 0px;
+  }
+  .url input[type=text] { width: 229px; }
+}
