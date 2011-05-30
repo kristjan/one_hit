@@ -22,8 +22,11 @@ body {
 
     h1 {
       @include text-size(4em);
+      color: $exciting-color;
       font-family: 'Amaranth', $default-fonts;
       text-align: left;
+      text-shadow: darken($exciting-color, 25%) 0px -1px 0px,
+                   lighten($exciting-color, 45%) 0px 1px 0px;
       margin: 10px 0px;
       padding: 0px;
     }
@@ -32,7 +35,7 @@ body {
       @include transform(1, -8deg, 0, 0, -8deg);
       @include float(left);
       text-shadow: #000 0px -1px 0px,
-                   #FFF 0px 1px 0px;
+                   #EEE 0px 1px 0px;
       margin-left: 25px;
       width: 375px;
 
