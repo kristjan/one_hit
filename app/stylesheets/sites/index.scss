@@ -117,3 +117,8 @@ body {
     right: 10px;
   }
 }
+
+#footer .fade {
+  @include linear-gradient(
+  color-stops($home-bg-color, darken($home-bg-color, 50%)));
+}
