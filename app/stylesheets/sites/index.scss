@@ -67,14 +67,13 @@ body {
   }
 
   .examples {
-    @include border-radius($standard-radius);
-    box-shadow: 0px 5px 20px darken($home-bg-color, 25%);
+    @include border-bottom-radius($standard-radius);
+    box-shadow: 0px 10px 15px darken($home-bg-color, 15%);
     color: #444;
-    margin: 15px auto 0px;
+    margin: 5px auto 0px;
     width: $home-width;
 
     h2 {
-      @include border-top-radius($standard-radius);
       @include text-size(1.5em);
       color: darken($home-bg-color, 30%);
       padding: 5px 10px 3px 25px;
