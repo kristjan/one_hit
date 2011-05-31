@@ -66,6 +66,8 @@ body {
   }
 
   .examples {
+    @include border-radius($standard-radius);
+    box-shadow: 0px 5px 20px darken($home-bg-color, 25%);
     color: #444;
     margin: 15px auto 0px;
     width: $home-width;
@@ -73,15 +75,14 @@ body {
     h2 {
       @include border-top-radius($standard-radius);
       @include text-size(1.5em);
-      background-color: darken($home-bg-color, 40%);
-      color: #FFF;
+      color: darken($home-bg-color, 30%);
       padding: 5px 10px 3px 25px;
-      text-shadow: #000 0px -1px 0px;
     }
 
     .cycle_container {
       @include border-bottom-radius($standard-radius);
       background-color: #FFF;
+      margin-bottom: 20px;
     }
 
     .site {
