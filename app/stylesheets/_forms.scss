@@ -13,9 +13,6 @@ form {
   input[type=text], input[type=password] {
     @include border-radius($standard-radius);
     @include inline-block;
-    @include linear-gradient(
-               color-stops(#CCC, #FAFAFA 2%, #FAFAFA 98%, #CCC)
-             );
     border: 2px solid #CCC;
     color: #333;
     padding: 8px;

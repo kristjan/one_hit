@@ -13,10 +13,14 @@ form {
   input[type=text].full_width { width: 358px; }
 
   input[type=text] {
-    border-color: darken($home-bg-color, 35%);
+    border-color: darken($home-bg-color, 25%);
     border-width: 1px;
     margin: 3px 0px;
     padding: 3px 5px;
+
+    &:focus, &:hover {
+      border-color: darken($home-bg-color, 50%);
+    }
   }
 
   input[type=submit] {
@@ -24,6 +28,8 @@ form {
     padding: 5px 10px;
     width: 100%;
   }
+
+  label { color: darken($home-bg-color, 45%); }
 
   .actions {
     margin: 10px 0px 5px;

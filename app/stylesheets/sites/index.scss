@@ -61,7 +61,7 @@ body {
         @include text-size(1.25em);
         @include border-top-radius($standard-radius);
         border-bottom: 1px solid darken($home-bg-color, 25%);
-        color: #EEE;
+        color: darken($home-bg-color, 50%);
         margin: 0px 5px;
         padding: 5px 0px 2px;
         text-align: center;
