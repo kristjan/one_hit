@@ -50,17 +50,18 @@ body {
 
     .form {
       @include float(left);
-      margin-left: 30px;
+      @include border-radius($standard-radius);
+      margin: 20px 0px 20px 28px;
       width: 400px;
 
       h2 {
         @include text-size(1.25em);
         @include border-top-radius($standard-radius);
-        background-color: darken($home-bg-color, 40%);
+        background-color: darken($home-bg-color, 25%);
+        border: 1px solid darken($home-bg-color, 32%);
         color: #FFF;
-        padding: 3px 0px;
+        padding: 4px 0px 2px;
         text-align: center;
-        text-shadow: #000 0px -1px 0px;
       }
     }
   }

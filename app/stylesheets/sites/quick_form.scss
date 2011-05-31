@@ -2,25 +2,21 @@
 @import "shared";
 @import "forms";
 
-.form {
-  margin: 20px 0px;
-}
-
 form {
   @include text-size(.9em);
   @include border-top-radius(0px);
-  padding: 5px 15px 10px;
+  padding: 5px 14px 10px;
   background-color: darken($home-bg-color, 25%);
-  border-style: solid;
-  border-width: 1px 0px;
-  border-top-color: darken($home-bg-color, 30%);
-  border-bottom-color: lighten($home-bg-color, 10%);
+  border: 1px solid darken($home-bg-color, 30%);
+  border-top-color: darken($home-bg-color, 22%);
+  border-bottom-color: darken($home-bg-color, 20%);
 
   input[type=text].full_width { width: 358px; }
 
   input[type=text] {
     border-color: darken($home-bg-color, 35%);
     border-width: 1px;
+    margin: 3px 0px;
     padding: 3px 5px;
   }
 
