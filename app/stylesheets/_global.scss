@@ -37,6 +37,7 @@ $footer-text-color: #EEE;
   position: fixed;
   bottom: 0px;
   width: 100%;
+  z-index: 1000;
 
   .fade {
     @include linear-gradient(color-stops(#FFF, #666));
