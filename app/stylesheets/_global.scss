@@ -1,6 +1,9 @@
 @import "compass/css3";
 @import "compass/utilities";
 
+$footer-height: 50px;
+$footer-text-color: #EEE;
+
 * {
   outline: none;
 }
@@ -10,6 +13,7 @@ body {
   color: $text-color;
   font-family: $default-fonts;
   line-height: 1.2em;
+  padding-bottom: $footer-height;
 }
 
 h1 {
@@ -31,8 +35,6 @@ a {
   width: 600px;
 }
 
-$footer-height: 50px;
-$footer-text-color: #EEE;
 #footer {
   position: fixed;
   bottom: 0px;
