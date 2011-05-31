@@ -13,10 +13,8 @@ form {
   input[type=text], input[type=password] {
     @include border-radius($standard-radius);
     @include inline-block;
-    @include linear-gradient(
-               color-stops(#CCC, #FAFAFA 2%, #FAFAFA 98%, #CCC)
-             );
     border: 2px solid #CCC;
+    color: #333;
     padding: 8px;
 
     &:focus, &:hover { @include light-highlight(); }
@@ -26,6 +24,8 @@ form {
     @include action-button();
     @include inline-block;
   }
+
+  label { vertical-align: middle; }
 
   .field { margin: 10px 0px; }
   .field_with_errors {

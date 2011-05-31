@@ -1,4 +1,5 @@
 - content_for :head do
+  = google_font_link_tag 'Amaranth'
   = javascript_include_tag 'plugins/jquery.easing'
   = javascript_include_tag 'plugins/jquery.cycle.all.min'
   = javascript_include_tag 'sites/index'
@@ -10,11 +11,9 @@
       %ol
         %li Build a silly site.
         %li Make the internet happy.
-    .actions
-      .action
-        = link_to "Make a Hit", new_site_path
-      .action
-        = link_to "Random Hit", random_sites_path
+    .form
+      %h2 Create your hit in 10 seconds or less
+      = render 'form', :tips => false, :style => :quick_form
 .examples
   %h2
     %span Latest Hits
@@ -24,5 +23,8 @@
         .site
           %h1= site.name
           %p= site.random_quip.text
+          .link
+            As seen at
+            = link_to(site_url(site), site_path(site))
 
 = link_to "Thanks!", thanks_path, :class => 'thanks'

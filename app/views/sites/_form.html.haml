@@ -1,5 +1,6 @@
+- show_tips = local_assigns.fetch(:tips, true)
 - content_for :head do
-  = stylesheet_link_tag 'sites/form'
+  = stylesheet_link_tag "sites/#{local_assigns[:style] || :form}"
 = form_for(@site) do |f|
   - if @site.errors.any?
     #error_explanation
@@ -9,11 +10,11 @@
 
   .field.name
     = f.text_field :name, :class => 'full_width',   |
-                   :placeholder => "Name your site" |
-    = tip(:name)
+                   :placeholder => "Name your hit" |
+    = tip(:name) if show_tips
   .field.url
     = f.label      :url, "http://oneh.it/"
     = f.text_field :url, :class => 'url', :placeholder => "your_url"
-    = tip(:url)
+    = tip(:url) if show_tips
   .actions
     = f.submit "Hit it!"

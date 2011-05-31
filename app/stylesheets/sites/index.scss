@@ -1,22 +1,18 @@
 @import "compass/utilities/general";
 @import "shared";
-
-$home-bg-color: #63D7FF;
-$home-width: 750px;
+body {
+  background-color: $home-bg-color;
+  @include linear-gradient(
+    color-stops($home-bg-color,
+                lighten($home-bg-color, 5%) 40%,
+                lighten($home-bg-color, 5%) 60%,
+                $home-bg-color),
+    left);
+}
 
 #content {
   @include clearfix;
   width: 100%;
-
-  .intro_container {
-    background-color: $home-bg-color;
-    @include linear-gradient(
-      color-stops($home-bg-color,
-                  lighten($home-bg-color, 5%) 40%,
-                  lighten($home-bg-color, 5%) 60%,
-                  $home-bg-color),
-      left);
-  }
 
   .intro {
     @include clearfix;
@@ -26,7 +22,11 @@ $home-width: 750px;
 
     h1 {
       @include text-size(4em);
+      color: $exciting-color;
+      font-family: 'Amaranth', $default-fonts;
       text-align: left;
+      text-shadow: darken($exciting-color, 25%) 0px -1px 0px,
+                   lighten($exciting-color, 45%) 0px 1px 0px;
       margin: 10px 0px;
       padding: 0px;
     }
@@ -35,77 +35,78 @@ $home-width: 750px;
       @include transform(1, -8deg, 0, 0, -8deg);
       @include float(left);
       text-shadow: #000 0px -1px 0px,
-                   #FFF 0px 1px 0px;
-      width: 400px;
+                   #EEE 0px 1px 0px;
+      margin-left: 25px;
+      width: 375px;
 
       ol {
         @include text-size(2em);
         margin-top: -10px;
         padding: 10px 0px;
 
-        li { margin: 20px 0px; }
+        li { margin: 10px 0px; }
       }
     }
 
-    .actions {
+    .form {
       @include float(left);
-      text-align: center;
-      margin-left: 50px;
-      width: 300px;
+      @include border-radius($standard-radius);
+      background-color: darken($home-bg-color, 20%);
+      border-bottom: 1px solid lighten($home-bg-color, 10%);
+      box-shadow: 0px 1px 3px darken($home-bg-color, 35%) inset;
+      margin: 20px 0px 20px 28px;
+      width: 400px;
 
-      .action {
-        margin: 30px 0px;
-        width: 300px;
-
-        a {
-          @include action-button;
-          @include text-size(2.5em);
-          width: 270px;
-        }
+      h2 {
+        @include text-size(1.25em);
+        @include border-top-radius($standard-radius);
+        border-bottom: 1px solid darken($home-bg-color, 25%);
+        color: darken($home-bg-color, 50%);
+        margin: 0px 5px;
+        padding: 5px 0px 2px;
+        text-align: center;
       }
-    }
-  }
-
-  h2 {
-    @include text-size(1.5em);
-
-    color: #FFF;
-    margin: 0px auto;
-    text-align: right;
-    text-shadow: #000 0px -1px 0px;
-    width: $home-width;
-
-    span {
-      @include border-bottom-radius($standard-radius);
-      @include inline-block();
-
-      background-color: $home-bg-color;
-      border-top: 1px dashed darken($home-bg-color, 25%);
-      padding: 5px 10px;
     }
   }
 
   .examples {
+    @include border-bottom-radius($standard-radius);
+    box-shadow: 0px 10px 15px darken($home-bg-color, 15%);
     color: #444;
+    margin: 5px auto 0px;
+    width: $home-width;
 
-    .site_container {
-      width: 100%;
+    h2 {
+      @include text-size(1.5em);
+      color: darken($home-bg-color, 30%);
+      padding: 5px 10px 3px 25px;
+    }
+
+    .cycle_container {
+      @include border-bottom-radius($standard-radius);
+      background-color: #FFF;
+      margin-bottom: 20px;
     }
 
     .site {
       @include min-height(300px);
       text-align: center;
       margin: 0px auto;
-      padding: 0px 10px;
-      width: 680px;
+      padding: 20px 0px 10px;
+      width: $home-width;
 
       h1 {
         margin: 0px 0px 15px;
         padding: 0px;
       }
 
-      p {
-        @include text-size(2em);
+      p { @include text-size(2em); }
+
+      .link {
+        bottom: 10px;
+        color: #999;
+        position: absolute;
+        right: 15px;
       }
     }
   }
@@ -115,4 +116,9 @@ $home-width: 750px;
     position: absolute;
     right: 10px;
   }
+}
+
+#footer .fade {
+  @include linear-gradient(
+  color-stops($home-bg-color, darken($home-bg-color, 50%)));
 }
