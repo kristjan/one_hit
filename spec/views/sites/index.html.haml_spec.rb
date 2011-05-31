@@ -25,6 +25,7 @@ describe "sites/index.html.haml" do
         assert_select ".site" do
           assert_select "h1", :text => site.name
           assert_select "p", :text => site.random_quip.text
+          assert_select "a[href=?]", site_path(site), :text => site_url(site)
         end
       end
     end

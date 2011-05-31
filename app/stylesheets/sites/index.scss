@@ -98,8 +98,13 @@ body {
         padding: 0px;
       }
 
-      p {
-        @include text-size(2em);
+      p { @include text-size(2em); }
+
+      .link {
+        bottom: 10px;
+        color: #999;
+        position: absolute;
+        right: 15px;
       }
     }
   }

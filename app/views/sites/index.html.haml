@@ -23,5 +23,8 @@
         .site
           %h1= site.name
           %p= site.random_quip.text
+          .link
+            As seen at
+            = link_to(site_url(site), site_path(site))
 
 = link_to "Thanks!", thanks_path, :class => 'thanks'
