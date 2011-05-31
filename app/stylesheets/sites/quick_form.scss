@@ -5,11 +5,10 @@
 form {
   @include text-size(.9em);
   @include border-top-radius(0px);
-  padding: 5px 14px 10px;
-  background-color: darken($home-bg-color, 25%);
-  border: 1px solid darken($home-bg-color, 30%);
-  border-top-color: darken($home-bg-color, 22%);
-  border-bottom-color: darken($home-bg-color, 20%);
+  margin: 0px 5px;
+  padding: 5px 9px 10px;
+  background-color: transparent;
+  border-top: 1px solid darken($home-bg-color, 10%);
 
   input[type=text].full_width { width: 358px; }
 
