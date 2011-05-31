@@ -36,6 +36,7 @@ a {
 }
 
 #footer {
+  background-color: #333;
   position: fixed;
   bottom: 0px;
   width: 100%;
@@ -46,10 +47,9 @@ a {
     height: 5px;
   }
   .content {
-    @include linear-gradient(color-stops(#222, #333 10%, #333));
     @include text-size(.9em);
 
-    background-color: #333;
+    box-shadow: 0px 5px 5px -5px #000 inset;
     color: $footer-text-color;
     border-top: 1px solid #000;
     height: $footer-height;
@@ -69,7 +69,8 @@ a {
     .nav {
       @include border-left-radius($standard-radius);
       @include float(right);
-      @include linear-gradient(color-stops(#292929, #393939 10%, #393939));
+      background-color: #393939;
+      box-shadow: 0px 6px 5px -5px #000 inset;
       padding-right: 10px;
 
       a {
@@ -87,17 +88,10 @@ a {
           @include link-colors($exciting-color, #000);
         }
         &:hover {
-          @include linear-gradient(
-            color-stops(darken($exciting-color, 40%),
-                        $exciting-color 10%,
-                        $exciting-color 85%,
-                        lighten($exciting-color, 15%)));
-
-          border: 1px solid darken($exciting-color, 40%);
-          border-width: 0px 1px;
-
+          background-color: $exciting-color;
+          box-shadow: 0px 3px 5px 0px #000 inset,
+                      0px -5px 5px -5px #FFF inset;
           cursor: pointer;
-          padding: 0px 9px;
         }
         &:active {
           @include linear-gradient(
