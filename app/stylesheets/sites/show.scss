@@ -9,16 +9,16 @@
     @include text-size(3em);
   }
 
-  p {
-    @include text-size(2.5em);
-    @include min-height(150px);
-    margin: 50px auto;
-  }
-
   a.action {
     @include action-button();
     padding: 15px;
     width: 150px;
+  }
+
+  .quip {
+    @include text-size(2.5em);
+    @include min-height(150px);
+    margin: 50px auto;
   }
 
   .share {

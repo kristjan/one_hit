@@ -27,7 +27,7 @@ describe UsersController do
       request.env["rack.auth"] = @auth_info
     end
 
-    describe "when you're logged in and have authed before" do
+    describe "when you're logged in" do
       before :each do
         controller.stub(:viewer).and_return(mock_user)
       end
@@ -106,6 +106,16 @@ describe UsersController do
         end
       end
     end
+
+    context "when you have pending sites" do
+      it "grants them" do
+        Authorization.stub(:find_or_build).
+          and_return(mock('Authorization', :user => mock_user))
+        mock_user.should_receive(:claim_sites).with(['waiting', 'twiddling'])
+        controller.stub(:pending_sites) { ['waiting', 'twiddling']}
+        get :authorize, :user => {'these' => 'params'}
+      end
+    end
   end
 
   describe "GET edit" do
@@ -148,13 +158,12 @@ describe UsersController do
       assigns(:user).should eq(mock_user)
     end
 
-    it "loads your pending sites" do
-      waiting, twiddling = new_site, new_site
-      controller.stub(:pending_sites) {[waiting.url, twiddling.url]}
-      Site.stub(:fetch).with(waiting.url) { waiting }
-      Site.stub(:fetch).with(twiddling.url) { twiddling }
-      get :new
-      assigns(:pending_sites).should eq([waiting, twiddling])
+    context "when there's a next_url" do
+      it "stores the next_url in your session" do
+        url = Faker::Internet.http_url
+        get :new, :next_url => url
+        session[:next_url].should == url
+      end
     end
   end
 

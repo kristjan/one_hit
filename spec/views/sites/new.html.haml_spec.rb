@@ -14,6 +14,12 @@ describe "sites/new.html.haml" do
     assert_select "form[action=?][method=?]", sites_path, :post do
       assert_select "input#site_name[name=?]", "site[name]"
       assert_select "input#site_url[name=?]",  "site[url]"
+      assert_select ".quip" do
+        assert_select "input[type=text][name=?]",
+                      "site[quips_attributes][0][text]"
+        assert_select "input[type=hidden][name=?][value=?]",
+                      "site[quips_attributes][0][nested]", true
+      end
     end
   end
 

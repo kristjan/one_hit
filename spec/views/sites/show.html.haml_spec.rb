@@ -10,6 +10,7 @@ describe "sites/show.html.haml" do
       :creator_id => 1
     ))
     view.stub(:viewer).and_return(new_user)
+    view.stub(:pending_site?).and_return(false)
   end
 
   it "shows the assigned quip" do
@@ -92,6 +93,34 @@ describe "sites/show.html.haml" do
     it "lets you like" do
       render
       assert_select ".fb_like"
+    end
+  end
+
+  describe "the claim prompt" do
+    context "when you have not claimed it" do
+      before :each do
+        view.stub(:pending_site?).and_return(true)
+        render
+      end
+
+      it "appears" do
+        content_for(:alert).to_s.should_not be_empty
+      end
+
+      it "includes links to log in / sign up" do
+        assert_select content_for(:alert), 'a[href=?]',
+                      new_user_path(:next_url => site_path(@site)),
+                      :text => "Logging In"
+        assert_select content_for(:alert), 'a[href=?]',
+                      new_user_path(:next_url => site_path(@site)),
+                      :text => "Signing Up"
+      end
+    end
+
+    it "does not appear when you have no claim on it" do
+      view.stub(:pending_site?).and_return(false)
+      render
+      content_for(:alert).to_s.should be_empty
     end
   end
 end

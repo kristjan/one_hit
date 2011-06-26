@@ -6,6 +6,8 @@
 @import "forms";
 
 form {
+  margin-top: 40px;
+
   label {
     @include inline-block;
     margin-right: 10px;

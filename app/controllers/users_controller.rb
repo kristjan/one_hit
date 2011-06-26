@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   def authorize
     auth_info = request.env['rack.auth']
     auth = Authorization.find_or_build(auth_info, viewer)
+    auth.user.claim_sites(pending_sites)
     viewer!(auth.user)
     redirect_to next_url
   end
@@ -20,7 +21,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    @pending_sites = pending_sites.map{|url| Site.fetch(url)}
+    session[:next_url] = params[:next_url] unless params[:next_url].blank?
   end
 
   def show

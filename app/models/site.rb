@@ -5,6 +5,8 @@ class Site < ActiveRecord::Base
   has_many   :quips, :dependent => :destroy
   has_one    :views, :dependent => :destroy
 
+  accepts_nested_attributes_for :quips
+
   before_validation :downcase_url
 
   validates_length_of :name,  :minimum => 1

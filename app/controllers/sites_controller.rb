@@ -44,14 +44,7 @@ class SitesController < ApplicationController
     if @site.save
       pending_sites << @site.url
       respond_with @site, :status => :created do |format|
-        format.html {
-          if @site.creator
-            redirect_to site_quips_path(@site)
-          else
-            session[:next_url] = site_quips_path(@site)
-            redirect_to new_user_path
-          end
-        }
+        format.html {redirect_to site_path(@site)}
       end
     else
       respond_with @site.errors, :status => :unprocessable_entity do |format|

@@ -159,4 +159,21 @@ describe Site do
       site.should be_editable_by(new_user)
     end
   end
+
+  describe "creation" do
+    it "accepts a nested quip" do
+      s = Site.new(:name => "One Hit Wonders", :url => 'wonders',
+                   :quips_attributes => [{:text => "Take On Me"}])
+      s.quips.size.should == 1
+      s.quips.first.text.should == "Take On Me"
+    end
+
+    # The Quip is validated before the Site has been saved, and it will grumble
+    # that the Site can't be blank
+    it "doesn't validate the Quip's Site" do
+      site = new_site
+      quip = site.quips.build(:text => Faker::Lorem.sentence, :nested => true)
+      site.should be_valid
+    end
+  end
 end
