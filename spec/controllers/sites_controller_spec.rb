@@ -139,10 +139,10 @@ describe SitesController do
           post :create
         end
 
-        it "redirects to the quips index" do
+        it "redirects to site" do
           Site.stub(:new) { mock_site(:save => true, :creator => mock_user) }
           post :create, :site => {}
-          response.should redirect_to(site_quips_path(mock_site))
+          response.should redirect_to(site_path(mock_site))
         end
       end
 
@@ -158,14 +158,9 @@ describe SitesController do
           controller.session[:pending_sites].should include(mock_site.url)
         end
 
-        it "sets a :next_url" do
+        it "redirects to the site" do
           post :create, :site => {}
-          controller.session[:next_url].should == site_quips_path(mock_site)
-        end
-
-        it "redirects to the user creation form" do
-          post :create, :site => {}
-          response.should redirect_to(new_user_path)
+          response.should redirect_to(site_path(mock_site))
         end
       end
     end
