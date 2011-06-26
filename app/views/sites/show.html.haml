@@ -16,7 +16,10 @@
       or
       = link_to("Signing Up", url) + '.'
 - if @quip
-  %p.quip= @quip.text
+  .quip
+    %p= @quip.text
+    - if @site.editable_by?(viewer)
+      = link_to "+ Add Another", site_quips_path(@site), :class => 'edit'
 - else
   %p.empty
     There's nothing here!

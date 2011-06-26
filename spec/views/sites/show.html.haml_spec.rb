@@ -48,16 +48,20 @@ describe "sites/show.html.haml" do
 
     it "tells you so" do
       render
-      assert_select "p.empty", :text => /nothing here/
+      assert_select ".empty", :text => /nothing here/
     end
 
     it "links to add some" do
       render
-      assert_select "a[href=#{site_quips_path(@site)}]"
+      assert_select ".empty a[href=#{site_quips_path(@site)}]"
     end
   end
 
-  describe "the nav" do
+  describe "edit buttons" do
+    before :each do
+      assign(:quip, new_quip)
+    end
+
     describe "when you can edit it" do
       before :each do
         @site.stub(:editable_by?).and_return(true)
@@ -67,8 +71,10 @@ describe "sites/show.html.haml" do
       it "shows an edit site link" do
         assert_select content_for(:nav), 'a[href=?]', edit_site_path(@site)
       end
-      it "shows an edit quips link" do
-        assert_select content_for(:nav), 'a[href=?]', site_quips_path(@site)
+
+      it "links to add a quip" do
+        assert_select '.quip a[href=?]', site_quips_path(@site),
+                      :text => "+ Add Another"
       end
     end
 
@@ -78,8 +84,10 @@ describe "sites/show.html.haml" do
         render
       end
 
-      it "shows no edit links" do
-        assert_select content_for(:nav), 'a', :count => 0
+
+      it "does not link to add a quip" do
+        assert_select '.quip a[href=?]', site_quips_path(@site),
+                      :text => "+ Add Another", :count => 0
       end
     end
   end
