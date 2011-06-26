@@ -10,11 +10,16 @@
 
   .field.name
     = f.text_field :name, :class => 'full_width',   |
-                   :placeholder => "Name your hit" |
+                   :placeholder => "Name your hit"  |
     = tip(:name) if show_tips
   .field.url
     = f.label      :url, "http://oneh.it/"
     = f.text_field :url, :class => 'url', :placeholder => "your_url"
     = tip(:url) if show_tips
+  = f.fields_for :quips, (@site.quips.first || @site.quips.build) do |q|
+    .field.quip
+      = q.hidden_field :nested, :value => true
+      = q.text_field :text, :class => 'full_width',   |
+                     :placeholder => "What's it say?" |
   .actions
     = f.submit "Hit it!"
