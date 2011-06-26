@@ -27,7 +27,7 @@ describe UsersController do
       request.env["rack.auth"] = @auth_info
     end
 
-    describe "when you're logged in and have authed before" do
+    describe "when you're logged in" do
       before :each do
         controller.stub(:viewer).and_return(mock_user)
       end
@@ -104,6 +104,16 @@ describe UsersController do
           get :authorize
           response.should redirect_to(next_url)
         end
+      end
+    end
+
+    context "when you have pending sites" do
+      it "grants them" do
+        Authorization.stub(:find_or_build).
+          and_return(mock('Authorization', :user => mock_user))
+        mock_user.should_receive(:claim_sites).with(['waiting', 'twiddling'])
+        controller.stub(:pending_sites) { ['waiting', 'twiddling']}
+        get :authorize, :user => {'these' => 'params'}
       end
     end
   end

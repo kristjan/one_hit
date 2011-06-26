@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   def authorize
     auth_info = request.env['rack.auth']
     auth = Authorization.find_or_build(auth_info, viewer)
+    auth.user.claim_sites(pending_sites)
     viewer!(auth.user)
     redirect_to next_url
   end
