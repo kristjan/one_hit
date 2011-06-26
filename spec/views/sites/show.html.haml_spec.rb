@@ -68,8 +68,9 @@ describe "sites/show.html.haml" do
         render
       end
 
-      it "shows an edit site link" do
-        assert_select content_for(:nav), 'a[href=?]', edit_site_path(@site)
+      it "links to edit the site" do
+        assert_select 'a[href=?]', edit_site_path(@site),
+                      :text => "Edit Hit"
       end
 
       it "links to add a quip" do
@@ -84,6 +85,10 @@ describe "sites/show.html.haml" do
         render
       end
 
+      it "does not link to edit the site" do
+        assert_select 'a[href=?]', edit_site_path(@site),
+                      :text => "Edit Hit", :count => 0
+      end
 
       it "does not link to add a quip" do
         assert_select '.quip a[href=?]', site_quips_path(@site),

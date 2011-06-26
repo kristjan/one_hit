@@ -1,4 +1,4 @@
-- title @site.name
+- title @site.name, false
 - content_for :head do
   = stylesheet_link_tag 'sites/show'
 - if pending_site?(@site)
@@ -11,6 +11,10 @@
       = link_to "Logging In", url
       or
       = link_to("Signing Up", url) + '.'
+%h1
+  = @site.name
+  - if @site.editable_by?(viewer)
+    = link_to "Edit Hit", edit_site_path(@site), :class => 'edit'
 - if @quip
   .quip
     %p= @quip.text
