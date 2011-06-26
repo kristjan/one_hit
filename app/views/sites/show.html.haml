@@ -14,12 +14,15 @@
 %h1
   = @site.name
   - if @site.editable_by?(viewer)
-    = link_to "Edit Hit", edit_site_path(@site), :class => 'edit'
+    .edit
+      = link_to "Edit Title", edit_site_path(@site)
+      = link_to "Edit URL",   edit_site_path(@site)
 - if @quip
   .quip
-    %p= @quip.text
+    = @quip.text
     - if @site.editable_by?(viewer)
-      = link_to "+ Add Another", site_quips_path(@site), :class => 'edit'
+      .edit
+        = link_to "+ Add Quips", site_quips_path(@site)
 - else
   %p.empty
     There's nothing here!

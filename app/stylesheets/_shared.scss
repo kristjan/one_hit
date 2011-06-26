@@ -1,7 +1,6 @@
 @import "compass/css3";
 @import "constants";
 
-$standard-radius: 10px;
 $light-highlight-color: #EAF0FA;
 
 @mixin highlight-gradient($color) {
@@ -23,7 +22,6 @@ $light-highlight-color: #EAF0FA;
   text-shadow: darken($exciting-color, 35%) 0px -1px 0px,
                lighten($exciting-color, 35%) 0px 1px 0px;
 
-    @include transition();
   &:hover, &:focus {
     cursor: pointer;
     @include highlight-gradient(lighten($exciting-color, 3%));
@@ -38,6 +36,26 @@ $light-highlight-color: #EAF0FA;
   @include button;
   font-size: 2em;
   padding: 10px 15px;
+}
+
+@mixin simple-button {
+  @include border-radius($tight-radius);
+  background-color: #FAFAFA;
+  border: 1px solid #CCC;
+  color: #999;
+  font-weight: normal;
+  padding: 3px 5px;
+
+  &:hover {
+    background-color: #FAFAFA;
+    border-color: $exciting-color;
+    color: $exciting-color;
+  }
+  &:active {
+    background-color: #F6F6F6;
+    border-color: $action-color;
+    color: $action-color;
+  }
 }
 
 @mixin small-button {

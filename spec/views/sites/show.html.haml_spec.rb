@@ -16,7 +16,7 @@ describe "sites/show.html.haml" do
   it "shows the assigned quip" do
     quip = assign(:quip, new_quip)
     render
-    assert_select "p", :text => quip.text
+    assert_select ".quip", :text => quip.text
   end
 
   describe "when there is more than one quip" do
@@ -69,13 +69,15 @@ describe "sites/show.html.haml" do
       end
 
       it "links to edit the site" do
-        assert_select 'a[href=?]', edit_site_path(@site),
-                      :text => "Edit Hit"
+        assert_select '.edit a[href=?]', edit_site_path(@site),
+                      :text => "Edit Title"
+        assert_select '.edit a[href=?]', edit_site_path(@site),
+                      :text => "Edit URL"
       end
 
       it "links to add a quip" do
-        assert_select '.quip a[href=?]', site_quips_path(@site),
-                      :text => "+ Add Another"
+        assert_select '.edit a[href=?]', site_quips_path(@site),
+                      :text => "+ Add Quips"
       end
     end
 

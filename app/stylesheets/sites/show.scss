@@ -5,8 +5,20 @@
   text-align: center;
   width: 800px;
 
+
   h1 {
     @include text-size(3em);
+    position: relative;
+  }
+
+  h1, .quip {
+    padding-bottom: 25px;
+
+    .edit {
+      @include transition(opacity .2s ease-out);
+      opacity: 0;
+    }
+    &:hover .edit { opacity: 1; }
   }
 
   a.action {
@@ -15,10 +27,21 @@
     width: 150px;
   }
 
+  .edit {
+    @include text-size(12px);
+
+    bottom: 0px;
+    margin-left: 10px;
+    position: absolute;
+    right: 0px;
+    a { @include simple-button(); }
+  }
+
   .quip {
     @include text-size(2.5em);
     @include min-height(150px);
-    margin: 50px auto;
+    margin: 35px auto;
+    position: relative;
   }
 
   .share {
