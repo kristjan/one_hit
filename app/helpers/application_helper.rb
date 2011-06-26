@@ -18,8 +18,9 @@ module ApplicationHelper
         :rel => 'stylesheet', :type => 'text/css')
   end
 
-  def title(title)
+  def title(title, auto_header=true)
     @title = title
+    @auto_header = auto_header
   end
 
   def oneline(&block)
