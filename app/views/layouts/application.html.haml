@@ -21,6 +21,8 @@
     = render 'global/google_analytics'
 
   %body
+    - unless (alert = yield :alert).blank?
+      #alert= alert
     #content
       - if @title
         %h1= @title

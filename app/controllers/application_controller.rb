@@ -17,6 +17,11 @@ private
     session[:pending_sites] ||= []
   end
 
+  def pending_site?(site)
+    site.creator_id.nil? && pending_sites.include?(site.url)
+  end
+  helper_method :pending_site?
+
   def require_creator
     return if @site.creator.nil?
     unless viewer?(@site.creator)

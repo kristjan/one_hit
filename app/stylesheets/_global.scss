@@ -105,6 +105,22 @@ a {
   }
 }
 
+#alert {
+  @include text-size(.9em);
+  background-color: #D5FBD7;
+  border-bottom: 1px solid #52C458;
+  padding: 5px 0px;
+  text-align: center;
+  width: 100%;
+
+
+  h1 {
+    @include text-size(1em);
+    margin: 0px;
+    padding: 0px;
+  }
+}
+
 #stats {
   position: absolute;
   left: 50%;

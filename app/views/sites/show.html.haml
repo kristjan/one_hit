@@ -5,6 +5,15 @@
   - if @site.editable_by?(viewer)
     = link_to "Edit Hit", edit_site_path(@site)
     = link_to "Edit Quips", site_quips_path(@site)
+- if pending_site?(@site)
+  - content_for :alert do
+    %h1 Claim your Hit!
+    %p
+      Until you do, anyone on the internet can mess with it.
+      Claim it now by
+      = link_to "Logging In", new_user_path
+      or
+      = link_to("Signing Up", new_user_path) + '.'
 - if @quip
   %p.quip= @quip.text
 - else
