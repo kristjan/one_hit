@@ -147,15 +147,6 @@ describe UsersController do
       get :new
       assigns(:user).should eq(mock_user)
     end
-
-    it "loads your pending sites" do
-      waiting, twiddling = new_site, new_site
-      controller.stub(:pending_sites) {[waiting.url, twiddling.url]}
-      Site.stub(:fetch).with(waiting.url) { waiting }
-      Site.stub(:fetch).with(twiddling.url) { twiddling }
-      get :new
-      assigns(:pending_sites).should eq([waiting, twiddling])
-    end
   end
 
   describe "POST create" do

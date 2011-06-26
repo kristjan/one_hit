@@ -20,7 +20,6 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    @pending_sites = pending_sites.map{|url| Site.fetch(url)}
   end
 
   def show
