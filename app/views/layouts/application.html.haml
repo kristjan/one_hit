@@ -24,7 +24,7 @@
     - unless (alert = yield :alert).blank?
       #alert= alert
     #content
-      - if @title
+      - if @title && @auto_header
         %h1= @title
       = yield
     = render 'global/footer'

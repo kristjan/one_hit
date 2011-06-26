@@ -1,10 +1,6 @@
-- title @site.name
+- title @site.name, false
 - content_for :head do
   = stylesheet_link_tag 'sites/show'
-- content_for :nav do
-  - if @site.editable_by?(viewer)
-    = link_to "Edit Hit", edit_site_path(@site)
-    = link_to "Edit Quips", site_quips_path(@site)
 - if pending_site?(@site)
   - content_for :alert do
     %h1 Claim your Hit!
@@ -15,8 +11,18 @@
       = link_to "Logging In", url
       or
       = link_to("Signing Up", url) + '.'
+%h1
+  = @site.name
+  - if @site.editable_by?(viewer)
+    .edit
+      = link_to "Edit Title", edit_site_path(@site)
+      = link_to "Edit URL",   edit_site_path(@site)
 - if @quip
-  %p.quip= @quip.text
+  .quip
+    = @quip.text
+    - if @site.editable_by?(viewer)
+      .edit
+        = link_to "+ Add Quips", site_quips_path(@site)
 - else
   %p.empty
     There's nothing here!

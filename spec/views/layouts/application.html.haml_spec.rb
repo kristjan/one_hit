@@ -5,15 +5,29 @@ describe "layouts/application.html.haml" do
     view.stub(:viewer).and_return(nil)
   end
 
-  it "renders a title when there is one" do
-    title = assign(:title, Faker::Lorem.sentence)
-    render
-    assert_select "h1", :text => title
-  end
+  describe "the page title" do
+    before(:each) do
+      @title = assign(:title, Faker::Lorem.sentence)
+      assign(:auto_header, true)
+    end
 
-  it "renders no title when nothing is present" do
-    render
-    assert_select "h1", :count => 0
+    it "renders a title when there is one" do
+      assign(:auto_header, true)
+      render
+      assert_select "h1", :text => @title
+    end
+
+    it "renders no title when nothing is present" do
+      assign(:title, nil)
+      render
+      assert_select "h1", :count => 0
+    end
+
+    it "renders no title when it's asked not to" do
+      assign(:auto_header, false)
+      render
+      assert_select "h1", :count => 0
+    end
   end
 
   it "renders accumulated stylesheets" do
