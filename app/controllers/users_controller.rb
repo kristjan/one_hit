@@ -20,6 +20,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    session[:next_url] = params[:next_url] unless params[:next_url].blank?
   end
 
   def show

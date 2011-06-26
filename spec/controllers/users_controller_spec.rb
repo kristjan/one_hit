@@ -147,6 +147,14 @@ describe UsersController do
       get :new
       assigns(:user).should eq(mock_user)
     end
+
+    context "when there's a next_url" do
+      it "stores the next_url in your session" do
+        url = Faker::Internet.http_url
+        get :new, :next_url => url
+        session[:next_url].should == url
+      end
+    end
   end
 
   describe "POST create" do
