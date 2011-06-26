@@ -97,10 +97,24 @@ describe "sites/show.html.haml" do
   end
 
   describe "the claim prompt" do
-    it "appears when you have not claimed it" do
-      view.stub(:pending_site?).and_return(true)
-      render
-      assert_select content_for(:alert), 'a[href=?]', new_user_path
+    context "when you have not claimed it" do
+      before :each do
+        view.stub(:pending_site?).and_return(true)
+        render
+      end
+
+      it "appears" do
+        content_for(:alert).to_s.should_not be_empty
+      end
+
+      it "includes links to log in / sign up" do
+        assert_select content_for(:alert), 'a[href=?]',
+                      new_user_path(:next_url => site_path(@site)),
+                      :text => "Logging In"
+        assert_select content_for(:alert), 'a[href=?]',
+                      new_user_path(:next_url => site_path(@site)),
+                      :text => "Signing Up"
+      end
     end
 
     it "does not appear when you have no claim on it" do

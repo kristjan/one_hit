@@ -11,9 +11,10 @@
     %p
       Until you do, anyone on the internet can mess with it.
       Claim it now by
-      = link_to "Logging In", new_user_path
+      - url = new_user_path(:next_url => site_path(@site))
+      = link_to "Logging In", url
       or
-      = link_to("Signing Up", new_user_path) + '.'
+      = link_to("Signing Up", url) + '.'
 - if @quip
   %p.quip= @quip.text
 - else
