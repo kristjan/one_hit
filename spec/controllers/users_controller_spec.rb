@@ -189,6 +189,12 @@ describe UsersController do
           post :create, :user => {'these' => 'params'}
           session[:viewer_id].should == mock_user.id
         end
+
+        it "grants you your pending sites" do
+          mock_user.should_receive(:claim_sites).with(['waiting', 'twiddling'])
+          controller.stub(:pending_sites) { ['waiting', 'twiddling']}
+          post :create, :user => {'these' => 'params'}
+        end
       end
 
       describe "when you're a returning user with the right password" do
@@ -216,13 +222,20 @@ describe UsersController do
                                   :password => 'god'}
           session[:viewer_id].should == mock_user.id
         end
+
+        it "grants you your pending sites" do
+          mock_user.should_receive(:claim_sites).with(['waiting', 'twiddling'])
+          controller.stub(:pending_sites) { ['waiting', 'twiddling']}
+          post :create, :user => {:email => 'test@example.com',
+                                  :password => 'god'}
+        end
       end
 
-      describe "with you're a returning user with the wrong password" do
+      describe "when you're a returning user with the wrong password" do
         before :each do
-          User.stub(:find_by_login) {
+          User.stub(:find_by_login).and_return(
             mock_user(:new_record? => true, :email => 'test@example.com')
-          }
+          )
         end
 
         it "assigns a new user to @user" do
@@ -239,12 +252,13 @@ describe UsersController do
           post :create, :user => {'email' => 'test@example.com'}
           response.should render_template("new")
         end
-      end
 
-      it "grants you your pending sites" do
-        mock_user.should_receive(:claim_sites).with(['waiting', 'twiddling'])
-        controller.stub(:pending_sites) { ['waiting', 'twiddling']}
-        post :create, :user => {'these' => 'params'}
+        it "doesn't grant any sites" do
+          mock_user.should_not_receive(:claim_sites).
+            with(['waiting', 'twiddling'])
+          controller.stub(:pending_sites) { ['waiting', 'twiddling']}
+          post :create, :user => {'email' => 'test@example.com'}
+        end
       end
     end
 
