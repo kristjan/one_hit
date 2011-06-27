@@ -55,6 +55,7 @@ GEM
       faraday (~> 0.5.4)
     fixjour (0.5.3)
       activerecord
+    flan (0.1.0)
     haml (3.0.25)
     hashie (1.0.0)
     hoptoad_notifier (2.4.7)
@@ -174,6 +175,7 @@ DEPENDENCIES
   compass
   ffaker!
   fixjour
+  flan
   haml
   hoptoad_notifier (= 2.4.7)
   jquery-rails (>= 0.2.6)
