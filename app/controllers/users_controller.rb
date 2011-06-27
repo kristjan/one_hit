@@ -4,7 +4,9 @@ class UsersController < ApplicationController
 
   def authorize
     auth_info = request.env['rack.auth']
-    auth = Authorization.find_or_build(auth_info, viewer)
+    auth = Authorization.find_by_hash(auth_info)
+    flan(:pageview, 'users/create') if viewer.nil? && auth.nil?
+    auth ||= Authorization.build(viewer, auth_info)
     auth.user.claim_sites(pending_sites)
     viewer!(auth.user)
     redirect_to next_url
@@ -45,6 +47,7 @@ private
     @user = User.new(params[:user])
     if @user.save
       @user.claim_sites(pending_sites)
+      flan(:pageview, 'users/create')
       respond_with @user, :status => :created, :location => next_url
     else
       render :new

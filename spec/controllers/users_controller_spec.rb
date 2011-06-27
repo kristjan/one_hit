@@ -44,6 +44,11 @@ describe UsersController do
           get :authorize
           response.should redirect_to(next_url)
         end
+
+        it "doesn't store anything in Flan" do
+          controller.should_not_receive(:flan)
+          get :authorize
+        end
       end
 
       describe "and haven't authed before" do
@@ -63,10 +68,19 @@ describe UsersController do
           get :authorize
           response.should redirect_to(next_url)
         end
+
+        it "doesn't store anything in Flan" do
+          controller.should_not_receive(:flan)
+          get :authorize
+        end
       end
     end
 
     describe "when you're not logged in" do
+      before(:each) do
+        controller.send(:viewer).should be_nil
+      end
+
       describe "and have authed before" do
         before :each do
           @auth = mock_auth(:user => mock_user)
@@ -83,6 +97,11 @@ describe UsersController do
           session[:next_url] = next_url
           get :authorize
           response.should redirect_to(next_url)
+        end
+
+        it "doesn't store anything in Flan" do
+          controller.should_not_receive(:flan)
+          get :authorize
         end
       end
 
@@ -104,12 +123,17 @@ describe UsersController do
           get :authorize
           response.should redirect_to(next_url)
         end
+
+        it "stores the creation in Flan" do
+          controller.should_receive(:flan).with(:pageview, 'users/create')
+          get :authorize
+        end
       end
     end
 
     context "when you have pending sites" do
       it "grants them" do
-        Authorization.stub(:find_or_build).
+        Authorization.stub(:build).
           and_return(mock('Authorization', :user => mock_user))
         mock_user.should_receive(:claim_sites).with(['waiting', 'twiddling'])
         controller.stub(:pending_sites) { ['waiting', 'twiddling']}
@@ -195,6 +219,11 @@ describe UsersController do
           controller.stub(:pending_sites) { ['waiting', 'twiddling']}
           post :create, :user => {'these' => 'params'}
         end
+
+        it "stores the creation in Flan" do
+          controller.should_receive(:flan).with(:pageview, 'users/create')
+          post :create, :user => {'these' => 'params'}
+        end
       end
 
       describe "when you're a returning user with the right password" do
@@ -229,6 +258,12 @@ describe UsersController do
           post :create, :user => {:email => 'test@example.com',
                                   :password => 'god'}
         end
+
+        it "doesn't store anything in Flan" do
+          controller.should_not_receive(:flan)
+          post :create, :user => {:email => 'test@example.com',
+                                  :password => 'god'}
+        end
       end
 
       describe "when you're a returning user with the wrong password" do
@@ -253,6 +288,11 @@ describe UsersController do
           response.should render_template("new")
         end
 
+        it "doesn't store anything in Flan" do
+          controller.should_not_receive(:flan)
+          post :create, :user => {'email' => 'test@example.com'}
+        end
+
         it "doesn't grant any sites" do
           mock_user.should_not_receive(:claim_sites).
             with(['waiting', 'twiddling'])
@@ -275,6 +315,12 @@ describe UsersController do
       it "re-renders the 'new' template" do
         post :create, :user => {}
         response.should render_template("new")
+      end
+
+      it "doesn't store anything in Flan" do
+        controller.should_not_receive(:flan)
+        post :create, :user => {:email => 'test@example.com',
+                                :password => 'god'}
       end
     end
   end

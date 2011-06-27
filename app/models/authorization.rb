@@ -22,8 +22,4 @@ class Authorization < ActiveRecord::Base
     return nil if hash['provider'].blank? || hash['uid'].blank?
     self.find_by_provider_and_uid(hash['provider'], hash['uid'])
   end
-
-  def self.find_or_build(hash, user)
-    find_by_hash(hash) || build(user, hash)
-  end
 end
