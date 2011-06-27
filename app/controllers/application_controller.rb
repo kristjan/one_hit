@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   respond_to :html, :json, :xml
 
+  include Flan
+
 private
 
   def next_url

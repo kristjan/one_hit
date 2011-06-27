@@ -44,7 +44,10 @@ class SitesController < ApplicationController
     if @site.save
       pending_sites << @site.url
       respond_with @site, :status => :created do |format|
-        format.html {redirect_to site_path(@site)}
+        format.html {
+          flan(:pageview, 'sites/create')
+          redirect_to site_path(@site)
+        }
       end
     else
       respond_with @site.errors, :status => :unprocessable_entity do |format|

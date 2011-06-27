@@ -19,6 +19,7 @@
     = yield :head
 
     = render 'global/google_analytics'
+    = flan_js
 
   %body
     - unless (alert = yield :alert).blank?

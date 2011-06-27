@@ -3,6 +3,7 @@ require 'spec_helper'
 describe "layouts/application.html.haml" do
   before :each do
     view.stub(:viewer).and_return(nil)
+    view.stub(:flan_js)
   end
 
   describe "the page title" do
@@ -35,5 +36,10 @@ describe "layouts/application.html.haml" do
     render
     assert_select "link[href=?][rel=stylesheet][type=text/css]",
       "/stylesheets/three/to/the_wind.css"
+  end
+
+  it "renders Flan events" do
+    view.should_receive(:flan_js)
+    render
   end
 end

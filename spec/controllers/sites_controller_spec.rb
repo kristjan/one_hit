@@ -128,6 +128,12 @@ describe SitesController do
         assigns(:site).should be(mock_site)
       end
 
+      it "stores a pageview in Flan" do
+        Site.stub(:new).with({'these' => 'params'}) { mock_site(:save => true) }
+        controller.should_receive(:flan).with(:pageview, 'sites/create')
+        post :create, :site => {'these' => 'params'}
+      end
+
       describe "when you're logged in" do
         before :each do
           controller.stub(:viewer) { mock_user }
@@ -176,6 +182,11 @@ describe SitesController do
         Site.stub(:new) { mock_site(:save => false) }
         post :create, :site => {}
         response.should render_template("new")
+      end
+
+      it "does not store a pageview in Flan" do
+        controller.should_not_receive(:flan)
+        post :create, :site => {}
       end
     end
   end
