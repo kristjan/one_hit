@@ -1,6 +1,7 @@
 - show_tips = local_assigns.fetch(:tips, true)
 - content_for :head do
   = stylesheet_link_tag "sites/#{local_assigns[:style] || :form}"
+  = javascript_include_tag "plugins/jquery.alphanumeric"
   = javascript_include_tag "sites/form"
 = form_for(@site) do |f|
   - if @site.errors.any?

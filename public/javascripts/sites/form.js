@@ -1,6 +1,11 @@
 $.namespace("OneHit.Sites").Form = (function() {
   var init = function() {
     $('form#new_site #site_name').keyup(updateURL);
+    $('form#new_site #site_url').alphanumeric({
+      allow : '-', // Allow dash
+      nchars: ' ', // Disallow space
+      nocaps: true
+    });
   };
 
   var updateURL = function() {
