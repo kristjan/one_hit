@@ -37,5 +37,14 @@ form {
   .field {
     margin: 5px 0px;
   }
-  .url input[type=text] { width: 229px; }
+  .url {
+    @include text-size(.8em);
+
+    input[type=text] {
+      @include border-radius(7px);
+      margin-left: 0px;
+      padding: 2px 3px;
+      width: 261px;
+    }
+  }
 }
