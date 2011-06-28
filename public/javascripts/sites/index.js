@@ -1,7 +1,5 @@
-if (typeof (OneHit) === 'undefined') OneHit = {};
-
-OneHit.Sites = (function() {
-  var index = function() {
+$.namespace('OneHit.Sites').Index = (function() {
+  var init = function() {
     $('.examples .cycle_container').cycle({
       fx: 'scrollUp'
     , easing: 'easeInOutBack'
@@ -10,10 +8,10 @@ OneHit.Sites = (function() {
   };
 
   return {
-    index: index
+    init: init
   };
 })();
 
 $(document).ready(function() {
-  OneHit.Sites.index();
+  OneHit.Sites.Index.init();
 });
