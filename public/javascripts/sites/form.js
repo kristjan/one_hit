@@ -1,10 +1,20 @@
 $.namespace("OneHit.Sites").Form = (function() {
   var init = function() {
-    $('form#new_site #site_name').keyup(updateURL);
-    $('form#new_site #site_url').alphanumeric({
+    $('#new_site .name input').keyup(updateURL);
+    $('#new_site .url input').alphanumeric({
       allow : '-', // Allow dash
       nchars: ' ', // Disallow space
       nocaps: true
+    });
+    $('#new_site .name input, #new_site .quip input').tooltip({
+      position: 'center left',
+      effect: 'fade',
+      offset: [0, -5]
+    });
+    $('#new_site .url input').tooltip({
+      position: 'center left',
+      effect: 'fade',
+      offset: [0, -106]
     });
   };
 
