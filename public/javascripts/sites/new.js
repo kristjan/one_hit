@@ -1,12 +1,13 @@
 $.namespace("OneHit.Sites").New = (function() {
   var init = function() {
-    $('#new_site .name input, #new_site .quip input').tooltip({
+    var form = $('.new_site, .edit_site');
+    form.find('.name input, .quip input').tooltip({
       position: 'top center'
     , effect: 'fade'
     , opacity: 0.9
     , offset: [-5, 92]
     });
-    $('#new_site .url input').tooltip({
+    form.find('.url input').tooltip({
       position: 'top center'
     , effect: 'fade'
     , opacity: 0.9
