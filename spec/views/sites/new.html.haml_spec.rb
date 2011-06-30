@@ -25,11 +25,15 @@ describe "sites/new.html.haml" do
 
   describe "helpful tips" do
     it "renders a name tip" do
-      assert_select ".field.name img.tip"
+      assert_select ".field.name .tooltip"
+    end
+
+    it "renders a Quip tip" do
+      assert_select ".field.quip .tooltip"
     end
 
     it "renders a URL tip" do
-      assert_select ".field.url img.tip"
+      assert_select ".field.url .tooltip"
     end
   end
 end

@@ -9,32 +9,9 @@ form {
     color: #666;
     margin-left: 11px;
   }
+}
 
-  .field {
-    position: relative;
-
-    .tip {
-      @include transition(opacity, .25s, ease-in-out);
-
-      opacity: 0;
-      position: absolute;
-      z-index: -1000;
-    }
-
-    input:hover + .tip,
-    input:focus + .tip {
-      opacity: 100;
-      z-index: 1000;
-    }
-
-    &.name .tip {
-      left: 435px;
-      top: -110px;
-    }
-
-    &.url .tip {
-      left: -295px;
-      top: -200px;
-    }
-  }
+.tooltip {
+  @include text-size(14px);
+  width: 350px;
 }

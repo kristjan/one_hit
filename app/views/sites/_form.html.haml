@@ -1,6 +1,9 @@
 - show_tips = local_assigns.fetch(:tips, true)
 - content_for :head do
   = stylesheet_link_tag "sites/#{local_assigns[:style] || :form}"
+  = javascript_include_tag "plugins/jquery.alphanumeric"
+  = javascript_include_tag "plugins/jquery.tooltip"
+  = javascript_include_tag "sites/form"
 = form_for(@site) do |f|
   - if @site.errors.any?
     #error_explanation
@@ -11,15 +14,25 @@
   .field.name
     = f.text_field :name, :class => 'full_width',   |
                    :placeholder => "Name your hit"  |
-    = tip(:name) if show_tips
+    .tooltip
+      %strong Name your hit!
+      .example eg. &ldquo;Is the internet on?&rdquo;, &ldquo;Green things&rdquo;
   = f.fields_for :quips, (@site.quips.first || @site.quips.build) do |q|
     .field.quip
       = q.hidden_field :nested, :value => true
       = q.text_field :text, :class => 'full_width',   |
                      :placeholder => "What's it say?" |
+      .tooltip
+        %strong What's it say?
+        %span.desc You can add more later.
+        .example eg. &ldquo;Yep!&rdquo;, &ldquo;Pickles!&rdquo;
   .field.url
     = f.label      :url, "http://oneh.it/"
     = f.text_field :url, :class => 'url', :placeholder => "your_url"
-    = tip(:url) if show_tips
+    .tooltip
+      %strong Your URL
+      %span.desc - Where does your Hit live?
+      .example
+        eg. &ldquo;istheinterneton&rdquo;, &ldquo;things_ive_stepped_in&rdquo;
   .actions
     = f.submit "Hit it!"
