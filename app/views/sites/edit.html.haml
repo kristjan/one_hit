@@ -1,4 +1,6 @@
 - title "Edit site"
+- content_for :head do
+  = javascript_include_tag 'sites/new'
 - content_for :nav do
   = link_to "Back", @site
 = render 'form'

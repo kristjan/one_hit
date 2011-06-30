@@ -5,6 +5,17 @@ $.namespace('OneHit.Sites').Index = (function() {
     , easing: 'easeInOutBack'
     , timeout: 8000
     });
+
+    $('#new_site .name input, #new_site .quip input').tooltip({
+      position: 'center left'
+    , effect: 'fade'
+    , offset: [0, -5]
+    });
+    $('#new_site .url input').tooltip({
+      position: 'center left'
+    , effect: 'fade'
+    , offset: [0, -106]
+    });
   };
 
   return {

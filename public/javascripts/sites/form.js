@@ -6,16 +6,6 @@ $.namespace("OneHit.Sites").Form = (function() {
       nchars: ' ', // Disallow space
       nocaps: true
     });
-    $('#new_site .name input, #new_site .quip input').tooltip({
-      position: 'center left',
-      effect: 'fade',
-      offset: [0, -5]
-    });
-    $('#new_site .url input').tooltip({
-      position: 'center left',
-      effect: 'fade',
-      offset: [0, -106]
-    });
   };
 
   var updateURL = function() {
